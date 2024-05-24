@@ -6,16 +6,16 @@ namespace GMAShop.Order.Application.Feature.CQRS.Handlers.AddressHandlers;
 
 public class GetAddressQueryHandler
 {
-    private readonly IRepository<Address> _addressRepository;
+    private readonly IRepository<Address> _repository;
 
-    public GetAddressQueryHandler(IRepository<Address> addressRepository)
+    public GetAddressQueryHandler(IRepository<Address> repository)
     {
-        _addressRepository = addressRepository;
+        _repository = repository;
     }
 
-    public async Task<List<GetAddressQueryResult>> Handle(GetAddressQueryResult getAddressQueryResult)
+    public async Task<List<GetAddressQueryResult>> Handle()
     {
-        var values = await _addressRepository.GetAllAsync();
+        var values = await _repository.GetAllAsync();
 
         return values.Select(x => new GetAddressQueryResult()
         {

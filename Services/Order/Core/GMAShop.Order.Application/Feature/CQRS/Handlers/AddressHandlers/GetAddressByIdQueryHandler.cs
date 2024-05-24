@@ -1,16 +1,15 @@
-﻿using GMAShop.Order.Application.Feature.CQRS.Commands.AddressCommands;
-using GMAShop.Order.Application.Feature.CQRS.Queries.AddressQueries;
+﻿using GMAShop.Order.Application.Feature.CQRS.Queries.AddressQueries;
 using GMAShop.Order.Application.Feature.CQRS.Results.AddressResults;
 using GMAShop.Order.Application.Interfaces;
 using GMAShop.Order.Domain.Entities;
 
 namespace GMAShop.Order.Application.Feature.CQRS.Handlers.AddressHandlers;
 
-public class GetAddressByIdHandler
+public class GetAddressByIdQueryHandler
 {
     private readonly IRepository<Address> _addressRepository;
 
-    public GetAddressByIdHandler(IRepository<Address> addressRepository)
+    public GetAddressByIdQueryHandler(IRepository<Address> addressRepository)
     {
         _addressRepository = addressRepository;
     }
