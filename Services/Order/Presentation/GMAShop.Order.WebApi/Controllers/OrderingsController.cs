@@ -7,19 +7,12 @@ namespace GMAShop.Order.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderingsController : ControllerBase
+    public class OrderingsController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public OrderingsController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         [HttpGet]
         public async Task<IActionResult> OrderingList()
         {
-            var result = await _mediator.Send(new GetOrderingQuery());
+            var result = await mediator.Send(new GetOrderingQuery());
             return Ok(result);
         }
 
@@ -27,27 +20,27 @@ namespace GMAShop.Order.WebApi.Controllers
         public async Task<IActionResult> OrderingListById(int id)
         {
 
-            var result = await _mediator.Send(new GetOrderingByIdQuery(id));
+            var result = await mediator.Send(new GetOrderingByIdQuery(id));
             return Ok(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateOrdering(CreateOrderingCommand command)
         {
-            await _mediator.Send(command);
+            await mediator.Send(command);
             return Ok("Ordering information added");
         }
         [HttpPut]
         public async Task<IActionResult> UpdateOrdering(UpdateOrderingCommand command)
         {
-            await _mediator.Send(command);
+            await mediator.Send(command);
             return Ok("Ordering information updated");
         }
 
         [HttpDelete]
         public async Task<IActionResult> RemoveOrdering(int id)
         {
-            await _mediator.Send(new RemoveOrderingCommand(id));
+            await mediator.Send(new RemoveOrderingCommand(id));
             return Ok("Ordering information deleted");
         }
     }
