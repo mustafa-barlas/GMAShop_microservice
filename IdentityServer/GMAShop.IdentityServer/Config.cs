@@ -18,7 +18,7 @@ namespace GMAShop.IdentityServer
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
         {
             new IdentityResources.OpenId(),
-            new IdentityResources.Email(),
+            new IdentityResources.Email(),   
             new IdentityResources.Profile()
         };
 
