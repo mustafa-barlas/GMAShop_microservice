@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using IdentityServer4;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.IdentityServer.Controllers
 {
+    [Authorize(IdentityServerConstants.LocalApi.PolicyName)] // *******
     [Route("api/[controller]")]
     [ApiController]
     public class RegistersController : ControllerBase

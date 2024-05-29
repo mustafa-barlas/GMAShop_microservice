@@ -4,11 +4,17 @@ using GMAShop.Catalog.Services.ProductDetailServices;
 using GMAShop.Catalog.Services.ProductImageServices;
 using GMAShop.Catalog.Services.ProductServices;
 using GMAShop.Catalog.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
+{
+    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.RequireHttpsMetadata = false;
+    opt.Audience = "ResourceCatalog";
+});
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
@@ -18,7 +24,6 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 builder.Services.AddScoped<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-
 
 
 builder.Services.AddControllers();
@@ -36,7 +41,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication(); //***************
 app.UseAuthorization();
 
 app.MapControllers();
