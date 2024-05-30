@@ -1,10 +1,12 @@
 ﻿using GMAShop.Order.Application.Feature.CQRS.Commands.AddressCommands;
 using GMAShop.Order.Application.Feature.CQRS.Handlers.AddressHandlers;
 using GMAShop.Order.Application.Feature.CQRS.Queries.AddressQueries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Order.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AddressesController : ControllerBase

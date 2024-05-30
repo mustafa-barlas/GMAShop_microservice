@@ -4,8 +4,17 @@ using GMAShop.Order.Application.Interfaces;
 using GMAShop.Order.Application.Services;
 using GMAShop.Order.Persistence.Contexts;
 using GMAShop.Order.Persistence.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
+{
+    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.RequireHttpsMetadata = false;
+    opt.Audience = "ResourceOrder";
+});
+
 
 // Add services to the container.
 

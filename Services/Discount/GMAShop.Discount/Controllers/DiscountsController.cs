@@ -1,9 +1,11 @@
 ﻿using GMAShop.Discount.Dtos;
 using GMAShop.Discount.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Discount.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DiscountsController : ControllerBase
@@ -35,12 +37,14 @@ namespace GMAShop.Discount.Controllers
             await _discountService.CreateDiscountCouponAsync(createCouponDto);
             return Ok("Successful");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateDiscountCoupon(UpdateDiscountCouponDto updateCouponDto)
         {
             await _discountService.UpdateDiscountCouponAsync(updateCouponDto);
             return Ok("Successful");
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDiscountCoupon(int id)
         {

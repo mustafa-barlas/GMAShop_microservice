@@ -22,6 +22,6 @@ public class DapperContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=MUSTAFABRLS; initial Catalog=GMAShopDb; integrated Security=true;");
+        optionsBuilder.UseSqlServer("Server=MUSTAFABRLS,1442; Initial Catalog=GMAShopDiscountDb; User Id=sa; Password=201203011Aa.; Encrypt=True; TrustServerCertificate=True;");
     }
 }

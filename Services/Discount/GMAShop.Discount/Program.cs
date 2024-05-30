@@ -1,7 +1,15 @@
 using GMAShop.Discount.Context;
 using GMAShop.Discount.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
+{
+    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.RequireHttpsMetadata = false;
+    opt.Audience = "ResourceDiscount";
+});
 
 // Add services to the container.
 
@@ -25,6 +33,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); // ******
 app.UseAuthorization();
 
 app.MapControllers();
