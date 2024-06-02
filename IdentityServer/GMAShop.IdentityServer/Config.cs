@@ -12,6 +12,7 @@ namespace GMAShop.IdentityServer
             new ApiResource("ResourceDiscount") { Scopes = { "DiscountFullPermission", "DiscountReadPermission" } },
             new ApiResource("ResourceOrder") { Scopes = { "OrderFullPermission", "OrderReadPermission" } },
             new ApiResource("ResourceCargo") { Scopes = { "CargoFullPermission", "CargoReadPermission" } },
+            new ApiResource("ResourceBasket") { Scopes = { "BasketFullPermission", "BasketReadPermission" } },
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
         };
 
@@ -36,6 +37,9 @@ namespace GMAShop.IdentityServer
             new ApiScope("CargoFullPermission", "Full authority for Cargo operations"),
             new ApiScope("CargoReadPermission", "Reading authority for Cargo operations"),
 
+            new ApiScope("BasketFullPermission", "Full authority for Basket operations"),
+            new ApiScope("BasketReadPermission", "Reading authority for Basket operations"),
+
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
         };
 
@@ -47,25 +51,34 @@ namespace GMAShop.IdentityServer
                 ClientName = "GMAShop Visitor User",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = { new Secret("gmashopsecret".Sha256()) },
-                AllowedScopes = { "DiscountFullPermission", "CatalogReadPermission", "CargoReadPermission" }
+                AllowedScopes =
+                {
+                    "DiscountFullPermission", "BasketFullPermission", "CatalogReadPermission", "CargoReadPermission",
+                    "BasketFullPermission"
+                }
             },
             new Client() // Manager
             {
                 ClientId = "GMAShopManagerId",
                 ClientName = "GMAShop Manager User",
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 ClientSecrets = { new Secret("gmashopsecret".Sha256()) },
-                AllowedScopes = { "CatalogFullPermission", "DiscountFullPermission", "CargoFullPermission" }
+                AllowedScopes =
+                {
+                    "CatalogFullPermission", "DiscountFullPermission", "CargoFullPermission",
+                    "BasketFullPermission"
+                }
             },
             new Client() // Admin
             {
                 ClientId = "GMAShopAdminId",
                 ClientName = "GMAShop Admin User",
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 ClientSecrets = { new Secret("gmashopsecret".Sha256()) },
                 AllowedScopes =
                 {
                     "CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission", "CargoFullPermission",
+                    "BasketFullPermission",
                     IdentityServer4.IdentityServerConstants.LocalApi.ScopeName,
                     IdentityServer4.IdentityServerConstants.StandardScopes.Email,
                     IdentityServer4.IdentityServerConstants.StandardScopes.OpenId,
