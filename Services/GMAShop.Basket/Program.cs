@@ -11,11 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 var require = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // ********
 JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Remove("sub");
+JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
 {
     opt.Authority = builder.Configuration["IdentityServerUrl"];
     opt.RequireHttpsMetadata = false;
+    
     opt.Audience = "ResourceBasket";
 });
 
