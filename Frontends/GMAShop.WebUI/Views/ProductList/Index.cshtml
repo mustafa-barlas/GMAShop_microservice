@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Products";
+    Layout = "_UILayout";
+}
+
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Home</a>
+                <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                <span class="breadcrumb-item active">Shop List</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+<div class="row px-xl-5">
+
+<div class="col-lg-3 col-md-4">
+
+    <partial name="Components/ProductListViewComponents/_ProductListPriceFilterComponentPartial/Default"/>
+    
+    <partial name="Components/ProductListViewComponents/_ProductListColorFilterComponentPartial/Default"/>
+    
+    <partial name="Components/ProductListViewComponents/_ProductListSizeFilterComponentPartial/Default"/>
+
+</div>
+
+    
+<div class="col-lg-9 col-md-8">
+<div class="row pb-3">
+
+<partial name="Components/ProductListViewComponents/_ProductListGetProductCountComponentPartial/Default"/>
+
+<partial name="Components/ProductListViewComponents/_ProductListComponentPartial/Default"/>
+
+<partial name="Components/ProductListViewComponents/_ProductListPaginationComponentPartial/Default"/>
+
+</div>
+</div>
+
+</div>
+</div>

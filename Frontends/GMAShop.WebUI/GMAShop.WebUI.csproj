@@ -6,4 +6,23 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\" />
+      <Folder Include="Views\Shared\Components\UILayoutViewComponents\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_CarouselDefaultComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_CategoriesDefaultComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_FeaturedDefaultComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_FeatureProductsDefaultComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_OfferDiscountDefaultComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_SpecialOfferComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_VendorDefaultComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_FooterUILayoutComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_HeadUILayoutComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_NavbarUILayoutComponentPartial\Default.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_TopBarUILayoutComponentPartial\Default.cshtml" />
+    </ItemGroup>
+
 </Project>
