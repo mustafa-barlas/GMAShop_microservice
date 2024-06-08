@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Cart";
+    Layout = "_UILayout";
+}
+
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Anasayfa</a>
+                <a class="breadcrumb-item text-dark" href="#">Ürünler</a>
+                <span class="breadcrumb-item active">Alışveriş Sepeti</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <partial name="Components/ShoppingCartViewComponents/_ShoppingCartProductListComponentPartial/Default"/>
+        <partial name="Components/ShoppingCartViewComponents/_ShoppingCartDiscountCouponComponentPartial/Default"/>
+    </div>
+</div>
+<!-- Cart End -->

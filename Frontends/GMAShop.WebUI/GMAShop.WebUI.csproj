@@ -7,6 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Areas\Admin\Data\" />
+      <Folder Include="Areas\Admin\Models\" />
+      <Folder Include="Areas\Admin\ViewComponents\" />
       <Folder Include="Views\Shared\Components\DefaultViewComponents\" />
       <Folder Include="Views\Shared\Components\UILayoutViewComponents\" />
     </ItemGroup>
@@ -23,6 +26,14 @@
       <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_HeadUILayoutComponentPartial\Default.cshtml" />
       <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_NavbarUILayoutComponentPartial\Default.cshtml" />
       <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_TopBarUILayoutComponentPartial\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Components\AdminLayoutViewComponents\_AdminLayoutHeadComponentPartial\Default.cshtml" />
     </ItemGroup>
 
 </Project>
