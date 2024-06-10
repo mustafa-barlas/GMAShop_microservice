@@ -3,9 +3,9 @@
 // using MultiShop.WebUI.Services.Interfaces;
 // using MultiShop.WebUI.Services.MessageServices;
 
-namespace MultiShop.WebUI.Areas.Admin.ViewComponents.AdminLayoutViewComponents
+namespace GMAShop.WebUI.Areas.Admin.ViewComponents.AdminLayoutViewComponents
 {
-    public class _AdminLayoutHeaderComponentPartial : ViewComponent
+    public class AdminLayoutHeaderComponentPartial : ViewComponent
     {
         // private readonly IMessageService _messageService;
         // private readonly IUserService _userService;

@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.WebUI", "Frontends\GMAShop.WebUI\GMAShop.WebUI.csproj", "{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.DtoLayer", "Frontends\GMAShop.DtoLayer\GMAShop.DtoLayer.csproj", "{523220E8-8C61-4B13-A178-86DF98F17833}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523220E8-8C61-4B13-A178-86DF98F17833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{523220E8-8C61-4B13-A178-86DF98F17833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523220E8-8C61-4B13-A178-86DF98F17833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523220E8-8C61-4B13-A178-86DF98F17833}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +154,7 @@ Global
 		{3163054A-551F-4A82-9924-7F59DC60DDA1} = {7F581BE7-BF9B-48D3-8C85-8DA6EFE3213E}
 		{8F8FDC0E-6B85-4EF5-854E-682AABF08FF4} = {3163054A-551F-4A82-9924-7F59DC60DDA1}
 		{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC} = {3C0B0B76-340B-4C8C-9E7E-2CE5753C2CE7}
+		{523220E8-8C61-4B13-A178-86DF98F17833} = {3C0B0B76-340B-4C8C-9E7E-2CE5753C2CE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A513BB07-C983-49CC-A31F-0596D40CEE20}
