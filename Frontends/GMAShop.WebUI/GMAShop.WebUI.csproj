@@ -7,21 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Areas\**" />
-      <Content Remove="Areas\**" />
-      <EmbeddedResource Remove="Areas\**" />
-      <None Remove="Areas\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Areas\Admin\Data\" />
       <Folder Include="Areas\Admin\Models\" />
+      <Folder Include="Areas\Admin\Views\Shared\Components\AdminLayoutMainSectionComponentPartial\" />
       <Folder Include="Data\" />
       <Folder Include="Models\" />
       <Folder Include="Views\Shared\Components\DefaultViewComponents\" />
       <Folder Include="Views\Shared\Components\UILayoutViewComponents\" />
       <Folder Include="wwwroot\css\" />
-      <Folder Include="wwwroot\images\" />
       <Folder Include="wwwroot\js\" />
       <Folder Include="wwwroot\lib\bootstrap\" />
       <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
@@ -47,33 +40,41 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-      <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
-      <Compile Include="Areas\Admin\ViewComponents\AdminLayoutViewComponents\AdminLayoutHeadComponentPartial.cs" />
-      <Compile Include="Areas\Admin\ViewComponents\AdminLayoutViewComponents\AdminLayoutHeaderComponentPartial.cs" />
-      <Compile Include="Areas\Admin\ViewComponents\AdminLayoutViewComponents\AdminLayoutMainSectionViewbagComponentPartial.cs" />
-      <Compile Include="Areas\Admin\ViewComponents\AdminLayoutViewComponents\AdminLayoutSidebarComponentPartial.cs" />
+      <None Include="wwwroot\Images\default product 1.webp" />
+      <None Include="wwwroot\Images\Huawei-matepad-11-5-inch-display.webp" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\help-documentation\assets\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\help-documentation\assets\blueprint-css\plugins\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\app\et-line-font\fonts\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\charts\et-line-font\fonts\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\component\et-line-font\fonts\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\dist\et-line-font\fonts\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\forms\et-line-font\fonts\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\maps\et-line-font\fonts\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\pages\et-line-font\fonts\.DS_Store" />
+      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\tables\et-line-font\fonts\.DS_Store" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
-      <Content Include="Areas\Admin\Views\Shared\Components\AdminLayoutSidebarComponentPartial\Default.cshtml" />
-      <Content Include="Areas\Admin\Views\Shared\Components\AdminLayoutMainSectionViewbagComponentPartial\Default.cshtml" />
-      <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
-      <Content Include="Areas\Admin\Views\_ViewImports.cshtml" />
-      <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-      <Content Include="Areas\Admin\Views\Category\CategoryList.cshtml" />
-      <None Include="Areas\Admin\Views\Shared\Components\AdminLayoutHeadComponentPartial\Default.cshtml" />
-      <None Include="Areas\Admin\Views\Shared\Components\AdminLayoutHeaderComponentPartial\Default.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.6" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Services\Catalog\GMAShop.Catalog\GMAShop.Catalog.csproj" />
       <ProjectReference Include="..\GMAShop.DtoLayer\GMAShop.DtoLayer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Areas\Admin\Views\Shared\Components\AdminLayoutHeaderComponentPartial\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\Components\AdminLayoutSidebarComponentPartial\Default.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\Components\AdminLayoutHeaderComponentPartial\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Areas\Admin\Views\Shared\Components\AdminLayoutSidebarComponentPartial\Default.cshtml" />
     </ItemGroup>
 
 </Project>

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.Areas.Admin.ViewComponents.AdminLayoutViewComponents
+namespace GMAShop.WebUI.Areas.Admin.ViewComponents.AdminLayoutViewComponents;
+
+public class AdminLayoutHeadComponentPartial : ViewComponent
 {
-    public class AdminLayoutHeadComponentPartial : ViewComponent
+    public IViewComponentResult Invoke()
     {
-        public IViewComponentResult Invoke()
-        {
-            return View();
-        }
+        return View();
     }
 }
