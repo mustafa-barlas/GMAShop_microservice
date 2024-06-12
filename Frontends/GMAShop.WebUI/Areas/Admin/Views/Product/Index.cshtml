@@ -1,0 +1,52 @@
+﻿@model List<GMAShop.DtoLayer.ProductDtos.ResultProductDto>?
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Ürün Listesi</h4>
+
+                <div class="bs-example" data-example-id="simple-table">
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>#</th>
+                                <th>Ürün adı</th>
+                                <th>Açıklama</th>
+                                <th>Fiyat</th>
+                                <th>Kategori</th>
+                                <th>Sil</th>
+                                <th>Düzenle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td> @item.ProductImageUrl</td>
+                                    <td>@item.ProductId</td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.ProductDescription</td>
+                                    <td>@item.ProductPrice</td>
+                                    <td>@item.CategoryId</td>
+                                    <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-warning">Düzenle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Admin/Product/CreateProduct" class="btn btn-primary">Yeni Ürün Girişi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

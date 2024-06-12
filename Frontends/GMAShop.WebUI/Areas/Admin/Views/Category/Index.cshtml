@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = "Categories";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+
+    int count = 0;
 }
 
 <section class="content container-fluid">
@@ -27,8 +29,9 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
+                                count++;
                                 <tr>
-                                    <th scope="row">@item.CategoryId</th>
+                                    <th scope="row">@count</th>
                                     <td>@item.CategoryName</td>
                                     <td><a class="btn btn-secondary">Ürünler</a></td>
                                     <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
