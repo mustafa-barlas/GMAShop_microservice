@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GMAShop.Catalog.Dtos.CategoryDtos;
+using GMAShop.Catalog.Dtos.FeatureSliderDtos;
 using GMAShop.Catalog.Dtos.ProductDetailDtos;
 using GMAShop.Catalog.Dtos.ProductDtos;
 using GMAShop.Catalog.Dtos.ProductImageDtos;
@@ -21,6 +22,8 @@ public class GeneralMapping : Profile
         CreateMap<Product, CreateProductDto>().ReverseMap();
         CreateMap<Product, UpdateProductDto>().ReverseMap();
         CreateMap<Product, GetByIdProductDto>().ReverseMap();
+        CreateMap<Product, ResultProductsWithCategoryDto>().ReverseMap();
+
 
         CreateMap<ProductDetail, ResultProductDetailDto>().ReverseMap();
         CreateMap<ProductDetail, CreateProductDetailDto>().ReverseMap();
@@ -32,5 +35,15 @@ public class GeneralMapping : Profile
         CreateMap<ProductImage, CreateProductImageDto>().ReverseMap();
         CreateMap<ProductImage, UpdateProductImageDto>().ReverseMap();
         CreateMap<ProductImage, GetByIdProductImageDto>().ReverseMap();
+
+        CreateMap<FeatureSlider, ResultFeatureSliderDto>().ReverseMap();
+        CreateMap<FeatureSlider, CreateFeatureSliderDto>().ReverseMap();
+        CreateMap<FeatureSlider, UpdateFeatureSliderDto>().ReverseMap();
+        CreateMap<FeatureSlider, GetByIdFeatureSliderDto>().ReverseMap();
+
+
+        //CreateMap<Product, ResultProductsWithCategoryDto>()
+        //    .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.CategoryName));
+
     }
 }

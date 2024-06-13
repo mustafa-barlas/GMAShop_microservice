@@ -40,6 +40,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="Areas\Admin\Views\FeatureSlider\CreateFeatureSlider.cshtml" />
+      <None Include="Areas\Admin\Views\FeatureSlider\Index.cshtml" />
+      <None Include="Areas\Admin\Views\FeatureSlider\UpdateFeatureSlider.cshtml" />
       <None Include="wwwroot\Images\default product 1.webp" />
       <None Include="wwwroot\Images\Huawei-matepad-11-5-inch-display.webp" />
       <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\help-documentation\assets\.DS_Store" />

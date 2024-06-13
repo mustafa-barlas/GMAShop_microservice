@@ -1,5 +1,6 @@
 using System.Reflection;
 using GMAShop.Catalog.Services.CategoryServices;
+using GMAShop.Catalog.Services.FeatureSliderService;
 using GMAShop.Catalog.Services.ProductDetailServices;
 using GMAShop.Catalog.Services.ProductImageServices;
 using GMAShop.Catalog.Services.ProductServices;
@@ -20,6 +21,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IProductImageService, ProductImageService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IFeatureSliderService, FeatureSliderService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));

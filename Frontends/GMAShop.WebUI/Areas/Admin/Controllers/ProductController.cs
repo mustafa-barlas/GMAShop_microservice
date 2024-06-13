@@ -41,6 +41,28 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         }
 
 
+        [Route("ProductListWithCategory")]
+        public async Task<IActionResult> ProductListWithCategory()
+        {
+            ViewBag.v1 = "Anasayfa";
+            ViewBag.v2 = "Ürünler";
+            ViewBag.v3 = "Ürün listesi";
+            ViewBag.v4 = "Ürün işlemleri";
+
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync(_url + "/ProductListWithCategory");
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultProductsWithCategoryDto>>(jsonData);
+
+
+                return View(values);
+            }
+            return View();
+        }
+
         [HttpGet]
         [Route("CreateProduct")]
         public async Task<IActionResult> CreateProduct()
