@@ -1,6 +1,8 @@
-﻿namespace GMAShop.Catalog.Dtos.CategoryDtos;
-
-public class CreateCategoryDto
+﻿namespace GMAShop.Catalog.Dtos.CategoryDtos
 {
-    public string? CategoryName { get; set; }
+    public class CreateCategoryDto
+    {
+        public string CategoryName { get; set; }
+        public string ImageUrl { get; set; }
+    }
 }

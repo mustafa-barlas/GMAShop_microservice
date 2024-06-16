@@ -1,12 +1,14 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace GMAShop.Catalog.Entities;
-
-public class Category
+namespace GMAShop.Catalog.Entities
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string CategoryId { get; set; }
-    public string CategoryName { get; set; }
+    public class Category
+    {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string ImageUrl { get; set; }
+    }
 }

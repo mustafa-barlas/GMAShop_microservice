@@ -1,15 +1,16 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace GMAShop.Catalog.Entities;
-
-public class FeatureSlider
+namespace GMAShop.Catalog.Entities
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string FeatureSliderId { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public string ImageUrl { get; set; }
-    public bool Status { get; set; }
+    public class FeatureSlider
+    {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string FeatureSliderId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
+        public bool Status { get; set; }
+    }
 }
