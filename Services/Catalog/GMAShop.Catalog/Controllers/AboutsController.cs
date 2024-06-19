@@ -8,46 +8,40 @@ namespace GMAShop.Catalog.Controllers
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
-    public class AboutsController : ControllerBase
+    public class AboutsController(IAboutService aboutService) : ControllerBase
     {
-        private readonly IAboutService _aboutService;
-        public AboutsController(IAboutService aboutService)
-        {
-            _aboutService = aboutService;
-        }
-
         [HttpGet]
         public async Task<IActionResult> AboutList()
         {
-            var values = await _aboutService.GetAllAboutAsync();
+            var values = await aboutService.GetAllAboutAsync();
             return Ok(values);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAboutById(string id)
         {
-            var values = await _aboutService.GetByIdAboutAsync(id);
+            var values = await aboutService.GetByIdAboutAsync(id);
             return Ok(values);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAbout(CreateAboutDto createAboutDto)
         {
-            await _aboutService.CreateAboutAsync(createAboutDto);
+            await aboutService.CreateAboutAsync(createAboutDto);
             return Ok("Hakkımda alanı başarıyla eklendi");
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAbout(string id)
         {
-            await _aboutService.DeleteAboutAsync(id);
+            await aboutService.DeleteAboutAsync(id);
             return Ok("Hakkımda alanı başarıyla silindi");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateAbout(UpdateAboutDto updateAboutDto)
         {
-            await _aboutService.UpdateAboutAsync(updateAboutDto);
+            await aboutService.UpdateAboutAsync(updateAboutDto);
             return Ok("Hakkımda alanı başarıyla güncellendi");
         }
     }

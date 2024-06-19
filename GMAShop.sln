@@ -41,25 +41,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirement
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cargo", "Cargo", "{7DFD5F65-91E0-4582-B0A4-B53D76DA290A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.Cargo.Entities", "Services\Cargo\GMAShop.Cargo.Entities\GMAShop.Cargo.Entities.csproj", "{34D25568-A531-4D70-A77D-350503851B4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.Cargo.Entities", "Services\Cargo\GMAShop.Cargo.Entities\GMAShop.Cargo.Entities.csproj", "{34D25568-A531-4D70-A77D-350503851B4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.Cargo.Business", "Services\Cargo\GMAShop.Cargo.Business\GMAShop.Cargo.Business.csproj", "{2FF3A5AE-93DC-4E10-9228-F785131E5400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.Cargo.Business", "Services\Cargo\GMAShop.Cargo.Business\GMAShop.Cargo.Business.csproj", "{2FF3A5AE-93DC-4E10-9228-F785131E5400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.Cargo.DataAccess", "Services\Cargo\GMAShop.Cargo.DataAccess\GMAShop.Cargo.DataAccess.csproj", "{06EBB894-B665-4AAA-A5B1-F85E5FDD1F36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.Cargo.DataAccess", "Services\Cargo\GMAShop.Cargo.DataAccess\GMAShop.Cargo.DataAccess.csproj", "{06EBB894-B665-4AAA-A5B1-F85E5FDD1F36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.Cargo.WebApi", "Services\Cargo\GMAShop.Cargo.WebApi\GMAShop.Cargo.WebApi.csproj", "{1DF52AA4-4CFC-4A29-8CCA-D8072DE8FF11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.Cargo.WebApi", "Services\Cargo\GMAShop.Cargo.WebApi\GMAShop.Cargo.WebApi.csproj", "{1DF52AA4-4CFC-4A29-8CCA-D8072DE8FF11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.Cargo.DtoLayer", "Services\Cargo\GMAShop.Cargo.DtoLayer\GMAShop.Cargo.DtoLayer.csproj", "{BFCF02CA-1C38-48F5-8D08-D57A473F153B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.Cargo.DtoLayer", "Services\Cargo\GMAShop.Cargo.DtoLayer\GMAShop.Cargo.DtoLayer.csproj", "{BFCF02CA-1C38-48F5-8D08-D57A473F153B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{3163054A-551F-4A82-9924-7F59DC60DDA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.Basket", "Services\GMAShop.Basket\GMAShop.Basket.csproj", "{8F8FDC0E-6B85-4EF5-854E-682AABF08FF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.Basket", "Services\GMAShop.Basket\GMAShop.Basket.csproj", "{8F8FDC0E-6B85-4EF5-854E-682AABF08FF4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{3C0B0B76-340B-4C8C-9E7E-2CE5753C2CE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.WebUI", "Frontends\GMAShop.WebUI\GMAShop.WebUI.csproj", "{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.WebUI", "Frontends\GMAShop.WebUI\GMAShop.WebUI.csproj", "{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.DtoLayer", "Frontends\GMAShop.DtoLayer\GMAShop.DtoLayer.csproj", "{523220E8-8C61-4B13-A178-86DF98F17833}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GMAShop.DtoLayer", "Frontends\GMAShop.DtoLayer\GMAShop.DtoLayer.csproj", "{523220E8-8C61-4B13-A178-86DF98F17833}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Comment", "Comment", "{D3F6FC00-6EDA-4996-B518-E35F84EBE3ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMAShop.Comment", "Services\Comment\GMAShop.Comment\GMAShop.Comment.csproj", "{1DFE656B-48C6-45B6-A918-8CE8F062F69E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +131,10 @@ Global
 		{523220E8-8C61-4B13-A178-86DF98F17833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{523220E8-8C61-4B13-A178-86DF98F17833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{523220E8-8C61-4B13-A178-86DF98F17833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFE656B-48C6-45B6-A918-8CE8F062F69E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFE656B-48C6-45B6-A918-8CE8F062F69E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFE656B-48C6-45B6-A918-8CE8F062F69E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFE656B-48C6-45B6-A918-8CE8F062F69E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +163,8 @@ Global
 		{8F8FDC0E-6B85-4EF5-854E-682AABF08FF4} = {3163054A-551F-4A82-9924-7F59DC60DDA1}
 		{6F319F83-7B35-4C61-80A1-FEE3FE3F5DBC} = {3C0B0B76-340B-4C8C-9E7E-2CE5753C2CE7}
 		{523220E8-8C61-4B13-A178-86DF98F17833} = {3C0B0B76-340B-4C8C-9E7E-2CE5753C2CE7}
+		{D3F6FC00-6EDA-4996-B518-E35F84EBE3ED} = {7F581BE7-BF9B-48D3-8C85-8DA6EFE3213E}
+		{1DFE656B-48C6-45B6-A918-8CE8F062F69E} = {D3F6FC00-6EDA-4996-B518-E35F84EBE3ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A513BB07-C983-49CC-A31F-0596D40CEE20}
