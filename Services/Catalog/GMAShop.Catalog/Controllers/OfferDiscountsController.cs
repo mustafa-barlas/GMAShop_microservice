@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GMAShop.Catalog.Dtos.OfferDiscountDtos;
 using GMAShop.Catalog.Services.OfferDiscountServices;
 
 namespace GMAShop.Catalog.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OfferDiscountsController : ControllerBase

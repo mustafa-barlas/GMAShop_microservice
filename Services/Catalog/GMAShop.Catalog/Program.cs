@@ -14,6 +14,9 @@ using GMAShop.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using GMAShop.Catalog.DependencyResolvers.Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,18 +27,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opt.Audience = "ResourceCatalog";
 });
 
-builder.Services.AddScoped<IStatisticService, StatisticService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
-builder.Services.AddScoped<IProductImageService, ProductImageService>();
-builder.Services.AddScoped<IFeatureSliderService, FeatureSliderService>();
-builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
-builder.Services.AddScoped<IFeatureService, FeatureService>();
-builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
-builder.Services.AddScoped<IBrandService, BrandService>();
-builder.Services.AddScoped<IAboutService, AboutService>();
-builder.Services.AddScoped<IContactService, ContactService>();
+builder.Host.UseServiceProviderFactory(
+    new AutofacServiceProviderFactory
+        (options => options.RegisterModule(new AutofacModule())));
+
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));

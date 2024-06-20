@@ -1,8 +1,8 @@
 ﻿namespace GMAShop.Catalog.Dtos.ContactDtos
 {
-    public class CreateContactDto
+    public record CreateContactDto
     {
-        public string NameSurname { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }

@@ -1,43 +1,39 @@
 ﻿using GMAShop.Catalog.Services.StatisticServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class StatisticsController : ControllerBase
+    public class StatisticsController(IStatisticService statisticService) : ControllerBase
     {
-        private readonly IStatisticService _statisticService;
-        public StatisticsController(IStatisticService statisticService)
-        {
-            _statisticService = statisticService;
-        }
-
         [HttpGet("GetBrandCount")]
         public async Task<IActionResult> GetBrandCount()
         {
-            var value = await _statisticService.GetBrandCount();
+            var value = await statisticService.GetBrandCount();
             return Ok(value);
         }
 
         [HttpGet("GetCategoryCount")]
         public async Task<IActionResult> GetCategoryCount()
         {
-            var value = await _statisticService.GetCategoryCount();
+            var value = await statisticService.GetCategoryCount();
             return Ok(value);
         }
 
         [HttpGet("GetProductCount")]
         public async Task<IActionResult> GetProductCount()
         {
-            var value = await _statisticService.GetProductCount();
+            var value = await statisticService.GetProductCount();
             return Ok(value);
         }
 
         [HttpGet("GetProductAvgPrice")]
         public async Task<IActionResult> GetProductAvgPrice()
         {
-            var value = await _statisticService.GetProductAvgPrice();
+            var value = await statisticService.GetProductAvgPrice();
             return Ok(value);
         } 
         
@@ -45,14 +41,14 @@ namespace GMAShop.Catalog.Controllers
         [HttpGet("GetMaxPriceProductName")]
         public async Task<IActionResult> GetMaxPriceProductName()
         {
-            var value = await _statisticService.GetMaxPriceProductName();
+            var value = await statisticService.GetMaxPriceProductName();
             return Ok(value);
         }  
         
         [HttpGet("GetMinPriceProductName")]
         public async Task<IActionResult> GetMinPriceProductName()
         {
-            var value = await _statisticService.GetMinPriceProductName();
+            var value = await statisticService.GetMinPriceProductName();
             return Ok(value);
         }
     }
