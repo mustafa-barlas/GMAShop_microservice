@@ -1,6 +1,6 @@
-﻿using IdentityServer4.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using IdentityServer4;
+using IdentityServer4.Models;
 
 namespace GMAShop.IdentityServer
 {
@@ -9,87 +9,93 @@ namespace GMAShop.IdentityServer
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("ResourceCatalog") { Scopes = { "CatalogFullPermission", "CatalogReadPermission" } },
-            new ApiResource("ResourceDiscount") { Scopes = { "DiscountFullPermission", "DiscountReadPermission" } },
-            new ApiResource("ResourceOrder") { Scopes = { "OrderFullPermission", "OrderReadPermission" } },
-            new ApiResource("ResourceCargo") { Scopes = { "CargoFullPermission", "CargoReadPermission" } },
-            new ApiResource("ResourceBasket") { Scopes = { "BasketFullPermission", "BasketReadPermission" } },
-            new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
+            new ApiResource("ResourceDiscount") { Scopes = { "DiscountFullPermission" } },
+            new ApiResource("ResourceOrder") { Scopes = { "OrderFullPermission" } },
+            new ApiResource("ResourceCargo") { Scopes = { "CargoFullPermission" } },
+            new ApiResource("ResourceBasket") { Scopes = { "BasketFullPermission" } },
+            new ApiResource("ResourceComment") { Scopes = { "CommentFullPermission" } },
+            new ApiResource("ResourcePayment") { Scopes = { "PaymentFullPermission" } },
+            new ApiResource("ResourceImage") { Scopes = { "ImageFullPermission" } },
+            new ApiResource("ResourceOcelot") { Scopes = { "OcelotFullPermission" } },
+            new ApiResource("ResourceMessage") { Scopes = { "MessageFullPermission" } },
+            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
         {
             new IdentityResources.OpenId(),
-            new IdentityResources.Email(),
-            new IdentityResources.Profile()
+            new IdentityResources.Profile(),
+            new IdentityResources.Email()
         };
 
         public static IEnumerable<ApiScope> ApiScopes => new ApiScope[]
         {
             new ApiScope("CatalogFullPermission", "Full authority for catalog operations"),
             new ApiScope("CatalogReadPermission", "Reading authority for catalog operations"),
-
             new ApiScope("DiscountFullPermission", "Full authority for discount operations"),
-            new ApiScope("DiscountReadPermission", "Reading authority for discount operations"),
-
             new ApiScope("OrderFullPermission", "Full authority for order operations"),
-            new ApiScope("OrderReadPermission", "Reading authority for order operations"),
-
-            new ApiScope("CargoFullPermission", "Full authority for Cargo operations"),
-            new ApiScope("CargoReadPermission", "Reading authority for Cargo operations"),
-
-            new ApiScope("BasketFullPermission", "Full authority for Basket operations"),
-            new ApiScope("BasketReadPermission", "Reading authority for Basket operations"),
-
-            new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
+            new ApiScope("CargoFullPermission", "Full authority for cargo operations"),
+            new ApiScope("BasketFullPermission", "Full authority for basket operations"),
+            new ApiScope("CommentFullPermission", "Full authority for comment operations"),
+            new ApiScope("PaymentFullPermission", "Full authority for payment operations"),
+            new ApiScope("ImageFullPermission", "Full authority for image operations"),
+            new ApiScope("OcelotFullPermission", "Full authority for ocelot operations"),
+            new ApiScope("MessageFullPermission", "Full authority for message operations"),
+            new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
         };
 
         public static IEnumerable<Client> Clients => new Client[]
         {
-            new Client() // Visitor
+            //Visitor
+            new Client
             {
                 ClientId = "GMAShopVisitorId",
-                ClientName = "GMAShop Visitor User",
+                ClientName = "GMA Shop Visitor User",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = { new Secret("gmashopsecret".Sha256()) },
                 AllowedScopes =
                 {
-                    "DiscountFullPermission",
-                    "CatalogReadPermission",
-                    "CatalogFullPermission",
-                   
-                }
+                    "CatalogReadPermission", "CatalogFullPermission", "OcelotFullPermission", "CommentFullPermission",
+                    "ImageFullPermission", "CommentFullPermission", IdentityServerConstants.LocalApi.ScopeName
+                },
+                AllowAccessTokensViaBrowser = true
             },
-            new Client() // Manager
+
+            //Manager
+            new Client
             {
                 ClientId = "GMAShopManagerId",
-                ClientName = "GMAShop Manager User",
+                ClientName = "GMA Shop Manager User",
                 AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 ClientSecrets = { new Secret("gmashopsecret".Sha256()) },
                 AllowedScopes =
                 {
-                    "CatalogFullPermission",
-                    "DiscountFullPermission",
-                    "CargoFullPermission",
-                    "BasketFullPermission"
+                    "CatalogReadPermission", "CatalogFullPermission", "BasketFullPermission", "OcelotFullPermission",
+                    "CommentFullPermission", "PaymentFullPermission", "ImageFullPermission", "DiscountFullPermission",
+                    "OrderFullPermissİon", "MessageFullPermission", "CargoFullPermission",
+                    IdentityServerConstants.LocalApi.ScopeName,
+                    IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile
                 }
             },
-            new Client() // Admin
+
+            //Admin
+            new Client
             {
                 ClientId = "GMAShopAdminId",
-                ClientName = "GMAShop Admin User",
+                ClientName = "GMA Shop Admin User",
                 AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 ClientSecrets = { new Secret("gmashopsecret".Sha256()) },
                 AllowedScopes =
                 {
-                    "CatalogFullPermission",
-                    "DiscountFullPermission",
-                    "OrderFullPermission",
-                    "CargoFullPermission",
-                    "BasketFullPermission",
-                    IdentityServer4.IdentityServerConstants.LocalApi.ScopeName,
-                    IdentityServer4.IdentityServerConstants.StandardScopes.Email,
-                    IdentityServer4.IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServer4.IdentityServerConstants.StandardScopes.Profile,
+                    "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission",
+                    "CargoFullPermission", "BasketFullPermission", "OcelotFullPermission", "CommentFullPermission",
+                    "PaymentFullPermission", "ImageFullPermission", "CargoFullPermission",
+                    IdentityServerConstants.LocalApi.ScopeName,
+                    IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile
                 },
                 AccessTokenLifetime = 600
             }

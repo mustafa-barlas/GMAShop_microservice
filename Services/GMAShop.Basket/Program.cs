@@ -11,13 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 var require = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // ********
 JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Remove("sub");
-JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
+// JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
 {
     opt.Authority = builder.Configuration["IdentityServerUrl"];
     opt.RequireHttpsMetadata = false;
-    
     opt.Audience = "ResourceBasket";
 });
 
@@ -29,10 +29,11 @@ builder.Services.Configure<RedisSettings>(builder.Configuration.GetSection("Redi
 builder.Services.AddSingleton<RedisService>(sp =>
 {
     var redisSettings = sp.GetRequiredService<IOptions<RedisSettings>>().Value;
-    var redisService = new RedisService(redisSettings.Host, redisSettings.Port);
-    redisService.Connect();
-    return redisService;
+    var redis = new RedisService(redisSettings.Host, redisSettings.Port);
+    redis.Connect();
+    return redis;
 }); // ******************
+
 builder.Services.AddControllers(opt => { opt.Filters.Add(new AuthorizeFilter(require)); }); // *************
 
 builder.Services.AddEndpointsApiExplorer();

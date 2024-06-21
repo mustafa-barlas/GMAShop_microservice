@@ -8,7 +8,7 @@ namespace GMAShop.Comment.Controllers
     [ApiController]
     public class CommentsController : ControllerBase
     {
-        private CommentContext _commentContext = new CommentContext();
+        private readonly CommentContext _commentContext = new CommentContext();
 
         [HttpGet]
         public IActionResult CommentList()
@@ -44,7 +44,7 @@ namespace GMAShop.Comment.Controllers
         public IActionResult DeleteComment(int id)
         {
             var value = _commentContext.UserComments.Find(id);
-            _commentContext.UserComments.Remove(value);
+            if (value != null) _commentContext.UserComments.Remove(value);
             _commentContext.SaveChanges();
             return Ok("deleted");
         }

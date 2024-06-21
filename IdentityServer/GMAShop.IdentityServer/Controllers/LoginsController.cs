@@ -29,9 +29,11 @@ namespace GMAShop.IdentityServer.Controllers
             var user = await _userManager.FindByNameAsync(userLoginDto.Username);
             if (result.Succeeded)
             {
-                GetCheckAppUserViewModel model = new GetCheckAppUserViewModel();
-                model.Username = userLoginDto.Username;
-                model.Id = user.Id;
+                GetCheckAppUserViewModel model = new GetCheckAppUserViewModel
+                {
+                    Username = userLoginDto.Username,
+                    Id = user.Id
+                };
                 var token = JwtTokenGenerator.GenerateToken(model);
                 return Ok(token);
             }

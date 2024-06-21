@@ -1,7 +1,7 @@
 ﻿
 namespace GMAShop.IdentityServer.Tools;
 
-public class JwtTokenDefaults
+public static class JwtTokenDefaults
 {
     public const string ValidAudience = "http://localhost";
     public const string ValidIssuer = "http://localhost";
