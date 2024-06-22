@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.ViewComponents.UILayoutViewComponents;
-
-public class _TopBarUILayoutComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.UILayoutViewComponents
 {
-    public IViewComponentResult Invoke()
+    public class _TopbarUILayoutComponentPartial : ViewComponent
     {
-        return View();
+        public IViewComponentResult Invoke()
+        {
+            return View();
+        }
     }
 }

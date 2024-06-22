@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GMAShop.WebUI.Services.CatalogServices.OfferDiscount;
+using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents;
-
-public class _OfferDiscountDefaultComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents
 {
-    public IViewComponentResult Invoke()
+    public class _OfferDiscountDefaultComponentPartial(IOfferDiscountService offerDiscountService) : ViewComponent
     {
-        return View();
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var values = await offerDiscountService.GetAllOfferDiscountAsync();
+            return View(values);
+        }
     }
 }

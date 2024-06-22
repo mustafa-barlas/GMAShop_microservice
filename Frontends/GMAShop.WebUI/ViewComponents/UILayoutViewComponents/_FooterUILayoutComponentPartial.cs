@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using GMAShop.WebUI.Services.CatalogServices.About;
+using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.ViewComponents.UILayoutViewComponents;
-
-public class _FooterUILayoutComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.UILayoutViewComponents
 {
-    public IViewComponentResult Invoke()
+    public class _FooterUILayoutComponentPartial(IAboutService aboutService) : ViewComponent
     {
-        return View();
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var values = await aboutService.GetAllAboutAsync();
+            return View(values);
+        }
     }
 }

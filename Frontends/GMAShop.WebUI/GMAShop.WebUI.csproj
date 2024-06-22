@@ -11,9 +11,35 @@
       <Folder Include="Areas\Admin\Models\" />
       <Folder Include="Areas\Admin\Views\Shared\Components\AdminLayoutMainSectionComponentPartial\" />
       <Folder Include="Data\" />
-      <Folder Include="Models\" />
+      <Folder Include="Views\Shared\Components\ContactViewComponents\_ContactDetailComponentPartial\" />
       <Folder Include="Views\Shared\Components\DefaultViewComponents\" />
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\_CarouselDefaultComponentPartial\" />
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\_CategoriesDefaultComponentPartial\" />
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\_FeaturedDefaultComponentPartial\" />
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\_FeatureProductsDefaultComponentPartial\" />
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\_OfferDiscountDefaultComponentPartial\" />
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\_SpecialOfferComponentPartial\" />
+      <Folder Include="Views\Shared\Components\DefaultViewComponents\_VendorDefaultComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailDescriptionComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailImageSliderComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailInfoComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailInformationComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailRecommendedProductsComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailReviewsComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListColorFilterComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListGetProductCountComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListPaginationComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListPriceFilterComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListSizeFilterComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ShoppingCartViewComponents\_ShoppingCartDiscountCouponComponentPartial\" />
+      <Folder Include="Views\Shared\Components\ShoppingCartViewComponents\_ShoppingCartProductListComponentPartial\" />
       <Folder Include="Views\Shared\Components\UILayoutViewComponents\" />
+      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_FooterUILayoutComponentPartial\" />
+      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_HeadUILayoutComponentPartial\" />
+      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_NavbarUILayoutComponentPartial\" />
+      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_ScriptUILayoutComponentPartial\" />
+      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_TopBarUILayoutComponentPartial\" />
       <Folder Include="wwwroot\css\" />
       <Folder Include="wwwroot\js\" />
       <Folder Include="wwwroot\lib\bootstrap\" />
@@ -58,6 +84,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.6" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     </ItemGroup>
@@ -78,6 +105,26 @@
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Areas\Admin\Views\Shared\Components\AdminLayoutSidebarComponentPartial\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Models\ErrorViewModel.cs" />
+      <Compile Remove="Services\UserIdentityServices\IUserIdentityService.cs" />
+      <Compile Remove="ViewComponents\OrderViewComponents\_PaymentMethodComponentPartial.cs" />
+      <Compile Remove="ViewComponents\OrderViewComponents\_OrderSummaryComponentPartial.cs" />
+      <Compile Remove="ViewComponents\DefaultViewComponents\_FeaturedDefaultComponentPartial.cs" />
+      <Compile Remove="ViewComponents\DefaultViewComponents\_SpecialOfferComponentPartial.cs" />
+      <Compile Remove="ViewComponents\ProductDetailViewComponents\_ProductDetailInfoComponentPartial.cs" />
+      <Compile Remove="ViewComponents\ProductDetailViewComponents\_ProductDetailRecommendedProductsComponentPartial.cs" />
+      <Compile Remove="ViewComponents\ProductDetailViewComponents\_ProductDetailReviewsComponentPartial.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Login\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Views\Shared\Error.cshtml" />
     </ItemGroup>
 
 </Project>

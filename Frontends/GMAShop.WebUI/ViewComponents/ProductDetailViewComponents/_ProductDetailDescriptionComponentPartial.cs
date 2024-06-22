@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GMAShop.WebUI.Services.CatalogServices.ProductDetail;
+using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.ViewComponents.ProductDetailViewComponents;
-
-public class _ProductDetailDescriptionComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.ProductDetailViewComponents
 {
-    public IViewComponentResult Invoke()
+    public class _ProductDetailDescriptionComponentPartial(IProductDetailService productDetailService) : ViewComponent
     {
-        return View();
+        public async Task<IViewComponentResult> InvokeAsync(string id)
+        {
+            var values = await productDetailService.GetByProductIdProductDetailAsync(id);
+            return View(values);
+        }
     }
 }

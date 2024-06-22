@@ -1,25 +1,26 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<partial name="Components/UILayoutViewComponents/_HeadUILayoutComponentPartial/Default"/>
+<partial name="Components/_HeadUILayoutComponentPartial/Default" />
 
 <body>
 
-<partial name="Components/UILayoutViewComponents/_TopBarUILayoutComponentPartial/Default"/>
-<partial name="Components/UILayoutViewComponents/_NavbarUILayoutComponentPartial/Default"/>
+    <partial name="Components/_TopBarUILayoutComponentPartial/Default" />
+    <partial name="Components/_NavbarUILayoutComponentPartial/Default" />
 
-@RenderBody()
-
-
-
-<partial name="Components/UILayoutViewComponents/_FooterUILayoutComponentPartial/Default"/>
+    @RenderBody()
 
 
 
-<a href="#" class="btn btn-primary back-to-top">
-    <i class="fa fa-angle-double-up"></i>
-</a>
+    <partial name="Components/_FooterUILayoutComponentPartial/Default" />
 
-<partial name="Components/UILayoutViewComponents/_ScriptUILayoutComponentPartial/Default"/>
+
+
+    <a href="#" class="btn btn-primary back-to-top">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+
+    <partial name="Components/_ScriptUILayoutComponentPartial/Default" />
+
 </body>
 </html>

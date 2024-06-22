@@ -1,6 +1,6 @@
-﻿@model List<GMAShop.DtoLayer.ProductDtos.ResultProductDto>?
+﻿@model List<ResultProductDto>
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
@@ -35,6 +35,8 @@
                                     <td>@item.ProductName</td>
                                     <td>@item.ProductDescription</td>
                                     <td>@item.ProductPrice</td>
+                                    <td>@item.DiscountedPrice</td>
+                                    <td>@item.ProductPrice</td>
                                     <td>@item.CategoryId</td>
                                     <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
                                     <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-warning">Düzenle</a></td>
@@ -48,5 +50,4 @@
         </div>
     </div>
 </section>
-
 

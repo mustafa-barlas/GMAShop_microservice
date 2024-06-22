@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.Controllers;
-
-public class UILayoutController : Controller
+namespace GMAShop.WebUI.Controllers
 {
-    // GET
-    public IActionResult _UILayout()
+    public class UILayoutController : Controller
     {
-        return View();
+        public IActionResult _UILayout()
+        {
+            return View();
+        }
     }
 }

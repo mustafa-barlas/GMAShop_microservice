@@ -1,4 +1,4 @@
-﻿@model List<GMAShop.DtoLayer.FeatureSliderDtos.ResultFeatureSliderDto>
+﻿@model List<ResultFeatureSliderDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,7 +16,6 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>#</th>
                                 <th>Görsel Başlığı</th>
                                 <th>Sil</th>
                                 <th>Güncelle</th>
@@ -28,7 +27,6 @@
                                 count++;
                                 <tr>
                                     <th scope="row">@count</th>
-                                    <td>@item.ImageUrl</td>
                                     <td>@item.Title</td>
                                     <td><a href="/Admin/FeatureSlider/DeleteFeatureSlider/@item.FeatureSliderId" class="btn btn-danger">Sil</a></td>
                                     <td><a href="/Admin/FeatureSlider/UpdateFeatureSlider/@item.FeatureSliderId" class="btn btn-success">Güncelle</a></td>

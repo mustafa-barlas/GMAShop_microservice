@@ -1,20 +1,14 @@
-﻿using GMAShop.Catalog.Services.FeatureSliderService;
-using GMAShop.DtoLayer.FeatureSliderDtos;
+﻿using GMAShop.WebUI.Services.CatalogServices.FeatureSlider;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
-namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents;
-
-public class _CarouselDefaultComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents
 {
-    private readonly IFeatureSliderService _featureSliderService;
-    public _CarouselDefaultComponentPartial(IFeatureSliderService featureSliderService)
+    public class _CarouselDefaultComponentPartial(IFeatureSliderService featureSliderService) : ViewComponent
     {
-        _featureSliderService = featureSliderService;
-    }
-    public async Task<IViewComponentResult> InvokeAsync()
-    {
-        var values = await _featureSliderService.GetAllFeatureSliderAsync();
-        return View(values);
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var values = await featureSliderService.GetAllFeatureSliderAsync();
+            return View(values);
+        }
     }
 }

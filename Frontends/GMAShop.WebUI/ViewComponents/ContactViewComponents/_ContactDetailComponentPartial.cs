@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.ViewComponents.ContactViewComponents;
-
-public class _ContactDetailComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.ContactViewComponents
 {
-    public IViewComponentResult Invoke()
+    public class _ContactDetailComponentPartial : ViewComponent
     {
-        return View();
+        public IViewComponentResult Invoke()
+        {
+            return View();
+        }
     }
 }

@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GMAShop.WebUI.Services.CatalogServices.Category;
+using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents;
-
-public class _CategoriesDefaultComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents
 {
-    public IViewComponentResult Invoke()
+    public class _CategoriesDefaultComponentPartial(ICategoryService categoryService) : ViewComponent
     {
-        return View();
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var values = await categoryService.GetAllCategoryAsync();
+            return View(values);
+        }
     }
 }

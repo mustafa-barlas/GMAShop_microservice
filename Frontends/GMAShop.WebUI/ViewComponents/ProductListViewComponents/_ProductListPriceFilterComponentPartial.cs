@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GMAShop.WebUI.ViewComponents.ProductListViewComponents;
-
-public class _ProductListPriceFilterComponentPartial : ViewComponent
+namespace GMAShop.WebUI.ViewComponents.ProductListViewComponents
 {
-    public IViewComponentResult Invoke()
+    public class _ProductListPriceFilterComponentPartial : ViewComponent
     {
-        return View();
+        public IViewComponentResult Invoke()
+        {
+            return View();
+        }
     }
 }
