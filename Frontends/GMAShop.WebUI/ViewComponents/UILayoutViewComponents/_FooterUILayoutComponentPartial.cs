@@ -8,8 +8,8 @@ namespace GMAShop.WebUI.ViewComponents.UILayoutViewComponents
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = await aboutService.GetAllAboutAsync();
-            return View(values);
+            // var values = await aboutService.GetAllAboutAsync();
+            return View();
         }
     }
 }

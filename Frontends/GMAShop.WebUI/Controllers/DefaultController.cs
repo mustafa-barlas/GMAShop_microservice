@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Controllers
 {
     public class DefaultController : Controller
     {
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
             ViewBag.directory1 = "GMAShop";
             ViewBag.directory2 = "Ana Sayfa";

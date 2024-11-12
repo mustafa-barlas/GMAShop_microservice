@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using GMAShop.WebUI.Handlers;
-using GMAShop.WebUI.Services.CatalogServices;
 using GMAShop.WebUI.Services.CatalogServices.About;
 using GMAShop.WebUI.Services.CatalogServices.Brand;
 using GMAShop.WebUI.Services.CatalogServices.Category;
@@ -13,8 +12,9 @@ using GMAShop.WebUI.Services.CatalogServices.Product;
 using GMAShop.WebUI.Services.CatalogServices.ProductDetail;
 using GMAShop.WebUI.Services.CatalogServices.ProductImage;
 using GMAShop.WebUI.Services.CatalogServices.SpecialOffer;
-using GMAShop.WebUI.Services.IdentityServices.Abstract;
-using GMAShop.WebUI.Services.IdentityServices.Concrete;
+using GMAShop.WebUI.Services.Concrete;
+using GMAShop.WebUI.Services.Interfaces;
+using GMAShop.WebUI.Services.UserIdentityServices;
 using GMAShop.WebUI.Settings;
 
 var builder = WebApplication.CreateBuilder(args);

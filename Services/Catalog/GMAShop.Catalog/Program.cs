@@ -1,15 +1,3 @@
-using GMAShop.Catalog.Services.AboutServices;
-using GMAShop.Catalog.Services.BrandServices;
-using GMAShop.Catalog.Services.CategoryServices;
-using GMAShop.Catalog.Services.ContactServices;
-using GMAShop.Catalog.Services.FeatureServices;
-using GMAShop.Catalog.Services.FeatureSliderServices;
-using GMAShop.Catalog.Services.OfferDiscountServices;
-using GMAShop.Catalog.Services.ProductDetailServices;
-using GMAShop.Catalog.Services.ProductImageServices;
-using GMAShop.Catalog.Services.ProductServices;
-using GMAShop.Catalog.Services.SpecialOfferServices;
-using GMAShop.Catalog.Services.StatisticServices;
 using GMAShop.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -32,7 +20,7 @@ builder.Host.UseServiceProviderFactory(
         (options => options.RegisterModule(new AutofacModule())));
 
 
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+//builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 builder.Services.AddScoped<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 

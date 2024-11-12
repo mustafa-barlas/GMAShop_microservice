@@ -1,11 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ICategoryService = GMAShop.WebUI.Services.CatalogServices.Category.ICategoryService;
+﻿using GMAShop.WebUI.Services.CatalogServices.Category;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace GMAShop.WebUI.Controllers
 {
-    public class TestController(IHttpClientFactory httpClientFactory,ICategoryService categoryService)
-        : Controller
+    public class TestController : Controller
     {
+
+        private readonly ICategoryService _categoryService;
+
+        public TestController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
         public async Task<IActionResult> Index()
         {
             // string token = "";
@@ -44,7 +52,8 @@ namespace GMAShop.WebUI.Controllers
             //     var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
             //     return View(values);
             // }
-            return View();
+            var values = await _categoryService.GetAllCategoryAsync();
+            return View(values);
         }
         public IActionResult Deneme1()
         {
@@ -53,7 +62,7 @@ namespace GMAShop.WebUI.Controllers
 
         public async Task<ActionResult> Deneme2()
         {
-            var values = await categoryService.GetAllCategoryAsync();
+           
             return View();
         }
     }

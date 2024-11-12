@@ -1,5 +1,5 @@
 ﻿using GMAShop.Catalog.Dtos.CategoryDtos;
-using GMAShop.Catalog.Entities;
+
 
 namespace GMAShop.Catalog.Dtos.ProductDtos
 {

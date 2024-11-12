@@ -7,33 +7,29 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace GMAShop.IdentityServer.Tools;
 
-public static class JwtTokenGenerator
+public class JwtTokenGenerator
 {
-    public static TokenResponseViewModel GenerateToken(GetCheckAppUserViewModel userViewModel)
+    public static TokenResponseViewModel GenerateToken(GetCheckAppUserViewModel model)
     {
         var claims = new List<Claim>();
-        if (!string.IsNullOrWhiteSpace(userViewModel.Role))
-            claims.Add(new Claim(ClaimTypes.Role, userViewModel.Role));
+        if (!string.IsNullOrWhiteSpace(model.Role))
+            claims.Add(new Claim(ClaimTypes.Role, model.Role));
 
+        claims.Add(new Claim(ClaimTypes.NameIdentifier, model.Id));
 
-        claims.Add(new Claim(ClaimTypes.NameIdentifier, userViewModel.Id));
-        if (!string.IsNullOrWhiteSpace(userViewModel.Username))
-            claims.Add(new Claim("Username", userViewModel.Username));
+        if (!string.IsNullOrWhiteSpace(model.Username))
+            claims.Add(new Claim("Username", model.Username));
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key));
+
         var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
         var expireDate = DateTime.UtcNow.AddDays(JwtTokenDefaults.Expire);
 
-        JwtSecurityToken token = new JwtSecurityToken(
-            issuer: JwtTokenDefaults.ValidIssuer,
-            audience: JwtTokenDefaults.ValidAudience,
-            claims: claims,
-            notBefore: DateTime.UtcNow,
-            expires: expireDate,
-            signingCredentials: signingCredentials
-        );
+        JwtSecurityToken token = new JwtSecurityToken(issuer: JwtTokenDefaults.ValidIssuer, audience: JwtTokenDefaults.ValidAudience, claims: claims, notBefore: DateTime.UtcNow, expires: expireDate, signingCredentials: signingCredentials);
 
         JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+
         return new TokenResponseViewModel(tokenHandler.WriteToken(token), expireDate);
     }
 }

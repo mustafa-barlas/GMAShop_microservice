@@ -1,5 +1,6 @@
 ﻿using GMAShop.DtoLayer.IdentityDtos.LoginDtos;
-using GMAShop.WebUI.Services.IdentityServices.Abstract;
+
+using GMAShop.WebUI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Controllers

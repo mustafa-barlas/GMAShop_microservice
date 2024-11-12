@@ -23,23 +23,21 @@ namespace GMAShop.IdentityServer.Controllers
         [HttpPost]
         public async Task<IActionResult> UserLogin(UserLoginDto userLoginDto)
         {
-            var result = await _signInManager.PasswordSignInAsync(userLoginDto.Username, userLoginDto.Password, false,
-                false);
-
+            var result = await _signInManager.PasswordSignInAsync(userLoginDto.Username, userLoginDto.Password, false, false);
             var user = await _userManager.FindByNameAsync(userLoginDto.Username);
+
             if (result.Succeeded)
             {
-                GetCheckAppUserViewModel model = new GetCheckAppUserViewModel
-                {
-                    Username = userLoginDto.Username,
-                    Id = user.Id
-                };
+                GetCheckAppUserViewModel model = new GetCheckAppUserViewModel();
+                model.Username = userLoginDto.Username;
+                model.Id = user.Id;
                 var token = JwtTokenGenerator.GenerateToken(model);
                 return Ok(token);
             }
-
             else
-                return Ok("username or password is incorrect");
+            {
+                return Ok("Kullanıcı Adı veya Şifre Hatalı");
+            }
         }
     }
 }

@@ -84,6 +84,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Autofac" Version="8.1.1" />
+      <PackageReference Include="AutoMapper" Version="13.0.1" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
       <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.6" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
@@ -109,7 +112,6 @@
 
     <ItemGroup>
       <Compile Remove="Models\ErrorViewModel.cs" />
-      <Compile Remove="Services\UserIdentityServices\IUserIdentityService.cs" />
       <Compile Remove="ViewComponents\OrderViewComponents\_PaymentMethodComponentPartial.cs" />
       <Compile Remove="ViewComponents\OrderViewComponents\_OrderSummaryComponentPartial.cs" />
       <Compile Remove="ViewComponents\DefaultViewComponents\_FeaturedDefaultComponentPartial.cs" />

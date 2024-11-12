@@ -1,4 +1,4 @@
-﻿namespace GMAShop.Catalog.Dtos.ProductDtos
+﻿ namespace GMAShop.Catalog.Dtos.ProductDtos
 {
     public class ResultProductDto
     {
