@@ -4,14 +4,14 @@ using GMAShop.Discount.Dtos;
 
 namespace GMAShop.Discount.Services;
 
-public class DiscountService : IDiscountService
+public class DiscountService(DapperContext dapperContext) : IDiscountService
 {
-    private readonly DapperContext _dapperContext;
+    private readonly DapperContext _dapperContext =  dapperContext;
 
-    public DiscountService(DapperContext dapperContext)
-    {
-        _dapperContext = dapperContext;
-    }
+    //public DiscountService(DapperContext dapperContext)
+    //{
+    //    _dapperContext = dapperContext;
+    //}
 
     public async Task<List<ResultDiscountCouponDto>> GetAllDiscountCouponAsync()
     {

@@ -17,11 +17,12 @@ public class DapperContext : DbContext
     }
 
 
-    public DbSet<Coupon> Coupons { get; set; }
-    public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=MUSTAFABRLS,1442; Initial Catalog=GMAShopDiscountDb; User Id=sa; Password=201203011Aa.; Encrypt=True; TrustServerCertificate=True;");
+        //optionsBuilder.UseSqlServer("Server=MUSTAFABRLS,1442; Initial Catalog=GMAShopDiscountDb; User Id=sa; Password=201203011Aa.; integrated Security=true; Encrypt=True; TrustServerCertificate=True;");
+
+        optionsBuilder.UseSqlServer("Server=MUSTAFABRLS; Initial Catalog=GMAShopDiscountDb; User Id=sa; Password=201203011Aa.; integrated Security=true; Encrypt=True; TrustServerCertificate=True;");
     }
+    public DbSet<Coupon> Coupons { get; set; }
+    public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
 }

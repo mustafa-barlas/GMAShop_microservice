@@ -78,5 +78,7 @@ public class GeneralMapping : Profile
 
         //CreateMap<Product, ResultProductsWithCategoryDto>()
         //    .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.CategoryName));
+
+
     }
 }

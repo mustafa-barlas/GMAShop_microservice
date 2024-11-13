@@ -2,11 +2,9 @@
 
 public class RemoveAddressCommand
 {
+    public int AddressId { get; set; }
     public RemoveAddressCommand(int addressId)
     {
         AddressId = addressId;
     }
-
-    public int AddressId { get; set; }
-
 }

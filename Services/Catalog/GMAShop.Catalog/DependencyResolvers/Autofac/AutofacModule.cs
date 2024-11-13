@@ -22,13 +22,13 @@ namespace GMAShop.Catalog.DependencyResolvers.Autofac
             builder.RegisterType<AboutService>().As<IAboutService>().SingleInstance();
             builder.RegisterType<StatisticService>().As<IStatisticService>().SingleInstance();
 
-            builder.RegisterType<CategoryService>().As<ICategoryService>().SingleInstance();
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductService>().As<IProductService>().SingleInstance();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductDetailService>().As<IProductDetailService>().SingleInstance();
+            builder.RegisterType<ProductDetailService>().As<IProductDetailService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductImageService>().As<IProductImageService>().SingleInstance();
+            builder.RegisterType<ProductImageService>().As<IProductImageService>().InstancePerLifetimeScope();
 
             builder.RegisterType<FeatureSliderService>().As<IFeatureSliderService>().SingleInstance();
 
