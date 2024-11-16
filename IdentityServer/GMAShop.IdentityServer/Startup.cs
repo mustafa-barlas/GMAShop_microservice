@@ -1,6 +1,10 @@
-﻿using GMAShop.IdentityServer.Data;
-using GMAShop.IdentityServer.Models;
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+
 using IdentityServer4;
+using GMAShop.IdentityServer.Data;
+using GMAShop.IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -24,12 +28,11 @@ namespace GMAShop.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalApiAuthentication();
-
+            services.AddLocalApiAuthentication(); // **********
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));  // **********
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -46,7 +49,7 @@ namespace GMAShop.IdentityServer
                 options.EmitStaticAudienceClaim = true;
             })
                 .AddInMemoryIdentityResources(Config.IdentityResources)
-                .AddInMemoryApiResources(Config.ApiResources)
+                .AddInMemoryApiResources(Config.ApiResources) // ***********
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
                 .AddAspNetIdentity<ApplicationUser>();

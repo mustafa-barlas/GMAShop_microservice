@@ -5,7 +5,7 @@ namespace GMAShop.Order.Application.Services;
 
 public static class ServiceRegistration
 {
-    public static void AddApplicationService(this IServiceCollection services, ConfigurationManager builderConfiguration)
+    public static void AddApplicationService(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(ServiceRegistration).Assembly));
     }

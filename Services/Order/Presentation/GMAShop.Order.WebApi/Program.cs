@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
 {
     opt.Authority = builder.Configuration["IdentityServerUrl"];
@@ -15,25 +17,26 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opt.Audience = "ResourceOrder";
 });
 
-
 // Add services to the container.
 
-builder.Services.AddTransient<GetAddressQueryHandler>();
-builder.Services.AddTransient<GetAddressByIdQueryHandler>();
-builder.Services.AddTransient<CreateAddressHandler>();
-builder.Services.AddTransient<UpdateAddressHandler>();
-builder.Services.AddTransient<RemoveAddressHandler>();
+builder.Services.AddScoped<GetAddressQueryHandler>();
+builder.Services.AddScoped<GetAddressByIdQueryHandler>();
+builder.Services.AddScoped<CreateAddressHandler>();
+builder.Services.AddScoped<UpdateAddressHandler>();
+builder.Services.AddScoped<RemoveAddressHandler>();
 
-builder.Services.AddTransient<GetOrderDetailCommandHandler>();
-builder.Services.AddTransient<GetOrderDetailByIdCommandHandler>();
-builder.Services.AddTransient<CreateOrderDetailCommandHandler>();
-builder.Services.AddTransient<UpdateOrderDetailQueryHandler>();
-builder.Services.AddTransient<RemoveOrderDetailQueryHandler>();
-builder.Services.AddTransient<OrderContext>();
+builder.Services.AddScoped<GetOrderDetailCommandHandler>();
+builder.Services.AddScoped<GetOrderDetailByIdCommandHandler>();
+builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
+builder.Services.AddScoped<UpdateOrderDetailQueryHandler>();
+builder.Services.AddScoped<RemoveOrderDetailQueryHandler>();
+builder.Services.AddScoped<OrderContext>();
 
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddApplicationService(builder.Configuration);
+
+#endregion
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -51,6 +54,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();    
 app.UseAuthorization();
 
 app.MapControllers();

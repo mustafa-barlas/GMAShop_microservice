@@ -8,22 +8,26 @@ using GMAShop.Catalog.DependencyResolvers.Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
+
+#region
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => 
 {
     opt.Authority = builder.Configuration["IdentityServerUrl"];
     opt.RequireHttpsMetadata = false;
     opt.Audience = "ResourceCatalog";
 });
 
-builder.Host.UseServiceProviderFactory(
+builder.Host.UseServiceProviderFactory(  
     new AutofacServiceProviderFactory
         (options => options.RegisterModule(new AutofacModule())));
 
 
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
-builder.Services.AddScoped<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));  
+builder.Services.AddScoped<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);  
 
+#endregion
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

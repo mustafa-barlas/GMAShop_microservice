@@ -12,7 +12,7 @@ public class OrderContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=MUSTAFABRLS; Initial Catalog=GMAShopOrderDb; User Id=sa; Password=201203011Aa.; Encrypt=True; TrustServerCertificate=True;",
+        optionsBuilder.UseSqlServer("Server=MUSTAFABRLS,1440; Initial Catalog=GMAShopOrderDb; User Id=sa; Password=201203011Aa.; Encrypt=True; TrustServerCertificate=True;",
             options => options.EnableRetryOnFailure());
     }
 

@@ -5,11 +5,11 @@ using MediatR;
 
 namespace GMAShop.Order.Application.Feature.Mediator.Handlers.OrderingHandlers;
 
-public class RemoveOrderingQueryHandler : IRequestHandler<RemoveOrderingCommand>
+public class RemoveOrderingCommandHandler : IRequestHandler<RemoveOrderingCommand>
 {
     private readonly IRepository<Ordering> _repository;
 
-    public RemoveOrderingQueryHandler(IRepository<Ordering> repository)
+    public RemoveOrderingCommandHandler(IRepository<Ordering> repository)
     {
         _repository = repository;
     }

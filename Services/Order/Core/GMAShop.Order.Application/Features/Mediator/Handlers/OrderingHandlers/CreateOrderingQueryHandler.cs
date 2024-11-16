@@ -5,11 +5,11 @@ using MediatR;
 
 namespace GMAShop.Order.Application.Feature.Mediator.Handlers.OrderingHandlers;
 
-public class CreateOrderingQueryHandler : IRequestHandler<CreateOrderingCommand>
+public class CreateOrderingCommandHandler : IRequestHandler<CreateOrderingCommand>
 {
     private readonly IRepository<Ordering> _repository;
 
-    public CreateOrderingQueryHandler(IRepository<Ordering> repository)
+    public CreateOrderingCommandHandler(IRepository<Ordering> repository)
     {
         _repository = repository;
     }

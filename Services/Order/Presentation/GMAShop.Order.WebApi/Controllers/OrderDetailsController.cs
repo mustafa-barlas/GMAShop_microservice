@@ -1,10 +1,12 @@
 ﻿using GMAShop.Order.Application.Feature.CQRS.Commands.OrderDetailCommands;
 using GMAShop.Order.Application.Feature.CQRS.Handlers.OrderDetailHandlers;
 using GMAShop.Order.Application.Feature.CQRS.Queries.OrderDetailQueries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Order.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderDetailsController : ControllerBase

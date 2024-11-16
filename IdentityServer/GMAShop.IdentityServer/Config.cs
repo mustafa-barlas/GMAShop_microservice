@@ -53,8 +53,9 @@ namespace GMAShop.IdentityServer
                 ClientId="GMAShopVisitorId",
                 ClientName="GMA Shop Visitor User",
                 AllowedGrantTypes=GrantTypes.ClientCredentials,
-                ClientSecrets={new Secret("GMAShopsecret".Sha256())},
-                AllowedScopes={"CatalogReadPermission","CatalogFullPermission","OcelotFullPermission","CommentFullPermission","ImageFullPermission", "CommentFullPermission",  IdentityServerConstants.LocalApi.ScopeName },
+                ClientSecrets={new Secret("gmashopsecret".Sha256())},
+                AllowedScopes={"CatalogFullPermission","DiscountFullPermission","OcelotFullPermission","CommentFullPermission","ImageFullPermission", "CommentFullPermission",  IdentityServerConstants.LocalApi.ScopeName 
+                },
                 AllowAccessTokensViaBrowser=true
             },
 
@@ -63,13 +64,15 @@ namespace GMAShop.IdentityServer
             {
                 ClientId="GMAShopManagerId",
                 ClientName="GMA Shop Manager User",
-                AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
-                ClientSecrets={new Secret("GMAShopsecret".Sha256()) },
-                AllowedScopes={ "CatalogReadPermission", "CatalogFullPermission", "BasketFullPermission", "OcelotFullPermission", "CommentFullPermission", "PaymentFullPermission", "ImageFullPermission","DiscountFullPermission","OrderFullPermisson","MessageFullPermission","CargoFullPermission",
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                ClientSecrets={new Secret("gmashopsecret".Sha256()) },
+                AllowedScopes={"CatalogFullPermission", "BasketFullPermission", "OcelotFullPermission", "CommentFullPermission", "PaymentFullPermission", "ImageFullPermission","OrderFullPermission","MessageFullPermission","CargoFullPermission",
                 IdentityServerConstants.LocalApi.ScopeName,
                 IdentityServerConstants.StandardScopes.Email,
                 IdentityServerConstants.StandardScopes.OpenId,
-                IdentityServerConstants.StandardScopes.Profile }
+                IdentityServerConstants.StandardScopes.Profile
+
+                }
             },
 
             //Admin
@@ -78,8 +81,8 @@ namespace GMAShop.IdentityServer
                 ClientId="GMAShopAdminId",
                 ClientName="GMA Shop Admin User",
                 AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
-                ClientSecrets={new Secret("GMAShopsecret".Sha256()) },
-                AllowedScopes={ "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermisson","CargoFullPermission","BasketFullPermission","OcelotFullPermission","CommentFullPermission","PaymentFullPermission","ImageFullPermission","CargoFullPermission",
+                ClientSecrets={new Secret("gmashopsecret".Sha256()) },
+                AllowedScopes={ "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission","CargoFullPermission","BasketFullPermission","OcelotFullPermission","CommentFullPermission","PaymentFullPermission","ImageFullPermission","CargoFullPermission",
                 IdentityServerConstants.LocalApi.ScopeName,
                 IdentityServerConstants.StandardScopes.Email,
                 IdentityServerConstants.StandardScopes.OpenId,

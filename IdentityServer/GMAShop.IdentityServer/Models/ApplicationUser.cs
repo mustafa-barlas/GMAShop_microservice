@@ -7,5 +7,6 @@ namespace GMAShop.IdentityServer.Models
     {
         public string Name { get; set; }
         public string Surname { get; set; }
+
     }
 }

@@ -1,15 +1,15 @@
 ﻿using GMAShop.IdentityServer.Dtos;
 using GMAShop.IdentityServer.Models;
+using IdentityServer4;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace GMAShop.IdentityServer.Controllers
 {
-    // [Authorize(IdentityServerConstants.LocalApi.PolicyName)] // *******
-    [AllowAnonymous] // *******
+    [Authorize(LocalApi.PolicyName)] // *******
     [Route("api/[controller]")]
     [ApiController]
     public class RegistersController : ControllerBase
@@ -26,21 +26,20 @@ namespace GMAShop.IdentityServer.Controllers
         {
             var values = new ApplicationUser()
             {
-                UserName = userRegisterDto.Name,
-                Email = userRegisterDto.Email,
+                UserName = userRegisterDto.UserName,
+                Name = userRegisterDto.Name,
                 Surname = userRegisterDto.Surname,
-                Name = userRegisterDto.Name
+                Email = userRegisterDto.Email,
             };
 
             var result = await _userManager.CreateAsync(values, userRegisterDto.Password);
             if (result.Succeeded)
             {
-                return Ok("User Created as Successfully");
+                return Ok("User added");
             }
-
             else
             {
-                throw new Exception("Something went wrong");
+                return Ok("Something went wrong");
             }
         }
     }

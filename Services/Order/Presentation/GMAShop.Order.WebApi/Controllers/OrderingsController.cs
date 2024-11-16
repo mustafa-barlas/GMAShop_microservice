@@ -1,10 +1,12 @@
 ﻿using GMAShop.Order.Application.Feature.Mediator.Commands.OrderingCommands;
 using GMAShop.Order.Application.Feature.Mediator.Queries.OrderingQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Order.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderingsController(IMediator mediator) : ControllerBase
