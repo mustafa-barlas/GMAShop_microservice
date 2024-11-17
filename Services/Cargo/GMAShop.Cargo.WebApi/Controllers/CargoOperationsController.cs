@@ -1,10 +1,12 @@
 ﻿using GMAShop.Cargo.Business.Abstract;
 using GMAShop.Cargo.DtoLayer.Dtos.CargoOperationDtos;
 using GMAShop.Cargo.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Cargo.WebApi.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class CargoOperationsController(ICargoOperationService cargoOperationService) : Controller
@@ -25,7 +27,9 @@ public class CargoOperationsController(ICargoOperationService cargoOperationServ
         {
             Barcode = createCargoOperationDto.Barcode,
             Description = createCargoOperationDto.Description,
-            OperationDate = createCargoOperationDto.OperationDate
+            OperationDate = createCargoOperationDto.OperationDate,
+            Status = createCargoOperationDto.Status,
+            CargoDetailId = createCargoOperationDto.CargoDetailId,
         };
         _cargoOperationService.TInsert(cargoOperation);
         return Ok("kargo oluşturludu");
@@ -53,7 +57,9 @@ public class CargoOperationsController(ICargoOperationService cargoOperationServ
             CargoOperationId = updateCargoOperationDto.CargoOperationId,
             Barcode = updateCargoOperationDto.Barcode,
             Description = updateCargoOperationDto.Description,
-            OperationDate = updateCargoOperationDto.OperationDate
+            Status = updateCargoOperationDto.Status,
+            OperationDate = updateCargoOperationDto.OperationDate,
+            CargoDetailId = updateCargoOperationDto.CargoDetailId
         };
         _cargoOperationService.TUpdate(cargoOperation);
         return Ok("kargo oluşturludu");

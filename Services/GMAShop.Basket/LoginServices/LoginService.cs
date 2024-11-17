@@ -3,24 +3,10 @@
 public class LoginService : ILoginService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-
-    public LoginService(IHttpContextAccessor httpContextAccessor)
+    public LoginService(IHttpContextAccessor contextAccessor)
     {
-        _httpContextAccessor = httpContextAccessor;
+        _httpContextAccessor = contextAccessor;
     }
 
-    public string UserId
-    {
-        get
-        {
-            var httpContext = _httpContextAccessor.HttpContext;
-            if (httpContext == null || httpContext.User == null)
-            {
-                return null;
-            }
-
-            var userIdClaim = httpContext.User.FindFirst("sub");
-            return userIdClaim?.Value;
-        }
-    }
+    public string GetUserId => _httpContextAccessor.HttpContext.User.FindFirst("sub").Value;
 }

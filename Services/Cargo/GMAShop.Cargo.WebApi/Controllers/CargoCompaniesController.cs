@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Cargo.WebApi.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class CargoCompaniesController(ICargoCompanyService cargoCompanyService) : Controller
@@ -27,14 +28,14 @@ public class CargoCompaniesController(ICargoCompanyService cargoCompanyService) 
             CargoCompanyName = createCargoCompanyDto.CargoCompanyName
         };
         _cargoCompanyService.TInsert(cargoCompany);
-        return Ok("kago oluşturludu");
+        return Ok("kargo  şirketi oluşturludu");
     }
 
     [HttpDelete]
     public IActionResult RemoveCargoCompany(int id)
     {
         _cargoCompanyService.TDelete(id);
-        return Ok("kago oluşturludu");
+        return Ok("kargo şirketi silindi");
     }
 
     [HttpGet("{id}")]
@@ -50,9 +51,11 @@ public class CargoCompaniesController(ICargoCompanyService cargoCompanyService) 
         CargoCompany cargoCompany = new CargoCompany()
         {
             CargoCompanyId = updateCargoCompanyDto.CargoCompanyId,
-            CargoCompanyName = updateCargoCompanyDto.CargoCompanyName
+            CargoCompanyName  = updateCargoCompanyDto.CargoCompanyName,
+         
         };
+
         _cargoCompanyService.TUpdate(cargoCompany);
-        return Ok("kago oluşturludu");
+        return Ok("kargo şirketi güncellendi");
     }
 }

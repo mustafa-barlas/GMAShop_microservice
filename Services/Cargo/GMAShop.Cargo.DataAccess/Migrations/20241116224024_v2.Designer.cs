@@ -4,6 +4,7 @@ using GMAShop.Cargo.DataAccess.Concrete.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMAShop.Cargo.DataAccess.Migrations
 {
     [DbContext(typeof(CargoContextDb))]
-    partial class CargoContextDbModelSnapshot : ModelSnapshot
+    [Migration("20241116224024_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,6 +78,9 @@ namespace GMAShop.Cargo.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserCustomerId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CargoCustomerId");
 
                     b.ToTable("CargoCustomers");
@@ -128,6 +134,9 @@ namespace GMAShop.Cargo.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CargoDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CargoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")

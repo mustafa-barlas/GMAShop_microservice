@@ -5,7 +5,6 @@ using GMAShop.Cargo.Entities.Concrete;
 
 namespace GMAShop.Cargo.DataAccess.Concrete.EntityFramework;
 
-public class EfCargoCompanyDal(CargoContextDb cargoContext)
-    : GenericRepository<CargoCompany>(cargoContext), ICargoCompanyDal
+public class EfCargoCompanyDal(CargoContextDb cargoContext) : GenericRepository<CargoCompany>(cargoContext), ICargoCompanyDal
 {
 }

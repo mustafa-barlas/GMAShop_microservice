@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMAShop.Cargo.DataAccess.Migrations
 {
     [DbContext(typeof(CargoContextDb))]
-    [Migration("20240530224726_v1")]
+    [Migration("20241116223833_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace GMAShop.Cargo.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -34,6 +34,7 @@ namespace GMAShop.Cargo.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CargoCompanyId"));
 
                     b.Property<string>("CargoCompanyName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CargoCompanyId");
@@ -50,24 +51,34 @@ namespace GMAShop.Cargo.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CargoCustomerId"));
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("District")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserCustomerId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CargoCustomerId");
@@ -83,21 +94,29 @@ namespace GMAShop.Cargo.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CargoDetailId"));
 
-                    b.Property<int>("Barcode")
+                    b.Property<string>("Barcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CargoCompanyId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("ReceiverCustomer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SenderCustomer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CargoDetailId");
 
-                    b.HasIndex("CargoCompanyId");
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("CargoDetails");
                 });
@@ -111,28 +130,87 @@ namespace GMAShop.Cargo.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CargoOperationId"));
 
                     b.Property<string>("Barcode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CargoCustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CargoDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CargoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OperationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CargoOperationId");
+
+                    b.HasIndex("CargoCustomerId");
+
+                    b.HasIndex("CargoDetailId");
 
                     b.ToTable("CargoOperations");
                 });
 
             modelBuilder.Entity("GMAShop.Cargo.Entities.Concrete.CargoDetail", b =>
                 {
-                    b.HasOne("GMAShop.Cargo.Entities.Concrete.CargoCompany", "CargoCompany")
-                        .WithMany()
-                        .HasForeignKey("CargoCompanyId")
+                    b.HasOne("GMAShop.Cargo.Entities.Concrete.CargoCompany", "Company")
+                        .WithMany("CargoDetails")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CargoCompany");
+                    b.HasOne("GMAShop.Cargo.Entities.Concrete.CargoCustomer", "Customer")
+                        .WithMany("CargoDetails")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("GMAShop.Cargo.Entities.Concrete.CargoOperation", b =>
+                {
+                    b.HasOne("GMAShop.Cargo.Entities.Concrete.CargoCustomer", null)
+                        .WithMany("CargoOperations")
+                        .HasForeignKey("CargoCustomerId");
+
+                    b.HasOne("GMAShop.Cargo.Entities.Concrete.CargoDetail", "CargoDetail")
+                        .WithMany("CargoOperations")
+                        .HasForeignKey("CargoDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CargoDetail");
+                });
+
+            modelBuilder.Entity("GMAShop.Cargo.Entities.Concrete.CargoCompany", b =>
+                {
+                    b.Navigation("CargoDetails");
+                });
+
+            modelBuilder.Entity("GMAShop.Cargo.Entities.Concrete.CargoCustomer", b =>
+                {
+                    b.Navigation("CargoDetails");
+
+                    b.Navigation("CargoOperations");
+                });
+
+            modelBuilder.Entity("GMAShop.Cargo.Entities.Concrete.CargoDetail", b =>
+                {
+                    b.Navigation("CargoOperations");
                 });
 #pragma warning restore 612, 618
         }

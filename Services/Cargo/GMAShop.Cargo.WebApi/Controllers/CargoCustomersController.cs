@@ -1,10 +1,12 @@
 ﻿using GMAShop.Cargo.Business.Abstract;
 using GMAShop.Cargo.DtoLayer.Dtos.CargoCustomerDtos;
 using GMAShop.Cargo.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Cargo.WebApi.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class CargoCustomersController(ICargoCustomerService cargoCustomerService) : Controller
@@ -29,17 +31,17 @@ public class CargoCustomersController(ICargoCustomerService cargoCustomerService
             Email = createCargoCustomerDto.Email,
             District = createCargoCustomerDto.District,
             Address = createCargoCustomerDto.Address,
-            City = createCargoCustomerDto.City
+            City = createCargoCustomerDto.City,
         };
         _cargoCustomerService.TInsert(cargoCustomer);
-        return Ok("kargo oluşturludu");
+        return Ok("müşteri oluşturludu");
     }
 
     [HttpDelete]
     public IActionResult RemoveCargoCustomer(int id)
     {
         _cargoCustomerService.TDelete(id);
-        return Ok("kago oluşturludu");
+        return Ok("müşteri silindi");
     }
 
     [HttpGet("{id}")]
@@ -61,9 +63,10 @@ public class CargoCustomersController(ICargoCustomerService cargoCustomerService
             Email = updateCargoCustomerDto.Email,
             District = updateCargoCustomerDto.District,
             Address = updateCargoCustomerDto.Address,
-            City = updateCargoCustomerDto.City
+            City = updateCargoCustomerDto.City,
+            
         };
         _cargoCustomerService.TUpdate(cargoCustomer);
-        return Ok("kargo oluşturludu");
+        return Ok("müşteri güncellendi");
     }
 }

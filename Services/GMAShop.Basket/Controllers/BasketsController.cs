@@ -8,28 +8,38 @@ namespace GMAShop.Basket.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
-public class BasketsController(IBasketService basketService, ILoginService loginService) : ControllerBase
+
+public class BasketsController : ControllerBase
 {
+    private readonly IBasketService _basketService;
+    private readonly ILoginService _loginService;
+
+    public BasketsController(IBasketService basketService, ILoginService loginService)
+    {
+        _basketService = basketService;
+        _loginService = loginService;
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetMyBasketDetail()
     {
-        var values = await basketService.GetBasket(loginService.UserId);
-        return Ok(values);
+        var user = User.Claims;
+        var values = await _basketService.GetBasket(_loginService.GetUserId);
+         return Ok(values);
     }
 
     [HttpPost]
     public async Task<IActionResult> SaveMyBasket(BasketTotalDto basketTotalDto)
     {
-        basketTotalDto.UserId = loginService.UserId;
-        await basketService.SaveBasket(basketTotalDto);
-        return Ok("Oluşturuldu");
+        basketTotalDto.UserId = _loginService.GetUserId;
+        await _basketService.SaveBasket(basketTotalDto);
+        return Ok("Sepetteki değişiklikler kaydedili");
     }
 
     [HttpDelete]
     public async Task<IActionResult> DeleteBasket()
     {
-        await basketService.DeleteBasket(loginService.UserId);
-        return Ok("Silindi");
+        await _basketService.DeleteBasket(_loginService.GetUserId);
+        return Ok("Sepet başarıyla silindi");
     }
 }

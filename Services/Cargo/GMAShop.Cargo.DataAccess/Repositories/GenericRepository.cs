@@ -26,10 +26,7 @@ public class GenericRepository<T>(CargoContextDb cargoContext) : IGenericDal<T> 
         _cargoContext.SaveChanges();
     }
 
-    public T GetById(int id)
-    {
-        return _cargoContext.Set<T>().Find(id);
-    }
+    public T GetById(int id) => _cargoContext.Set<T>().Find(id);
 
     public List<T> GetAll()
     {

@@ -2,5 +2,5 @@
 
 public interface ILoginService
 {
-    public string UserId { get; }
+    public string GetUserId { get; }
 }

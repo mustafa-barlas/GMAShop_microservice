@@ -1,10 +1,12 @@
 ﻿using GMAShop.Cargo.Business.Abstract;
 using GMAShop.Cargo.DtoLayer.Dtos.CargoDetailDtos;
 using GMAShop.Cargo.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Cargo.WebApi.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class CargoDetailsController(ICargoDetailService cargoDetailService) : Controller
@@ -23,7 +25,8 @@ public class CargoDetailsController(ICargoDetailService cargoDetailService) : Co
     {
         CargoDetail cargoDetail = new CargoDetail()
         {
-            CargoCompanyId = createCargoDetailDto.CargoCompanyId,
+            CompanyId = createCargoDetailDto.CargoCompanyId,
+            CustomerId = createCargoDetailDto.CargoCustomerId,
             ReceiverCustomer = createCargoDetailDto.ReceiverCustomer,
             SenderCustomer = createCargoDetailDto.SenderCustomer,
             Barcode = createCargoDetailDto.Barcode,
@@ -52,7 +55,8 @@ public class CargoDetailsController(ICargoDetailService cargoDetailService) : Co
         CargoDetail cargoDetail = new CargoDetail()
         {
             CargoDetailId = updateCargoDetailDto.CargoDetailId,
-            CargoCompanyId = updateCargoDetailDto.CargoCompanyId,
+            CompanyId = updateCargoDetailDto.CargoCompanyId,
+            CustomerId = updateCargoDetailDto.CargoCustomerId,
             ReceiverCustomer = updateCargoDetailDto.ReceiverCustomer,
             SenderCustomer = updateCargoDetailDto.SenderCustomer,
             Barcode = updateCargoDetailDto.Barcode,
