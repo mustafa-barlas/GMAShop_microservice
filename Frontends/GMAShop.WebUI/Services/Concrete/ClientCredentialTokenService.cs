@@ -30,7 +30,7 @@ namespace GMAShop.WebUI.Services.Concrete
             }
             var discoveryEndPoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
-                Address = _serviceApiSettings.IdentityServer,
+                Address = _serviceApiSettings.IdentityServerUrl,
                 Policy = new DiscoveryPolicy
                 {
                     RequireHttps = false

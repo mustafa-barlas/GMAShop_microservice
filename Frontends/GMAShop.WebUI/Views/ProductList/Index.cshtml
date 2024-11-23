@@ -1,47 +1,32 @@
-﻿@{
-    ViewBag.Title = "Products";
-    Layout = "_UILayout";
+﻿﻿@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+
 }
 
-
 <div class="container-fluid">
     <div class="row px-xl-5">
-        <div class="col-12">
-            <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">Home</a>
-                <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                <span class="breadcrumb-item active">Shop List</span>
-            </nav>
-        </div>
-    </div>
-</div>
-
-
-<div class="container-fluid">
-    <div class="row px-xl-5">
-
         <div class="col-lg-3 col-md-4">
 
-            <partial name="Components/_ProductListPriceFilterComponentPartial/Default" />
+            @await Component.InvokeAsync("_ProductListPriceFilterComponentPartial")
 
-            <partial name="Components/_ProductListColorFilterComponentPartial/Default" />
+            @await Component.InvokeAsync("_ProductListColorFilterComponentPartial")
 
-            <partial name="Components/_ProductListSizeFilterComponentPartial/Default" />
+            @await Component.InvokeAsync("_ProductListSizeFilterComponentPartial")
 
         </div>
-
 
         <div class="col-lg-9 col-md-8">
             <div class="row pb-3">
 
-                <partial name="Components/_ProductListGetProductCountComponentPartial/Default" />
+                @await Component.InvokeAsync("_ProductListGetProductCountComponentPartial")
 
-                <partial name="Components/_ProductListComponentPartial/Default" />
+                @await Component.InvokeAsync("_ProductListComponentPartial", new { id = ViewBag.i })
 
-                <partial name="Components/_ProductListPaginationComponentPartial/Default" />
+                @await Component.InvokeAsync("_ProductListPaginationComponentPartial")
 
             </div>
         </div>
-
     </div>
 </div>
+

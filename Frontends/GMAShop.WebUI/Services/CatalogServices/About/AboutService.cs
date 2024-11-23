@@ -1,34 +1,38 @@
 ﻿using GMAShop.DtoLayer.CatalogDtos.AboutDtos;
-using GMAShop.WebUI.Extensions;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.About;
 
-public class AboutService(HttpClient httpClient) : IAboutService
+public class AboutService : IAboutService
 {
-    public async Task<List<ResultAboutDto>> GetAllAboutAsync()
+    private readonly HttpClient _httpClient;
+    public AboutService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultAboutDto>>("Abouts");
+        _httpClient = httpClient;
     }
-
     public async Task CreateAboutAsync(CreateAboutDto createAboutDto)
     {
-        await httpClient.Post("Abouts", createAboutDto);
-      
+        await _httpClient.PostAsJsonAsync<CreateAboutDto>("abouts", createAboutDto);
     }
-
-    public async Task UpdateAboutAsync(UpdateAboutDto updateAboutDto)
-    {
-      await httpClient.Put("Abouts", updateAboutDto);
-       
-    }
-
     public async Task DeleteAboutAsync(string id)
     {
-        await httpClient.Delete($"Abouts?id={id}");
+        await _httpClient.DeleteAsync("abouts?id=" + id);
     }
-
-    public async Task<ResultAboutDto> GetByIdAboutAsync(string id)
+    public async Task<UpdateAboutDto> GetByIdAboutAsync(string id)
     {
-        return await httpClient.GetAndRead<ResultAboutDto>($"Abouts/{id}");
+        var responseMessage = await _httpClient.GetAsync("abouts/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<UpdateAboutDto>();
+        return values;
+    }
+    public async Task<List<ResultAboutDto>> GetAllAboutAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("abouts");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateAboutAsync(UpdateAboutDto updateAboutDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateAboutDto>("abouts", updateAboutDto);
     }
 }

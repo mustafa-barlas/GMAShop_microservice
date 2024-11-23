@@ -1,4 +1,4 @@
-﻿using GMAShop.Basket.Services;
+﻿using GMAShop.WebUI.Services.BasketServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.ViewComponents.OrderViewComponents
@@ -12,9 +12,9 @@ namespace GMAShop.WebUI.ViewComponents.OrderViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            //var basketTotal = await _basketService.GetBasket();
-            //var basketItems = basketTotal.BasketItems;
-            return View();
+            var basketTotal = await _basketService.GetBasket();
+            var basketItems = basketTotal.BasketItems;
+            return View(basketItems);
         }
     }
 }

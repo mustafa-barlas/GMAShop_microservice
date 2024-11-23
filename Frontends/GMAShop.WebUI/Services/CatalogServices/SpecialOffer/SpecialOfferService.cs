@@ -1,32 +1,39 @@
 ﻿using GMAShop.DtoLayer.CatalogDtos.SpecialOfferDtos;
-using GMAShop.WebUI.Extensions;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.SpecialOffer;
 
-public class SpecialOfferService(HttpClient httpClient) : ISpecialOfferService
+public class SpecialOfferService : ISpecialOfferService
 {
-    public async Task<List<ResultSpecialOfferDto>> GetAllSpecialOfferAsync()
+    private readonly HttpClient _httpClient;
+    public SpecialOfferService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultSpecialOfferDto>>("SpecialOffers");
+        _httpClient = httpClient;
     }
-
     public async Task CreateSpecialOfferAsync(CreateSpecialOfferDto createSpecialOfferDto)
     {
-        await httpClient.Post("SpecialOffers", createSpecialOfferDto);
+        await _httpClient.PostAsJsonAsync<CreateSpecialOfferDto>("specialoffers", createSpecialOfferDto);
     }
-
-    public async Task UpdateSpecialOfferAsync(UpdateSpecialOfferDto updateSpecialOfferDto)
-    {
-        await httpClient.Put("SpecialOffers", updateSpecialOfferDto);
-    }
-
     public async Task DeleteSpecialOfferAsync(string id)
     {
-        await httpClient.Delete($"SpecialOffers?id={id}");
+        await _httpClient.DeleteAsync("specialoffers?id=" + id);
+    }
+    public async Task<UpdateSpecialOfferDto> GetByIdSpecialOfferAsync(string id)
+    {
+        var responseMessage = await _httpClient.GetAsync("specialoffers/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<UpdateSpecialOfferDto>();
+        return values;
+    }
+    public async Task<List<ResultSpecialOfferDto>> GetAllSpecialOfferAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("specialoffers");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultSpecialOfferDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateSpecialOfferAsync(UpdateSpecialOfferDto updateSpecialOfferDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateSpecialOfferDto>("specialoffers", updateSpecialOfferDto);
     }
 
-    public async Task<GetByIdSpecialOfferDto> GetByIdSpecialOfferAsync(string id)
-    {
-        return await httpClient.GetAndRead<GetByIdSpecialOfferDto>($"SpecialOffers/{id}");
-    }
 }

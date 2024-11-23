@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GMAShop.DtoLayer.CatalogDtos.CategoryDtos
 {
-    public record ResultCategoryDto
+    public class ResultCategoryDto
     {
-        public string CategoryID { get; init; }
-        public string CategoryName { get; init; }
-        public string ImageUrl { get; init; }
+        public string CategoryID { get; set; }
+        public string CategoryName { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

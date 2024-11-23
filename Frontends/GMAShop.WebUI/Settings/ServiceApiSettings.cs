@@ -2,8 +2,8 @@
 {
     public class ServiceApiSettings
     {
-        public string Ocelot { get; set; }
-        public string IdentityServer { get; set; }
+        public string OcelotUrl { get; set; }
+        public string IdentityServerUrl { get; set; }
         public ServiceApi Catalog { get; set; }
         public ServiceApi Image { get; set; }
         public ServiceApi Discount { get; set; }

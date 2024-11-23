@@ -1,14 +1,12 @@
 ﻿using GMAShop.Basket.Dtos;
 using GMAShop.Basket.LoginServices;
 using GMAShop.Basket.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Basket.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-
 public class BasketsController : ControllerBase
 {
     private readonly IBasketService _basketService;
@@ -25,7 +23,7 @@ public class BasketsController : ControllerBase
     {
         var user = User.Claims;
         var values = await _basketService.GetBasket(_loginService.GetUserId);
-         return Ok(values);
+        return Ok(values);
     }
 
     [HttpPost]

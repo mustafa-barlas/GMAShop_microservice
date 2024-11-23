@@ -1,32 +1,38 @@
 ﻿using GMAShop.DtoLayer.CatalogDtos.CategoryDtos;
-using GMAShop.WebUI.Extensions;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.Category;
 
-public class CategoryService(HttpClient httpClient) : ICategoryService
+public class CategoryService : ICategoryService
 {
-    public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
+    private readonly HttpClient _httpClient;
+    public CategoryService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultCategoryDto>>("categories");
+        _httpClient = httpClient;
     }
-
     public async Task CreateCategoryAsync(CreateCategoryDto createCategoryDto)
     {
-        await httpClient.Post("categories", createCategoryDto);
+        await _httpClient.PostAsJsonAsync<CreateCategoryDto>("categories", createCategoryDto);
     }
-
-    public async Task UpdateCategoryAsync(UpdateCategoryDto updateCategoryDto)
-    {
-       await httpClient.Put("categories", updateCategoryDto);
-    }
-
     public async Task DeleteCategoryAsync(string id)
     {
-        await httpClient.Delete($"categories?id={id}");
+        await _httpClient.DeleteAsync("categories?id=" + id);
     }
-
-    public async Task<GetByIdCategoryDto> GetByIdCategoryAsync(string id)
+    public async Task<UpdateCategoryDto> GetByIdCategoryAsync(string id)
     {
-        return await httpClient.GetAndRead<GetByIdCategoryDto>($"categories/{id}");
+        var responseMessage = await _httpClient.GetAsync("categories/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<UpdateCategoryDto>();
+        return values;
+    }
+    public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("categories");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateCategoryAsync(UpdateCategoryDto updateCategoryDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateCategoryDto>("categories", updateCategoryDto);
     }
 }

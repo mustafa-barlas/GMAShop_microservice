@@ -3,11 +3,11 @@
     public record ResultContactDto
     {
         public string ContactId { get; init; }
-        public string FullName { get; init; }
-        public string Email { get; init; }
-        public string Subject { get; init; }
-        public string Message { get; init; }
-        public bool IsRead { get; init; }
-        public DateTime SendDate { get; init; }
+        public string NameSurname { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+        public bool IsRead { get; set; }
+        public DateTime SendDate { get; set; }
     }
 }

@@ -1,17 +1,19 @@
 ﻿
+using GMAShop.WebUI.Services.BasketServices;
+using GMAShop.WebUI.Services.DiscountServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Controllers
 {
     public class DiscountController : Controller
     {
-        // private readonly IDiscountService _discountService;
-        // private readonly IBasketService _basketService;
-        // public DiscountController(IDiscountService discountService, IBasketService basketService)
-        // {
-        //     _discountService = discountService;
-        //     _basketService = basketService;
-        // }
+        private readonly IDiscountService _discountService;
+        private readonly IBasketService _basketService;
+        public DiscountController(IDiscountService discountService, IBasketService basketService)
+        {
+            _discountService = discountService;
+            _basketService = basketService;
+        }
 
         [HttpGet]
         public PartialViewResult ConfirmDiscountCoupon()
@@ -19,18 +21,18 @@ namespace GMAShop.WebUI.Controllers
             return PartialView();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> ConfirmDiscountCoupon(string code)
-        //{
-        //    var values = await _discountService.GetDiscountCouponCountRate(code);
+        [HttpPost]
+        public async Task<IActionResult> ConfirmDiscountCoupon(string code)
+        {
+            var values = await _discountService.GetDiscountCouponCountRate(code);
 
-        //    var basketValues = await _basketService.GetBasket();
-        //    var totalPriceWithTax = basketValues.TotalPrice + basketValues.TotalPrice / 100 * 10;
+            var basketValues = await _basketService.GetBasket();
+            var totalPriceWithTax = basketValues.TotalPrice + basketValues.TotalPrice / 100 * 10;
 
-        //    var totalNewPriceWithDiscount = totalPriceWithTax - (totalPriceWithTax / 100 * values);
-        //    // ViewBag.totalNewPriceWithDiscount = totalNewPriceWithDiscount;
+            var totalNewPriceWithDiscount = totalPriceWithTax - (totalPriceWithTax / 100 * values);
+            // ViewBag.totalNewPriceWithDiscount = totalNewPriceWithDiscount;
 
-        //    return RedirectToAction("Index", "ShoppingCart", new { code = code, discountRate = values, totalNewPriceWithDiscount = totalNewPriceWithDiscount });
-        //}
+            return RedirectToAction("Index", "ShoppingCart", new { code = code, discountRate = values, totalNewPriceWithDiscount = totalNewPriceWithDiscount });
+        }
     }
 }

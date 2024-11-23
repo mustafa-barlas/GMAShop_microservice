@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Controllers
 {
-    public class ContactController(IContactService contactService) : Controller
+    public class ContactController : Controller
     {
-        
+        private readonly IContactService _contactService;
+        public ContactController(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -21,7 +26,7 @@ namespace GMAShop.WebUI.Controllers
         {
             createContactDto.IsRead = false;
             createContactDto.SendDate = DateTime.Now;
-            await contactService.CreateContactAsync(createContactDto);
+            await _contactService.CreateContactAsync(createContactDto);
             return RedirectToAction("Index", "Default");
         }
     }

@@ -1,34 +1,38 @@
 ﻿using GMAShop.DtoLayer.CatalogDtos.ContactDtos;
-using GMAShop.WebUI.Extensions;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.Contact;
 
-public class ContactService(HttpClient httpClient) : IContactService
+public class ContactService : IContactService
 {
-    public async Task<List<ResultContactDto>> GetAllContactAsync()
+    private readonly HttpClient _httpClient;
+    public ContactService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultContactDto>>("Contacts");
+        _httpClient = httpClient;
     }
-
     public async Task CreateContactAsync(CreateContactDto createContactDto)
     {
-       await httpClient.Post("Contacts", createContactDto);
-       
+        await _httpClient.PostAsJsonAsync<CreateContactDto>("contacts", createContactDto);
     }
-
-    public async Task UpdateContactAsync(UpdateContactDto updateContactDto)
-    {
-       await httpClient.Put("Contacts", updateContactDto);
-       
-    }
-
     public async Task DeleteContactAsync(string id)
     {
-        await httpClient.Delete($"Contacts?id={id}");
+        await _httpClient.DeleteAsync("contacts?id=" + id);
     }
-
-    public async Task<ResultContactDto> GetByIdContactAsync(string id)
+    public async Task<GetByIdContactDto> GetByIdContactAsync(string id)
     {
-        return await httpClient.GetAndRead<ResultContactDto>($"Contacts/{id}");
+        var responseMessage = await _httpClient.GetAsync("contacts/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<GetByIdContactDto>();
+        return values;
+    }
+    public async Task<List<ResultContactDto>> GetAllContactAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("contacts");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultContactDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateContactAsync(UpdateContactDto updateContactDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateContactDto>("contacts", updateContactDto);
     }
 }

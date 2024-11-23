@@ -1,4 +1,6 @@
-﻿namespace GMAShop.Basket.LoginServices;
+﻿using System.Security.Claims;
+
+namespace GMAShop.Basket.LoginServices;
 
 public class LoginService : ILoginService
 {
@@ -8,5 +10,5 @@ public class LoginService : ILoginService
         _httpContextAccessor = contextAccessor;
     }
 
-    public string GetUserId => _httpContextAccessor.HttpContext.User.FindFirst("sub").Value;
+    public string GetUserId => _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 }

@@ -8,5 +8,5 @@ public interface IOfferDiscountService
     Task CreateOfferDiscountAsync(CreateOfferDiscountDto createOfferDiscountDto);
     Task UpdateOfferDiscountAsync(UpdateOfferDiscountDto updateOfferDiscountDto);
     Task DeleteOfferDiscountAsync(string id);
-    Task<ResultOfferDiscountDto> GetByIdOfferDiscountAsync(string id);
+    Task<UpdateOfferDiscountDto> GetByIdOfferDiscountAsync(string id);
 }

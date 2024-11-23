@@ -8,5 +8,5 @@ public interface ISpecialOfferService
     Task CreateSpecialOfferAsync(CreateSpecialOfferDto createSpecialOfferDto);
     Task UpdateSpecialOfferAsync(UpdateSpecialOfferDto updateSpecialOfferDto);
     Task DeleteSpecialOfferAsync(string id);
-    Task<GetByIdSpecialOfferDto> GetByIdSpecialOfferAsync(string id);
+    Task<UpdateSpecialOfferDto> GetByIdSpecialOfferAsync(string id);
 }

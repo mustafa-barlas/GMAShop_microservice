@@ -61,27 +61,27 @@ builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTo
 
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
-builder.Services.AddHttpClient<IUserService, UserService>(opt => { opt.BaseAddress = new Uri(values.IdentityServer); })
+builder.Services.AddHttpClient<IUserService, UserService>(opt => { opt.BaseAddress = new Uri(values.IdentityServerUrl); })
     .AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 
 builder.Services.AddHttpClient<IUserIdentityService, UserIdentityService>(opt =>
 {
-    opt.BaseAddress = new Uri(values.IdentityServer);
+    opt.BaseAddress = new Uri(values.IdentityServerUrl);
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddHttpClient<ICategoryService, CategoryService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IProductService, ProductService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IBrandService, BrandService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 
@@ -153,42 +153,42 @@ builder.Services.AddHttpClient<IBrandService, BrandService>(opt =>
 
 builder.Services.AddHttpClient<ISpecialOfferService, SpecialOfferService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IFeatureSliderService, FeatureSliderService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IFeatureService, FeatureService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IOfferDiscountService, OfferDiscountService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IAboutService, AboutService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IProductImageService, ProductImageService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IProductDetailService, ProductDetailService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
 {
-    opt.BaseAddress = new Uri($"{values.Ocelot}/{values.Catalog.Path}");
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 var app = builder.Build();

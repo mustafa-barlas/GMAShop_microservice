@@ -7,39 +7,37 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Views\Shared\Components\ContactViewComponents\**" />
+      <Compile Remove="Views\Shared\Components\DefaultViewComponents\**" />
+      <Compile Remove="Views\Shared\Components\ProductDetailViewComponents\**" />
+      <Compile Remove="Views\Shared\Components\ProductListViewComponents\**" />
+      <Compile Remove="Views\Shared\Components\ShoppingCartViewComponents\**" />
+      <Compile Remove="Views\Shared\Components\UILayoutViewComponents\**" />
+      <Content Remove="Views\Shared\Components\ContactViewComponents\**" />
+      <Content Remove="Views\Shared\Components\DefaultViewComponents\**" />
+      <Content Remove="Views\Shared\Components\ProductDetailViewComponents\**" />
+      <Content Remove="Views\Shared\Components\ProductListViewComponents\**" />
+      <Content Remove="Views\Shared\Components\ShoppingCartViewComponents\**" />
+      <Content Remove="Views\Shared\Components\UILayoutViewComponents\**" />
+      <EmbeddedResource Remove="Views\Shared\Components\ContactViewComponents\**" />
+      <EmbeddedResource Remove="Views\Shared\Components\DefaultViewComponents\**" />
+      <EmbeddedResource Remove="Views\Shared\Components\ProductDetailViewComponents\**" />
+      <EmbeddedResource Remove="Views\Shared\Components\ProductListViewComponents\**" />
+      <EmbeddedResource Remove="Views\Shared\Components\ShoppingCartViewComponents\**" />
+      <EmbeddedResource Remove="Views\Shared\Components\UILayoutViewComponents\**" />
+      <None Remove="Views\Shared\Components\ContactViewComponents\**" />
+      <None Remove="Views\Shared\Components\DefaultViewComponents\**" />
+      <None Remove="Views\Shared\Components\ProductDetailViewComponents\**" />
+      <None Remove="Views\Shared\Components\ProductListViewComponents\**" />
+      <None Remove="Views\Shared\Components\ShoppingCartViewComponents\**" />
+      <None Remove="Views\Shared\Components\UILayoutViewComponents\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Areas\Admin\Data\" />
       <Folder Include="Areas\Admin\Models\" />
       <Folder Include="Areas\Admin\Views\Shared\Components\AdminLayoutMainSectionComponentPartial\" />
       <Folder Include="Data\" />
-      <Folder Include="Views\Shared\Components\ContactViewComponents\_ContactDetailComponentPartial\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\_CarouselDefaultComponentPartial\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\_CategoriesDefaultComponentPartial\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\_FeaturedDefaultComponentPartial\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\_FeatureProductsDefaultComponentPartial\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\_OfferDiscountDefaultComponentPartial\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\_SpecialOfferComponentPartial\" />
-      <Folder Include="Views\Shared\Components\DefaultViewComponents\_VendorDefaultComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailDescriptionComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailImageSliderComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailInfoComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailInformationComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailRecommendedProductsComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductDetailViewComponents\_ProductDetailReviewsComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListColorFilterComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListGetProductCountComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListPaginationComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListPriceFilterComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ProductListViewComponents\_ProductListSizeFilterComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ShoppingCartViewComponents\_ShoppingCartDiscountCouponComponentPartial\" />
-      <Folder Include="Views\Shared\Components\ShoppingCartViewComponents\_ShoppingCartProductListComponentPartial\" />
-      <Folder Include="Views\Shared\Components\UILayoutViewComponents\" />
-      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_FooterUILayoutComponentPartial\" />
-      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_HeadUILayoutComponentPartial\" />
-      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_NavbarUILayoutComponentPartial\" />
-      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_ScriptUILayoutComponentPartial\" />
-      <Folder Include="Views\Shared\Components\UILayoutViewComponents\_TopBarUILayoutComponentPartial\" />
       <Folder Include="wwwroot\css\" />
       <Folder Include="wwwroot\js\" />
       <Folder Include="wwwroot\lib\bootstrap\" />
@@ -49,20 +47,6 @@
       <Folder Include="wwwroot\lib\jquery-validation\dist\" />
       <Folder Include="wwwroot\lib\jquery\" />
       <Folder Include="wwwroot\lib\jquery\dist\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_CarouselDefaultComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_CategoriesDefaultComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_FeaturedDefaultComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_FeatureProductsDefaultComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_OfferDiscountDefaultComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_SpecialOfferComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\DefaultViewComponents\_VendorDefaultComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_FooterUILayoutComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_HeadUILayoutComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_NavbarUILayoutComponentPartial\Default.cshtml" />
-      <AdditionalFiles Include="Views\Shared\Components\UILayoutViewComponents\_TopBarUILayoutComponentPartial\Default.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -86,14 +70,16 @@
     <ItemGroup>
       <PackageReference Include="Autofac" Version="8.1.1" />
       <PackageReference Include="AutoMapper" Version="13.0.1" />
-      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-      <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.6" />
-      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+      <PackageReference Include="IdentityModel.AspNetCore" Version="4.3.0" />
+      <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="3.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.0" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Services\Catalog\GMAShop.Catalog\GMAShop.Catalog.csproj" />
+      <ProjectReference Include="..\..\Services\GMAShop.Basket\GMAShop.Basket.csproj" />
       <ProjectReference Include="..\GMAShop.DtoLayer\GMAShop.DtoLayer.csproj" />
     </ItemGroup>
 
@@ -112,8 +98,6 @@
 
     <ItemGroup>
       <Compile Remove="Models\ErrorViewModel.cs" />
-      <Compile Remove="ViewComponents\OrderViewComponents\_PaymentMethodComponentPartial.cs" />
-      <Compile Remove="ViewComponents\OrderViewComponents\_OrderSummaryComponentPartial.cs" />
       <Compile Remove="ViewComponents\DefaultViewComponents\_FeaturedDefaultComponentPartial.cs" />
       <Compile Remove="ViewComponents\DefaultViewComponents\_SpecialOfferComponentPartial.cs" />
       <Compile Remove="ViewComponents\ProductDetailViewComponents\_ProductDetailInfoComponentPartial.cs" />

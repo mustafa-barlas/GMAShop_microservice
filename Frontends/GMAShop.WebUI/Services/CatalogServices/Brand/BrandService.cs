@@ -1,34 +1,39 @@
 ﻿using GMAShop.DtoLayer.CatalogDtos.BrandDtos;
 using GMAShop.WebUI.Extensions;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.Brand;
 
-public class BrandService(HttpClient httpClient) : IBrandService
+public class BrandService : IBrandService
 {
-    public async Task<List<ResultBrandDto>> GetAllBrandAsync()
+    private readonly HttpClient _httpClient;
+    public BrandService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultBrandDto>>("Brands");
+        _httpClient = httpClient;
     }
-
     public async Task CreateBrandAsync(CreateBrandDto createBrandDto)
     {
-         await httpClient.Post("Brands", createBrandDto);
-      
+        await _httpClient.PostAsJsonAsync<CreateBrandDto>("brands", createBrandDto);
     }
-
-    public async Task UpdateBrandAsync(UpdateBrandDto updateBrandDto)
-    {
-       await httpClient.Put("Brands", updateBrandDto);
-       
-    }
-
     public async Task DeleteBrandAsync(string id)
     {
-        await httpClient.Delete($"Brands?id={id}");
+        await _httpClient.DeleteAsync("brands?id=" + id);
     }
-
-    public async Task<ResultBrandDto> GetByIdBrandAsync(string id)
+    public async Task<UpdateBrandDto> GetByIdBrandAsync(string id)
     {
-        return await httpClient.GetAndRead<ResultBrandDto>($"Brands/{id}");
+        var responseMessage = await _httpClient.GetAsync("brands/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<UpdateBrandDto>();
+        return values;
+    }
+    public async Task<List<ResultBrandDto>> GetAllBrandAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("brands");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultBrandDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateBrandAsync(UpdateBrandDto updateBrandDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateBrandDto>("brands", updateBrandDto);
     }
 }

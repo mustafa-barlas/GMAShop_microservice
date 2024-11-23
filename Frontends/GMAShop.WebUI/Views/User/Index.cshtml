@@ -1,16 +1,21 @@
 ﻿@model UserDetailViewModel
 
 @{
-    Layout = "_UILayout";
+    Layout = null;
 }
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
 <div class="container">
-    <br/><br/><br/>
-    <h3>Kullanıcı Profil Bilgisi</h3>
-    <div class="alert alert-info">Kullanıcı Id:@Model.Id</div>
-    <div class="alert alert-warning">Kullanıcı Adı:@Model.Username</div>
-    <div class="alert alert-info">Ad Soyad:@Model.Name @Model.Surname</div>
-    <div class="alert alert-warning">Email Adresi: @Model.Email</div>
+    <br /><br /><br />
+    <h3 class="mb-4 text-primary">Kullanıcı Profil Bilgisi</h3>
+    <div class="card shadow mb-3">
+        <div class="card-body">
+            <h5 class="card-title text-secondary">Kullanıcı Bilgileri</h5>
+            <p class="card-text"><strong>Kullanıcı Id:</strong> @Model?.Id ?? "Bilinmiyor"</p>
+            <p class="card-text"><strong>Kullanıcı Adı:</strong> @Model?.Username ?? "Bilinmiyor"</p>
+            <p class="card-text"><strong>Ad Soyad:</strong> @Model?.Name ?? "Bilinmiyor" @Model?.Surname ?? ""</p>
+            <p class="card-text"><strong>Email Adresi:</strong> @Model?.Email ?? "Bilinmiyor"</p>
+        </div>
+    </div>
 </div>

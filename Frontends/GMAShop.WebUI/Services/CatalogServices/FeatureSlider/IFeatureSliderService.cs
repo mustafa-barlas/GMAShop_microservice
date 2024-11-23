@@ -8,5 +8,7 @@ public interface IFeatureSliderService
     Task CreateFeatureSliderAsync(CreateFeatureSliderDto createFeatureSliderDto);
     Task UpdateFeatureSliderAsync(UpdateFeatureSliderDto updateFeatureSliderDto);
     Task DeleteFeatureSliderAsync(string id);
-    Task<ResultFeatureSliderDto> GetByIdFeatureSliderAsync(string id);
+    Task<UpdateFeatureSliderDto> GetByIdFeatureSliderAsync(string id);
+    Task FeatureSliderChageStatusToTrue(string id);
+    Task FeatureSliderChageStatusToFalse(string id);
 }

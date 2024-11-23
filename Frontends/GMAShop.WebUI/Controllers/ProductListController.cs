@@ -1,21 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using GMAShop.DtoLayer.CommentDtos;
+﻿using GMAShop.DtoLayer.CommentDtos;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
-using GMAShop.WebUI.Services.CatalogServices.Product;
 
 namespace GMAShop.WebUI.Controllers
 {
-    public class ProductListController(IProductService productService,IHttpClientFactory httpClientFactory) : Controller
+    public class ProductListController : Controller
     {
-        public async Task<IActionResult> Index(string id)
+        private readonly IHttpClientFactory _httpClientFactory;
+        public ProductListController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+        public IActionResult Index(string id)
         {
             ViewBag.directory1 = "Ana Sayfa";
             ViewBag.directory2 = "Ürünler";
             ViewBag.directory3 = "Ürün Listesi";
             ViewBag.i = id;
-            var values = await productService.GetAllProductAsync();
-            return View(values);
+            return View();
         }
 
         public IActionResult ProductDetail(string id)
@@ -41,10 +44,10 @@ namespace GMAShop.WebUI.Controllers
             createCommentDto.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             createCommentDto.Status = false;
             createCommentDto.ProductId = "65dc67a7705038bfa8fb1f87";
-            var client = httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCommentDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7075/api/Comments", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7028/api/Comments", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Default");

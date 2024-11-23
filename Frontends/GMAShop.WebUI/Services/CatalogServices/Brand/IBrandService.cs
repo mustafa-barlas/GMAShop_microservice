@@ -8,5 +8,5 @@ public interface IBrandService
     Task CreateBrandAsync(CreateBrandDto createBrandDto);
     Task UpdateBrandAsync(UpdateBrandDto updateBrandDto);
     Task DeleteBrandAsync(string id);
-    Task<ResultBrandDto> GetByIdBrandAsync(string id);
+    Task<UpdateBrandDto> GetByIdBrandAsync(string id);
 }

@@ -1,34 +1,39 @@
 ﻿using GMAShop.DtoLayer.CatalogDtos.OfferDiscountDtos;
 using GMAShop.WebUI.Extensions;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.OfferDiscount;
 
-public class OfferDiscountService(HttpClient httpClient) : IOfferDiscountService
+public class OfferDiscountService : IOfferDiscountService
 {
-    public async Task<List<ResultOfferDiscountDto>> GetAllOfferDiscountAsync()
+    private readonly HttpClient _httpClient;
+    public OfferDiscountService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultOfferDiscountDto>>("OfferDiscounts");
+        _httpClient = httpClient;
     }
-
     public async Task CreateOfferDiscountAsync(CreateOfferDiscountDto createOfferDiscountDto)
     {
-         await httpClient.Post("OfferDiscounts", createOfferDiscountDto);
-      
+        await _httpClient.PostAsJsonAsync<CreateOfferDiscountDto>("offerdiscounts", createOfferDiscountDto);
     }
-
-    public async Task UpdateOfferDiscountAsync(UpdateOfferDiscountDto updateOfferDiscountDto)
-    {
-       await httpClient.Put("OfferDiscounts", updateOfferDiscountDto);
-       
-    }
-
     public async Task DeleteOfferDiscountAsync(string id)
     {
-        await httpClient.Delete($"OfferDiscounts?id={id}");
+        await _httpClient.DeleteAsync("offerdiscounts?id=" + id);
     }
-
-    public async Task<ResultOfferDiscountDto> GetByIdOfferDiscountAsync(string id)
+    public async Task<UpdateOfferDiscountDto> GetByIdOfferDiscountAsync(string id)
     {
-        return await httpClient.GetAndRead<ResultOfferDiscountDto>($"OfferDiscounts/{id}");
+        var responseMessage = await _httpClient.GetAsync("offerdiscounts/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<UpdateOfferDiscountDto>();
+        return values;
+    }
+    public async Task<List<ResultOfferDiscountDto>> GetAllOfferDiscountAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("offerdiscounts");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultOfferDiscountDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateOfferDiscountAsync(UpdateOfferDiscountDto updateOfferDiscountDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateOfferDiscountDto>("offerdiscounts", updateOfferDiscountDto);
     }
 }

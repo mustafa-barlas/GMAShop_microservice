@@ -1,44 +1,54 @@
-﻿using GMAShop.DtoLayer.CatalogDtos.CategoryDtos;
-using GMAShop.DtoLayer.CatalogDtos.ProductDtos;
-using GMAShop.WebUI.Extensions;
+﻿using GMAShop.DtoLayer.CatalogDtos.ProductDtos;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.Product;
 
-public class ProductService(HttpClient httpClient) : IProductService
+public class ProductService : IProductService
 {
-    public async Task<List<ResultProductDto>> GetAllProductAsync()
+    private readonly HttpClient _httpClient;
+    public ProductService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultProductDto>>("products");
+        _httpClient = httpClient;
     }
-
     public async Task CreateProductAsync(CreateProductDto createProductDto)
     {
-        await httpClient.Post("products", createProductDto);
+        await _httpClient.PostAsJsonAsync<CreateProductDto>("products", createProductDto);
     }
-
-    public async Task UpdateProductAsync(UpdateProductDto updateProductDto)
-    {
-        await httpClient.Put("products", updateProductDto);
-    }
-
     public async Task DeleteProductAsync(string id)
     {
-        await httpClient.Delete($"products?id={id}");
+        await _httpClient.DeleteAsync("products?id=" + id);
     }
-
-    public async Task<ResultProductDto> GetByIdProductAsync(string id)
+    public async Task<UpdateProductDto> GetByIdProductAsync(string id)
     {
-        return await httpClient.GetAndRead<ResultProductDto>($"products/{id}");
+        var responseMessage = await _httpClient.GetAsync("products/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<UpdateProductDto>();
+        return values;
+    }
+    public async Task<List<ResultProductDto>> GetAllProductAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("products");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateProductAsync(UpdateProductDto updateProductDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateProductDto>("products", updateProductDto);
     }
 
     public async Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryAsync()
     {
-        return await httpClient.GetAndRead<List<ResultProductWithCategoryDto>>("Products/ProductListWithCategory");
+        var responseMessage = await _httpClient.GetAsync("products");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
+        return values;
     }
 
-    public async Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryByCategoryIdAsync(string categoryId)
+    public async Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryByCatetegoryIdAsync(string CategoryId)
     {
-        return await httpClient.GetAndRead<List<ResultProductWithCategoryDto>>(
-            $"products/GetProductsWithCategoryByCategoryIdAsync/{categoryId}");
+        var responseMessage = await _httpClient.GetAsync($"products/ProductListWithCategoryByCategoryId/{CategoryId}");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
+        return values;
     }
 }

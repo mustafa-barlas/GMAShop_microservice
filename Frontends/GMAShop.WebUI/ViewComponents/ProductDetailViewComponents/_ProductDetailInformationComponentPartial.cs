@@ -3,11 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.ViewComponents.ProductDetailViewComponents
 {
-    public class _ProductDetailInformationComponentPartial(IProductDetailService productDetailService) : ViewComponent
+    public class _ProductDetailInformationComponentPartial : ViewComponent
     {
+        private readonly IProductDetailService _productDetailService;
+        public _ProductDetailInformationComponentPartial(IProductDetailService productDetailService)
+        {
+            _productDetailService = productDetailService;
+        }
+
         public async Task<IViewComponentResult> InvokeAsync(string id)
         {
-            var values = await productDetailService.GetByProductIdProductDetailAsync(id);
+
+            var values = await _productDetailService.GetByProductIdProductDetailAsync(id);
             return View(values);
         }
     }

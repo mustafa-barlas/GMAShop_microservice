@@ -1,34 +1,39 @@
 ﻿using GMAShop.DtoLayer.CatalogDtos.FeatureDtos;
 using GMAShop.WebUI.Extensions;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.Feature;
 
-public class FeatureService(HttpClient httpClient) : IFeatureService
+public class FeatureService : IFeatureService
 {
-    public async Task<List<ResultFeatureDto>> GetAllFeatureAsync()
+    private readonly HttpClient _httpClient;
+    public FeatureService(HttpClient httpClient)
     {
-        return await httpClient.GetAndRead<List<ResultFeatureDto>>("Features");
+        _httpClient = httpClient;
     }
-
     public async Task CreateFeatureAsync(CreateFeatureDto createFeatureDto)
     {
-         await httpClient.Post("Features", createFeatureDto);
-      
+        await _httpClient.PostAsJsonAsync<CreateFeatureDto>("features", createFeatureDto);
     }
-
-    public async Task UpdateFeatureAsync(UpdateFeatureDto updateFeatureDto)
-    {
-       await httpClient.Put("Features", updateFeatureDto);
-       
-    }
-
     public async Task DeleteFeatureAsync(string id)
     {
-        await httpClient.Delete($"Features?id={id}");
+        await _httpClient.DeleteAsync("features?id=" + id);
     }
-
-    public async Task<ResultFeatureDto> GetByIdFeatureAsync(string id)
+    public async Task<UpdateFeatureDto> GetByIdFeatureAsync(string id)
     {
-        return await httpClient.GetAndRead<ResultFeatureDto>($"Features/{id}");
+        var responseMessage = await _httpClient.GetAsync("features/" + id);
+        var values = await responseMessage.Content.ReadFromJsonAsync<UpdateFeatureDto>();
+        return values;
+    }
+    public async Task<List<ResultFeatureDto>> GetAllFeatureAsync()
+    {
+        var responseMessage = await _httpClient.GetAsync("features");
+        var jsonData = await responseMessage.Content.ReadAsStringAsync();
+        var values = JsonConvert.DeserializeObject<List<ResultFeatureDto>>(jsonData);
+        return values;
+    }
+    public async Task UpdateFeatureAsync(UpdateFeatureDto updateFeatureDto)
+    {
+        await _httpClient.PutAsJsonAsync<UpdateFeatureDto>("features", updateFeatureDto);
     }
 }
