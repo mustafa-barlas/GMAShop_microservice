@@ -1,35 +1,38 @@
-﻿@{
+﻿﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="en">
-
-<partial name="Components/AdminLayoutHeadComponentPartial/Default" />
+@await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
 
 <body class="sidebar-mini">
     <div class="wrapper">
 
+        <!-- Main Header -->
+        @await Component.InvokeAsync("_AdminLayoutHeaderComponentPartial")
 
-        <partial name="Components/AdminLayoutHeaderComponentPartial/Default" />
 
-
-        <partial name="Components/AdminLayoutSidebarComponentPartial/Default" />
-
+        <!-- Left side column. contains the logo and sidebar -->
+        @await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @await Component.InvokeAsync("_AdminLayoutMainSectionViewbagComponentPartial")
 
-            <partial name="Components/AdminLayoutMainSectionComponentPartial/Default" />
-
+            <!-- Main content -->
             @RenderBody()
-
+            <!-- content -->
         </div>
-
+        <!-- content-wrapper -->
+        <!-- Main Footer -->
         <footer class="main-footer dark-bg">
             <div class="pull-right hidden-xs"> Version 1.0</div>
-            Copyright &copy; @DateTime.Now.Year All rights reserved.
+            Copyright &copy; @DateTime.Now.Year GMAShop | Tüm Hakları Saklıdır.
         </footer>
     </div>
-
+    <!-- wrapper -->
+    <!-- jQuery -->
     <script src="~/MainDownload-OvioAdmin-html5-template/html/dist/js/jquery.min.js"></script>
     <script src="~/MainDownload-OvioAdmin-html5-template/html/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/MainDownload-OvioAdmin-html5-template/html/dist/js/ovio.js"></script>

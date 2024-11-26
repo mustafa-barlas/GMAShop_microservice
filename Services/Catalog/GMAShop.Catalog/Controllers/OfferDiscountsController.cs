@@ -5,7 +5,7 @@ using GMAShop.Catalog.Services.OfferDiscountServices;
 
 namespace GMAShop.Catalog.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OfferDiscountsController : ControllerBase
