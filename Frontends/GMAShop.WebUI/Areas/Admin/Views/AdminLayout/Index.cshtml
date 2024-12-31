@@ -1,27 +1,24 @@
-﻿﻿@{
-    Layout = null;
-}
+﻿
 
 <!DOCTYPE html>
 <html lang="en">
-@await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+@await Component.InvokeAsync("AdminLayoutHeadComponentPartial")
 
 <body class="sidebar-mini">
     <div class="wrapper">
 
         <!-- Main Header -->
-        @await Component.InvokeAsync("_AdminLayoutHeaderComponentPartial")
+        @* @await Component.InvokeAsync("AdminLayoutHeaderComponentPartial") *@
 
 
         <!-- Left side column. contains the logo and sidebar -->
-        @await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+        @await Component.InvokeAsync("AdminLayoutSidebarComponentPartial")
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            @await Component.InvokeAsync("_AdminLayoutMainSectionViewbagComponentPartial")
+            @await Component.InvokeAsync("AdminLayoutMainSectionComponentPartial")
 
             <!-- Main content -->
-            @RenderBody()
             <!-- content -->
         </div>
         <!-- content-wrapper -->

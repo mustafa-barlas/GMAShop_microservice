@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Areas.Admin.ViewComponents.AdminLayoutViewComponents;
 
-public class _AdminLayoutHeaderComponentPartial : ViewComponent
+public class AdminLayoutHeaderComponentPartial : ViewComponent
 {
     private readonly IMessageService _messageService;
     private readonly IUserService _userService;
     private readonly ICommentService _commentService;
-    public _AdminLayoutHeaderComponentPartial(IMessageService messageService, IUserService userService, ICommentService commentService)
+    public AdminLayoutHeaderComponentPartial(IMessageService messageService, IUserService userService, ICommentService commentService)
     {
         _messageService = messageService;
         _userService = userService;
