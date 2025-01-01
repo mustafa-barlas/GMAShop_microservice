@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Kredi Kartý Bilgileri</title>
+    <title>Kredi Kartï¿½ Bilgileri</title>
     <style>
         #card {
             width: 300px;
@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <label for="cardNumber">Kart Numarasý:</label>
+    <label for="cardNumber">Kart Numarasï¿½:</label>
     <br />
     <input type="text" id="cardNumber" name="cardNumber" maxlength="16" required />
     <br />
@@ -47,11 +47,11 @@
             var cardDiv = document.getElementById('card');
             var cardInfo = "";
 
-            // Kart numarasýný 4'ün katlarýna ayýr
+            // Kart numarasï¿½nï¿½ 4'ï¿½n katlarï¿½na ayï¿½r
             var cardGroups = cardNumber.match(/.{1,4}/g);
             cardInfo += cardGroups.join(' ') + "<br/>";
 
-            // Ad soyadý ekle
+            // Ad soyadï¿½ ekle
             cardInfo += cardName + "<br/>";
 
             // Son kullanma tarihini ekle

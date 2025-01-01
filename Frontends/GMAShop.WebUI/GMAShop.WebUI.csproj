@@ -39,33 +39,12 @@
       <Folder Include="Areas\Admin\Views\Shared\Components\AdminLayoutMainSectionComponentPartial\" />
       <Folder Include="Data\" />
       <Folder Include="Pages\" />
-      <Folder Include="wwwroot\css\" />
-      <Folder Include="wwwroot\js\" />
-      <Folder Include="wwwroot\lib\bootstrap\" />
-      <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
-      <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
-      <Folder Include="wwwroot\lib\jquery-validation\" />
-      <Folder Include="wwwroot\lib\jquery-validation\dist\" />
-      <Folder Include="wwwroot\lib\jquery\" />
-      <Folder Include="wwwroot\lib\jquery\dist\" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="Areas\Admin\Views\FeatureSlider\CreateFeatureSlider.cshtml" />
       <None Include="Areas\Admin\Views\FeatureSlider\Index.cshtml" />
       <None Include="Areas\Admin\Views\FeatureSlider\UpdateFeatureSlider.cshtml" />
-      <None Include="wwwroot\Images\default product 1.webp" />
-      <None Include="wwwroot\Images\Huawei-matepad-11-5-inch-display.webp" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\help-documentation\assets\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\help-documentation\assets\blueprint-css\plugins\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\app\et-line-font\fonts\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\charts\et-line-font\fonts\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\component\et-line-font\fonts\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\dist\et-line-font\fonts\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\forms\et-line-font\fonts\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\maps\et-line-font\fonts\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\pages\et-line-font\fonts\.DS_Store" />
-      <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\tables\et-line-font\fonts\.DS_Store" />
     </ItemGroup>
 
     <ItemGroup>
@@ -92,6 +71,51 @@
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\Components\AdminLayoutSidebarComponentPartial\Default.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\Components\AdminLayoutHeaderComponentPartial\Default.cshtml" />
       <_ContentIncludedByDefault Remove="Views\UILayout\_UILayout.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\css\opensans-font.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\css\style.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\css\line-awesome-font-awesome.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\css\line-awesome-font-awesome.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\css\line-awesome.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\css\line-awesome.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\fonts\line-awesome.eot" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\fonts\line-awesome.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\fonts\line-awesome.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\fonts\line-awesome.woff" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\line-awesome\fonts\line-awesome.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-Bold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-BoldItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-ExtraBold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-ExtraBoldItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-Italic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-Light.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-LightItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-Regular.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-SemiBold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\fonts\Open_Sans\OpenSans-SemiBoldItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\index.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\colorlib\readme.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\favicon.ico" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\10.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\11.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\13.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\15.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\20231223_144438.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\3.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\4.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\5.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\6.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\7.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\8.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\9.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\alalım.com.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\b_sony-xperia-z5-32.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\c1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\c2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Images\c3.jpg" />
     </ItemGroup>
 
     <ItemGroup>
