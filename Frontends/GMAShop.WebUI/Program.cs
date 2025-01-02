@@ -52,24 +52,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 });
 
 builder.Services.AddAccessTokenManagement();
-
 builder.Services.AddHttpContextAccessor();
-
-builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddHttpClient<IIdentityService, IdentityService>();
-
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddHttpClient<IIdentityService, IdentityService>();
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
-
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
-
 builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
-
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+
+#region MyRegion
 
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 {
@@ -201,13 +197,15 @@ builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
+
+#endregion
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

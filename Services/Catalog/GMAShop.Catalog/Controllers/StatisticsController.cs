@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Catalog.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StatisticsController(IStatisticService statisticService) : ControllerBase

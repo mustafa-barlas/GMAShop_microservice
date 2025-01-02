@@ -5,7 +5,7 @@ using GMAShop.Catalog.Services.FeatureSliderServices;
 
 namespace GMAShop.Catalog.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FeatureSlidersController(IFeatureSliderService featureSliderService) : ControllerBase

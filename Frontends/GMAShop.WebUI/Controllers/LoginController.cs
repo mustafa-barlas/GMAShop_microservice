@@ -1,5 +1,4 @@
 ﻿using GMAShop.DtoLayer.IdentityDtos.LoginDtos;
-
 using GMAShop.WebUI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,12 +6,14 @@ namespace GMAShop.WebUI.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        // private readonly IHttpClientFactory _httpClientFactory;
         private readonly IIdentityService _identityService;
-        public LoginController(IHttpClientFactory httpClientFactory, IIdentityService identityService)
+        private readonly ILoginService _loginService;
+        public LoginController(IHttpClientFactory httpClientFactory, IIdentityService identityService, ILoginService loginService)
         {
-            _httpClientFactory = httpClientFactory;
+            // _httpClientFactory = httpClientFactory;
             _identityService = identityService;
+            _loginService = loginService;
         }
 
         [HttpGet]
@@ -24,6 +25,7 @@ namespace GMAShop.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(SignInDto signInDto)
         {
+            
             await _identityService.SignIn(signInDto);
             return RedirectToAction("Index", "User");
         }
@@ -60,7 +62,7 @@ namespace GMAShop.WebUI.Controllers
     //
     //                 await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal
     //                     (claimsIdentity), authProps);
-    //                 
+    //                 var id = _loginService.GetUserId;
     //                 return RedirectToAction("Index", "Default");
     //             }
     //         }

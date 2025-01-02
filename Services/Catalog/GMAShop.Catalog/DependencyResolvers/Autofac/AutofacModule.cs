@@ -20,6 +20,7 @@ namespace GMAShop.Catalog.DependencyResolvers.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AboutService>().As<IAboutService>().SingleInstance();
+            
             builder.RegisterType<StatisticService>().As<IStatisticService>().SingleInstance();
 
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
