@@ -4,16 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Controllers
 {
-    public class UserController : Controller
+    public class UserController(IUserService userService) : Controller
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
-        {
-            _userService = userService;
-        }
         public async Task<IActionResult> Index()
         {
-            var values = await _userService.GetUserInfo();
+            var values = await userService.GetUserInfo();
             return View(values);
         }
     }

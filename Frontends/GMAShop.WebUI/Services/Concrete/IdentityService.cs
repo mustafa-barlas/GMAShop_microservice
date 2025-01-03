@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Globalization;
+using System.Security.Claims;
 using GMAShop.DtoLayer.IdentityDtos.LoginDtos;
 using GMAShop.WebUI.Services.Interfaces;
 using GMAShop.WebUI.Settings;
@@ -24,59 +25,7 @@ namespace GMAShop.WebUI.Services.Concrete
             _clientSettings = clientSettings.Value;
             _serviceApiSettings = serviceApiSettings.Value;
         }
-
-        public async Task<bool> GetRefreshToken()
-        {
-            var discoveryEndPoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
-            {
-                Address = _serviceApiSettings.IdentityServerUrl,
-                Policy = new DiscoveryPolicy
-                {
-                    RequireHttps = false
-                }
-            });
-
-            var refreshToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
-
-            RefreshTokenRequest refreshTokenRequest = new()
-            {
-                ClientId = _clientSettings.GMAShopManagerClient.ClientId,
-                ClientSecret = _clientSettings.GMAShopManagerClient.ClientSecret,
-                RefreshToken = refreshToken,
-                Address = discoveryEndPoint.TokenEndpoint
-            };
-
-            var token = await _httpClient.RequestRefreshTokenAsync(refreshTokenRequest);
-
-            var authenticationToken = new List<AuthenticationToken>()
-            {
-                new AuthenticationToken
-                {
-                    Name=OpenIdConnectParameterNames.AccessToken,
-                    Value = token.AccessToken
-                },
-                new AuthenticationToken
-                {
-                    Name=OpenIdConnectParameterNames.RefreshToken,
-                    Value = token.RefreshToken
-                },
-                new AuthenticationToken
-                {
-                    Name=OpenIdConnectParameterNames.ExpiresIn,
-                    Value=DateTime.Now.AddSeconds(token.ExpiresIn).ToString()
-                }
-            };
-
-            var result = await _httpContextAccessor.HttpContext.AuthenticateAsync();
-
-            var properties = result.Properties;
-            properties.StoreTokens(authenticationToken);
-
-            await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.Principal, properties);
-
-            return true;
-        }
-
+        
         public async Task<bool> SignIn(SignInDto signInDto)
         {
             var discoveryEndPoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
@@ -128,13 +77,64 @@ namespace GMAShop.WebUI.Services.Concrete
                 new AuthenticationToken
                 {
                     Name=OpenIdConnectParameterNames.ExpiresIn,
-                    Value=DateTime.Now.AddSeconds(token.ExpiresIn).ToString()
+                    Value=DateTime.Now.AddSeconds(token.ExpiresIn).ToString(CultureInfo.CurrentCulture)
                 }
             });
 
             authenticationProperties.IsPersistent = false;
 
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authenticationProperties);
+
+            return true;
+        }
+        public async Task<bool> GetRefreshToken()
+        {
+            var discoveryEndPoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+            {
+                Address = _serviceApiSettings.IdentityServerUrl,
+                Policy = new DiscoveryPolicy
+                {
+                    RequireHttps = false
+                }
+            });
+
+            var refreshToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
+
+            RefreshTokenRequest refreshTokenRequest = new()
+            {
+                ClientId = _clientSettings.GMAShopManagerClient.ClientId,
+                ClientSecret = _clientSettings.GMAShopManagerClient.ClientSecret,
+                RefreshToken = refreshToken,
+                Address = discoveryEndPoint.TokenEndpoint
+            };
+
+            var token = await _httpClient.RequestRefreshTokenAsync(refreshTokenRequest);
+
+            var authenticationToken = new List<AuthenticationToken>()
+            {
+                new AuthenticationToken
+                {
+                    Name=OpenIdConnectParameterNames.AccessToken,
+                    Value = token.AccessToken
+                },
+                new AuthenticationToken
+                {
+                    Name=OpenIdConnectParameterNames.RefreshToken,
+                    Value = token.RefreshToken
+                },
+                new AuthenticationToken
+                {
+                    Name=OpenIdConnectParameterNames.ExpiresIn,
+                    Value=DateTime.Now.AddSeconds(token.ExpiresIn).ToString()
+                }
+            };
+
+            var result = await _httpContextAccessor.HttpContext.AuthenticateAsync();
+
+            var properties = result.Properties;
+            properties.StoreTokens(authenticationToken);
+
+            await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.Principal, properties);
 
             return true;
         }
