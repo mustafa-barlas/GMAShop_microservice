@@ -1,7 +1,8 @@
-﻿namespace GMAShop.WebUI.Models;
-
-public class JwtResponseModel
+﻿namespace GMAShop.WebUI.Models
 {
-    public string Token { get; set; }
-    public DateTime ExpireDate { get; set; }
+    public class JwtResponseModel
+    {
+        public string Token { get; set; }
+        public DateTime ExpireDate { get; set; }
+    }
 }

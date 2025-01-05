@@ -1,43 +1,45 @@
-﻿using System.Net;
-using System.Net.Http.Headers;
-using GMAShop.WebUI.Services.Interfaces;
+﻿
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using GMAShop.WebUI.Services.Interfaces;
+using System.Net;
+using System.Net.Http.Headers;
 
-namespace GMAShop.WebUI.Handlers;
-
-public class ResourceOwnerPasswordTokenHandler : DelegatingHandler
+namespace GMAShop.WebUI.Handlers
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IIdentityService _identityService;
-
-    public ResourceOwnerPasswordTokenHandler(IHttpContextAccessor httpContextAccessor, IIdentityService identityService)
+    public class ResourceOwnerPasswordTokenHandler : DelegatingHandler
     {
-        _httpContextAccessor = httpContextAccessor;
-        _identityService = identityService;
-    }
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IIdentityService _identityService;
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-        var response = await base.SendAsync(request, cancellationToken);
-
-        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        public ResourceOwnerPasswordTokenHandler(IHttpContextAccessor httpContextAccessor, IIdentityService identityService)
         {
-            var tokenResponse = await _identityService.GetRefreshToken();
+            _httpContextAccessor = httpContextAccessor;
+            _identityService = identityService;
+        }
 
-            if (tokenResponse != null)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var response = await base.SendAsync(request, cancellationToken);
+
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                response = await base.SendAsync(request, cancellationToken);
-            }
-        }
+                var tokenResponse = await _identityService.GetRefreshToken();
 
-        if (response.StatusCode == HttpStatusCode.Unauthorized)
-        {
-            //hata mesajı
+                if (tokenResponse != null)
+                {
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                    response = await base.SendAsync(request, cancellationToken);
+                }
+            }
+
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                //hata mesajı
+            }
+            return response;
         }
-        return response;
     }
 }

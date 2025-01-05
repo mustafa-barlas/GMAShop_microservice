@@ -9,29 +9,34 @@ namespace GMAShop.IdentityServer.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class LoginsController(SignInManager<ApplicationUser> signInManager,UserManager<ApplicationUser> userManager) : Controller
+public class LoginsController : ControllerBase
 {
+    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
+
+    public LoginsController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+    {
+        _signInManager = signInManager;
+        _userManager = userManager;
+    }
+
     [HttpPost]
     public async Task<IActionResult> UserLogin(UserLoginDto userLoginDto)
     {
-         var result = await signInManager.PasswordSignInAsync
-             (userLoginDto.UserName, userLoginDto.Password, false, false);
+        var result = await _signInManager.PasswordSignInAsync(userLoginDto.UserName, userLoginDto.Password, false, false);
+        var user = await _userManager.FindByNameAsync(userLoginDto.UserName);
 
-         var user = await userManager.FindByNameAsync(userLoginDto.UserName);
-         if (result.Succeeded)
-         {
-             GetCheckAppUserViewModel model = new()
-             {
-                 UserName = userLoginDto.UserName,
-                 Id = user.Id
-             };
-             var token = JwtTokenGenerator.GenerateToken(model);
-                 return Ok(token);
-         }
-         else
-         {
-             return BadRequest("Invalid username or password");
-         }
-        // return result.Succeeded ? Ok("Giriş başarılı") : Ok("kullanıcı adı veya şifre hatalı");
+        if (result.Succeeded)
+        {
+            GetCheckAppUserViewModel model = new GetCheckAppUserViewModel();
+            model.UserName = userLoginDto.UserName;
+            model.Id = user.Id;
+            var token = JwtTokenGenerator.GenerateToken(model);
+            return Ok(token);
+        }
+        else
+        {
+            return Ok("Kullanıcı Adı veya Şifre Hatalı");
+        }
     }
 }

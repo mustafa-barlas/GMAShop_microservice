@@ -1,6 +1,6 @@
 ﻿{
   "Routes": [
-    // Catalog 
+    //Catalog Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -25,7 +25,7 @@
         ]
       }
     },
-    // Discount
+    //Discount Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -50,7 +50,7 @@
         ]
       }
     },
-    // Order
+    //Order Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -75,7 +75,7 @@
         ]
       }
     },
-    //  Cargo
+    //Cargo Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -100,7 +100,7 @@
         ]
       }
     },
-    // Basket
+    //Basket Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -125,7 +125,32 @@
         ]
       }
     },
-    // Comment
+    //Message Mikroservis
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7078
+        }
+      ],
+      "UpstreamPathTemplate": "/services/message/{everything}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [
+          "MessageFullPermission"
+        ]
+      }
+    },
+    //Comment Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -150,7 +175,7 @@
         ]
       }
     },
-    // Payment
+    //Payment Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -175,7 +200,7 @@
         ]
       }
     },
-    //  Images
+    //Images Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -185,7 +210,7 @@
           "Port": 7077
         }
       ],
-      "UpstreamPathTemplate": "/services/image/{everything}",
+      "UpstreamPathTemplate": "/services/images/{everything}",
       "UpstreamHttpMethod": [
         "Get",
         "Post",
@@ -202,6 +227,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http: localhost:5000"
+    "BaseUrl": "http://localhost:5000"
   }
 }

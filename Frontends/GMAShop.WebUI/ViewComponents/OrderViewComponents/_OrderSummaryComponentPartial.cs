@@ -1,5 +1,5 @@
-﻿using GMAShop.WebUI.Services.BasketServices;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.WebUI.Services.BasketServices;
 
 namespace GMAShop.WebUI.ViewComponents.OrderViewComponents
 {

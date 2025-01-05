@@ -1,5 +1,7 @@
-﻿using GMAShop.WebUI.Services.CatalogServices.Category;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CatalogDtos.CategoryDtos;
+using GMAShop.WebUI.Services.CatalogServices.CategoryServices;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents
 {

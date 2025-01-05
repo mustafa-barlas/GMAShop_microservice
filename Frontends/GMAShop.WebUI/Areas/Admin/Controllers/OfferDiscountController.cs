@@ -1,15 +1,22 @@
-﻿using GMAShop.DtoLayer.CatalogDtos.OfferDiscountDtos;
-using GMAShop.WebUI.Services.CatalogServices.OfferDiscount;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CatalogDtos.OfferDiscountDtos;
+using GMAShop.WebUI.Services.CatalogServices.OfferDiscountServices;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [AllowAnonymous]
     [Route("Admin/OfferDiscount")]
-    public class OfferDiscountController(IOfferDiscountService offerDiscountService) : Controller
+    public class OfferDiscountController : Controller
     {
+        private readonly IOfferDiscountService _offerDiscountService;
+        public OfferDiscountController(IOfferDiscountService offerDiscountService)
+        {
+            _offerDiscountService = offerDiscountService;
+        }
         void OfferDiscountViewBagList()
         {
             ViewBag.v1 = "Ana Sayfa";
@@ -22,7 +29,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             OfferDiscountViewBagList();
-            var values = await offerDiscountService.GetAllOfferDiscountAsync();
+            var values = await _offerDiscountService.GetAllOfferDiscountAsync();
             return View(values);
         }
 
@@ -38,14 +45,14 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [Route("CreateOfferDiscount")]
         public async Task<IActionResult> CreateOfferDiscount(CreateOfferDiscountDto createOfferDiscountDto)
         {
-            await offerDiscountService.CreateOfferDiscountAsync(createOfferDiscountDto);
+            await _offerDiscountService.CreateOfferDiscountAsync(createOfferDiscountDto);
             return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
         }
 
         [Route("DeleteOfferDiscount/{id}")]
         public async Task<IActionResult> DeleteOfferDiscount(string id)
         {
-            await offerDiscountService.DeleteOfferDiscountAsync(id);
+            await _offerDiscountService.DeleteOfferDiscountAsync(id);
             return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
         }
 
@@ -54,14 +61,14 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateOfferDiscount(string id)
         {
             OfferDiscountViewBagList();
-            var values = await offerDiscountService.GetByIdOfferDiscountAsync(id);
-            return View();
+            var values = await _offerDiscountService.GetByIdOfferDiscountAsync(id);
+            return View(values);
         }
         [Route("UpdateOfferDiscount/{id}")]
         [HttpPost]
         public async Task<IActionResult> UpdateOfferDiscount(UpdateOfferDiscountDto updateOfferDiscountDto)
         {
-            await offerDiscountService.UpdateOfferDiscountAsync(updateOfferDiscountDto);
+            await _offerDiscountService.UpdateOfferDiscountAsync(updateOfferDiscountDto);
             return RedirectToAction("Index", "OfferDiscount", new { area = "Admin" });
         }
     }

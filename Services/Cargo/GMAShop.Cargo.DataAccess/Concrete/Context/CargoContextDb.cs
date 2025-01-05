@@ -13,6 +13,6 @@ public class CargoContextDb : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer
-            ("Server=localhost,1444; Initial Catalog=GMAShopCargoDb; User Id=sa; Password=201203011Aa.; Encrypt=True; TrustServerCertificate=True;");
+            ("Server=localhost,1433; Initial Catalog=GMAShopCargoDb; User Id=sa; Password=201203011Aa.; Encrypt=True; TrustServerCertificate=True;");
     }
 }

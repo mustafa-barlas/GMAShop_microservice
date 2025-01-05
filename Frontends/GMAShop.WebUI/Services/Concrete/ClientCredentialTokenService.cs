@@ -1,8 +1,8 @@
-﻿using GMAShop.WebUI.Services.Interfaces;
-using GMAShop.WebUI.Settings;
-using IdentityModel.AspNetCore.AccessTokenManagement;
+﻿using IdentityModel.AspNetCore.AccessTokenManagement;
 using IdentityModel.Client;
 using Microsoft.Extensions.Options;
+using GMAShop.WebUI.Services.Interfaces;
+using GMAShop.WebUI.Settings;
 
 namespace GMAShop.WebUI.Services.Concrete
 {
@@ -23,7 +23,7 @@ namespace GMAShop.WebUI.Services.Concrete
 
         public async Task<string> GetToken()
         {
-            var token1 = await _clientAccessTokenCache.GetAsync("gmashoptoken", new ClientAccessTokenParameters(), CancellationToken.None);
+            var token1 = await _clientAccessTokenCache.GetAsync("gmashoptoken");
             if (token1 != null)
             {
                 return token1.AccessToken;
@@ -45,7 +45,7 @@ namespace GMAShop.WebUI.Services.Concrete
             };
 
             var token2 = await _httpClient.RequestClientCredentialsTokenAsync(clientCredentialTokenRequest);
-            await _clientAccessTokenCache.SetAsync("gmashoptoken", token2.AccessToken, token2.ExpiresIn, new ClientAccessTokenParameters(), CancellationToken.None);
+            await _clientAccessTokenCache.SetAsync("gmashoptoken", token2.AccessToken, token2.ExpiresIn);
             return token2.AccessToken;
         }
     }

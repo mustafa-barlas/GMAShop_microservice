@@ -1,24 +1,14 @@
-﻿@model List<GMAShop.DtoLayer.CatalogDtos.CategoryDtos.ResultCategoryDto>?
+﻿@model List<ResultCategoryDto>
 
 @{
-Layout = null;
+    Layout = null;
 }
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-<div class="container">
-    <br /><br />
-    <table class="table table-bordered">
-        <tr>
-            <th>#</th>
-            <th>Kategori Adı</th>
-        </tr>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>@item.CategoryID</td>
-            <td>@item.CategoryName</td>
-        </tr>
-        }
-    </table>
+<br />
+<br />
+<div class="margin-left:100px">
+    @foreach (var item in Model)
+    {
+        <p>@item.CategoryName</p>
+    }
 </div>

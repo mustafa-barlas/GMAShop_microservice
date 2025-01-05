@@ -1,7 +1,7 @@
-﻿using GMAShop.DtoLayer.OrderDtos.OrderAddressDtos;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.OrderDtos.OrderAddressDtos;
 using GMAShop.WebUI.Services.Interfaces;
 using GMAShop.WebUI.Services.OrderServices.OrderAddressServices;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Controllers
 {

@@ -1,6 +1,7 @@
-﻿
-using GMAShop.WebUI.Services.CatalogServices.Product;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CatalogDtos.ProductDtos;
+using GMAShop.WebUI.Services.CatalogServices.ProductServices;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.ViewComponents.ProductListViewComponents
 {

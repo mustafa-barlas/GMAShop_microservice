@@ -1,7 +1,8 @@
-﻿using GMAShop.DtoLayer.BasketDtos;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.BasketDtos;
 using GMAShop.WebUI.Services.BasketServices;
-using GMAShop.WebUI.Services.CatalogServices.Product;
-using Microsoft.AspNetCore.Mvc;
+using GMAShop.WebUI.Services.CatalogServices.ProductServices;
+using GMAShop.WebUI.Services.DiscountServices;
 
 namespace GMAShop.WebUI.Controllers
 {
@@ -14,7 +15,7 @@ namespace GMAShop.WebUI.Controllers
             _productService = productService;
             _basketService = basketService;
         }
-        public async Task<IActionResult> Index(string code, int discountRate, decimal totalNewPriceWithDiscount)
+        public async Task<IActionResult> Index(string code,int discountRate,decimal totalNewPriceWithDiscount)
         {
             ViewBag.code = code;
             ViewBag.discountRate = discountRate;

@@ -14,4 +14,8 @@
         public ServiceApi Comment { get; set; }
         public ServiceApi Message { get; set; }
     }
+    public class ServiceApi
+    {
+        public string Path { get; set; }
+    }
 }

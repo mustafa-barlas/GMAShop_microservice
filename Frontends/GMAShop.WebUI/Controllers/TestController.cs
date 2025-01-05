@@ -1,10 +1,9 @@
-﻿using GMAShop.DtoLayer.CatalogDtos.CategoryDtos;
-using GMAShop.WebUI.Services.CatalogServices.Category;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CatalogDtos.CategoryDtos;
+using GMAShop.WebUI.Services.CatalogServices.CategoryServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
-
 
 namespace GMAShop.WebUI.Controllers
 {
@@ -28,7 +27,7 @@ namespace GMAShop.WebUI.Controllers
                     Method = HttpMethod.Post,
                     Content = new FormUrlEncodedContent(new Dictionary<string, string>
                     {
-                        {"client_id","GMAShopVisitorId" },
+                        {"client_id","GMAShopShopVisitorId" },
                         {"client_secret","gmashopsecret" },
                         {"grant_type","client_credentials" }
                     })

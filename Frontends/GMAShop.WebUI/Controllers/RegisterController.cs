@@ -5,8 +5,15 @@ using System.Text;
 
 namespace GMAShop.WebUI.Controllers
 {
-    public class RegisterController(IHttpClientFactory httpClientFactory) : Controller
+    public class RegisterController : Controller
     {
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public RegisterController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -18,7 +25,7 @@ namespace GMAShop.WebUI.Controllers
         {
             if (createRegisterDto.Password == createRegisterDto.ConfirmPassword)
             {
-                var client = httpClientFactory.CreateClient();
+                var client = _httpClientFactory.CreateClient();
                 var jsonData = JsonConvert.SerializeObject(createRegisterDto);
                 StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 var responseMessage = await client.PostAsync("http://localhost:5001/api/Registers", stringContent);
@@ -27,6 +34,7 @@ namespace GMAShop.WebUI.Controllers
                     return RedirectToAction("Index", "Login");
                 }
             }
+
             return View();
         }
     }

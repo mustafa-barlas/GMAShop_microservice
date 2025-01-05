@@ -1,24 +1,26 @@
-﻿using System.Net;
-using System.Net.Http.Headers;
+﻿
 using GMAShop.WebUI.Services.Interfaces;
+using System.Net;
+using System.Net.Http.Headers;
 
-namespace GMAShop.WebUI.Handlers;
-
-public class ClientCredentialTokenHandler : DelegatingHandler
+namespace GMAShop.WebUI.Handlers
 {
-    private readonly IClientCredentialTokenService _clientCredentialTokenService;
-    public ClientCredentialTokenHandler(IClientCredentialTokenService clientCredentialTokenService)
+    public class ClientCredentialTokenHandler : DelegatingHandler
     {
-        _clientCredentialTokenService = clientCredentialTokenService;
-    }
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await _clientCredentialTokenService.GetToken());
-        var response = await base.SendAsync(request, cancellationToken);
-        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        private readonly IClientCredentialTokenService _clientCredentialTokenService;
+        public ClientCredentialTokenHandler(IClientCredentialTokenService clientCredentialTokenService)
         {
-            //hata mesajı
+            _clientCredentialTokenService = clientCredentialTokenService;
         }
-        return response;
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await _clientCredentialTokenService.GetToken());
+            var response = await base.SendAsync(request, cancellationToken);
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                //hata mesajı
+            }
+            return response;
+        }
     }
 }

@@ -15,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace GMAShop.IdentityServer
 {
-    public class Startup
+     public class Startup
     {
         public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
@@ -28,11 +28,12 @@ namespace GMAShop.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalApiAuthentication(); // **********
+            services.AddLocalApiAuthentication();
+
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));  // **********
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -49,7 +50,7 @@ namespace GMAShop.IdentityServer
                 options.EmitStaticAudienceClaim = true;
             })
                 .AddInMemoryIdentityResources(Config.IdentityResources)
-                .AddInMemoryApiResources(Config.ApiResources) // ***********
+                .AddInMemoryApiResources(Config.ApiResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
                 .AddAspNetIdentity<ApplicationUser>();

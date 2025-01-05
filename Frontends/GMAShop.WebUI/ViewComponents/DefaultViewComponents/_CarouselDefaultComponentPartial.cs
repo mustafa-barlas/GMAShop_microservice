@@ -1,5 +1,7 @@
-﻿using GMAShop.WebUI.Services.CatalogServices.FeatureSlider;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
+using GMAShop.WebUI.Services.CatalogServices.FeatureSliderServices;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents
 {
@@ -12,7 +14,7 @@ namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = await _featureSliderService.GetAllFeatureSliderAsync();
+            var values =await _featureSliderService.GetAllFeatureSliderAsync();
             return View(values);
         }
     }

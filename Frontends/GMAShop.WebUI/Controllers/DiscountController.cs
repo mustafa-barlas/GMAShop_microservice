@@ -1,7 +1,6 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.WebUI.Services.BasketServices;
 using GMAShop.WebUI.Services.DiscountServices;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.WebUI.Controllers
 {

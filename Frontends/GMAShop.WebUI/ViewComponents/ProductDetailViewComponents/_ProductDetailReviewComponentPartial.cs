@@ -1,12 +1,14 @@
-﻿using GMAShop.WebUI.Services.CommentServices;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CommentDtos;
+using GMAShop.WebUI.Services.CommentServices;
+using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.ViewComponents.ProductDetailViewComponents
 {
     public class _ProductDetailReviewComponentPartial : ViewComponent
     {
         private readonly ICommentService _commentService;
-        public _ProductDetailReviewComponentPartial(ICommentService commentService)
+        public _ProductDetailReviewComponentPartial( ICommentService commentService)
         {
             _commentService = commentService;
         }

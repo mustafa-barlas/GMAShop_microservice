@@ -4,17 +4,17 @@ using GMAShop.WebUI.Handlers;
 using GMAShop.WebUI.Services.BasketServices;
 using GMAShop.WebUI.Services.CargoServices.CargoCompanyServices;
 using GMAShop.WebUI.Services.CargoServices.CargoCustomerServices;
-using GMAShop.WebUI.Services.CatalogServices.About;
-using GMAShop.WebUI.Services.CatalogServices.Brand;
-using GMAShop.WebUI.Services.CatalogServices.Category;
-using GMAShop.WebUI.Services.CatalogServices.Contact;
-using GMAShop.WebUI.Services.CatalogServices.Feature;
-using GMAShop.WebUI.Services.CatalogServices.FeatureSlider;
-using GMAShop.WebUI.Services.CatalogServices.OfferDiscount;
-using GMAShop.WebUI.Services.CatalogServices.Product;
-using GMAShop.WebUI.Services.CatalogServices.ProductDetail;
-using GMAShop.WebUI.Services.CatalogServices.ProductImage;
-using GMAShop.WebUI.Services.CatalogServices.SpecialOffer;
+using GMAShop.WebUI.Services.CatalogServices.AboutServices;
+using GMAShop.WebUI.Services.CatalogServices.BrandServices;
+using GMAShop.WebUI.Services.CatalogServices.CategoryServices;
+using GMAShop.WebUI.Services.CatalogServices.ContactServices;
+using GMAShop.WebUI.Services.CatalogServices.FeatureServices;
+using GMAShop.WebUI.Services.CatalogServices.FeatureSliderServices;
+using GMAShop.WebUI.Services.CatalogServices.OfferDiscountServices;
+using GMAShop.WebUI.Services.CatalogServices.ProductDetailServices;
+using GMAShop.WebUI.Services.CatalogServices.ProductImageServices;
+using GMAShop.WebUI.Services.CatalogServices.ProductServices;
+using GMAShop.WebUI.Services.CatalogServices.SpecialOfferServices;
 using GMAShop.WebUI.Services.CommentServices;
 using GMAShop.WebUI.Services.Concrete;
 using GMAShop.WebUI.Services.DiscountServices;
@@ -22,10 +22,10 @@ using GMAShop.WebUI.Services.Interfaces;
 using GMAShop.WebUI.Services.MessageServices;
 using GMAShop.WebUI.Services.OrderServices.OrderAddressServices;
 using GMAShop.WebUI.Services.OrderServices.OrderOrderingServices;
-// using GMAShop.WebUI.Services.StatisticServices.CatalogStatisticServices;
-// using GMAShop.WebUI.Services.StatisticServices.DiscountStatisticServices;
-// using GMAShop.WebUI.Services.StatisticServices.MessageStatisticServices;
-// using GMAShop.WebUI.Services.StatisticServices.UserStatisticServices;
+using GMAShop.WebUI.Services.StatisticServices.CatalogStatisticServices;
+using GMAShop.WebUI.Services.StatisticServices.DiscountStatisticServices;
+using GMAShop.WebUI.Services.StatisticServices.MessageStatisticServices;
+using GMAShop.WebUI.Services.StatisticServices.UserStatisticServices;
 using GMAShop.WebUI.Services.UserIdentityServices;
 using GMAShop.WebUI.Settings;
 
@@ -52,45 +52,49 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 });
 
 builder.Services.AddAccessTokenManagement();
+
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddHttpClient();
-builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddHttpClient<IIdentityService, IdentityService>();
+
+builder.Services.AddHttpClient();
+builder.Services.AddControllersWithViews();
+
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
+
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
-builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
-var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
-#region MyRegion
+builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
+
+var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 {
     opt.BaseAddress = new Uri(values.IdentityServerUrl);
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
-// builder.Services.AddHttpClient<ICatalogStatisticService, CatalogStatisticService>(opt =>
-// {
-//     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
-// }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
-//
-// builder.Services.AddHttpClient<IMessageStatisticService, MessageStatisticService>(opt =>
-// {
-//     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Message.Path}");
-// }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
-//
-// builder.Services.AddHttpClient<IDiscountStatisticService, DiscountStatisticService>(opt =>
-// {
-//     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Discount.Path}");
-// }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
-//
-// builder.Services.AddHttpClient<IUserStatisticService, UserStatisticService>(opt =>
-// {
-//     opt.BaseAddress = new Uri(values.IdentityServerUrl);
-// }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+builder.Services.AddHttpClient<ICatalogStatisticService, CatalogStatisticService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IMessageStatisticService, MessageStatisticService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Message.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IDiscountStatisticService, DiscountStatisticService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Discount.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IUserStatisticService, UserStatisticService>(opt =>
+{
+    opt.BaseAddress = new Uri(values.IdentityServerUrl);
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 builder.Services.AddHttpClient<IUserIdentityService, UserIdentityService>(opt =>
 {
@@ -102,7 +106,7 @@ builder.Services.AddHttpClient<IBasketService, BasketService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Basket.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
-builder.Services.AddHttpClient<IOrderOderingService, OrderOderingService>(opt =>
+builder.Services.AddHttpClient<IOrderOrderingService, OrderOrderingService>(opt =>
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
@@ -197,15 +201,13 @@ builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
-
-#endregion
-
-
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

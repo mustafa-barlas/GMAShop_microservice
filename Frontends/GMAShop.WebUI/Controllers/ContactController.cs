@@ -1,6 +1,8 @@
-﻿using GMAShop.DtoLayer.CatalogDtos.ContactDtos;
-using GMAShop.WebUI.Services.CatalogServices.Contact;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CatalogDtos.ContactDtos;
+using GMAShop.WebUI.Services.CatalogServices.ContactServices;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace GMAShop.WebUI.Controllers
 {

@@ -1,19 +1,35 @@
-﻿using GMAShop.DtoLayer.CatalogDtos.FeatureDtos;
-using GMAShop.WebUI.Services.CatalogServices.Feature;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using GMAShop.DtoLayer.CatalogDtos.FeatureDtos;
+using GMAShop.WebUI.Services.CatalogServices.FeatureServices;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Feature")]
-    public class FeatureController(IFeatureService featureService) : Controller
+    public class FeatureController : Controller
     {
+        private readonly IFeatureService _featureService;
+        public FeatureController(IFeatureService featureService)
+        {
+            _featureService = featureService;
+        }
+
+        void FeatureViewBagList()
+        {
+            ViewBag.v1 = "Ana Sayfa";
+            ViewBag.v2 = "Öne Çıkan Alanlar";
+            ViewBag.v3 = "Öne Çıkan Alan Listesi";
+            ViewBag.v0 = "Ana Sayfa Öne Çıkan Alan İşlemleri";
+        }
+
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
-            FeatureViewbagList();
-            var values = await featureService.GetAllFeatureAsync();
+            FeatureViewBagList();
+            var values = await _featureService.GetAllFeatureAsync();
             return View(values);
         }
 
@@ -21,7 +37,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [Route("CreateFeature")]
         public IActionResult CreateFeature()
         {
-            FeatureViewbagList();
+            FeatureViewBagList();
             return View();
         }
 
@@ -29,14 +45,14 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [Route("CreateFeature")]
         public async Task<IActionResult> CreateFeature(CreateFeatureDto createFeatureDto)
         {
-            await featureService.CreateFeatureAsync(createFeatureDto);
+            await _featureService.CreateFeatureAsync(createFeatureDto);
             return RedirectToAction("Index", "Feature", new { area = "Admin" });
         }
 
         [Route("DeleteFeature/{id}")]
         public async Task<IActionResult> DeleteFeature(string id)
         {
-            await featureService.DeleteFeatureAsync(id);
+            await _featureService.DeleteFeatureAsync(id);
             return RedirectToAction("Index", "Feature", new { area = "Admin" });
         }
 
@@ -44,24 +60,16 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateFeature(string id)
         {
-            FeatureViewbagList();
-            var values = await featureService.GetByIdFeatureAsync(id);
+            FeatureViewBagList();
+            var values = await _featureService.GetByIdFeatureAsync(id);
             return View(values);
         }
         [Route("UpdateFeature/{id}")]
         [HttpPost]
         public async Task<IActionResult> UpdateFeature(UpdateFeatureDto updateFeatureDto)
         {
-            await featureService.UpdateFeatureAsync(updateFeatureDto);
+            await _featureService.UpdateFeatureAsync(updateFeatureDto);
             return RedirectToAction("Index", "Feature", new { area = "Admin" });
-        }
-
-        void FeatureViewbagList()
-        {
-            ViewBag.v1 = "Ana Sayfa";
-            ViewBag.v2 = "Hakkımda";
-            ViewBag.v3 = "Hakkımda Listesi";
-            ViewBag.v0 = "Hakkımda İşlemleri";
         }
     }
 }

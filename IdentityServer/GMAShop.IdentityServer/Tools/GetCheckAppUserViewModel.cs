@@ -1,5 +1,4 @@
 namespace GMAShop.IdentityServer.Tools;
-
 public class GetCheckAppUserViewModel
 {
     public string Id { get; set; }

@@ -9,17 +9,17 @@ namespace GMAShop.WebUI.Services.MessageServices
         {
             _httpClient = httpClient;
         }
-        public async Task<List<ResultInboxMessageDto>> GetInboxMessageAsync(string id)
+        public async Task<List<ResultInBoxMessageDto>> GetInboxMessageAsync(string id)
         {
             var responseMessage = await _httpClient.GetAsync("http://localhost:5000/services/Message/UserMessage/GetMessageInbox?id=" + id);
-            var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultInboxMessageDto>>();
+            var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultInBoxMessageDto>>();
             return values;
         }
 
-        public async Task<List<ResultSendboxMessageDto>> GetSendboxMessageAsync(string id)
+        public async Task<List<ResultSendBoxMessageDto>> GetSendBoxMessageAsync(string id)
         {
             var responseMessage = await _httpClient.GetAsync("http://localhost:5000/services/Message/UserMessage/GetMessageSendbox?id=" + id);
-            var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultSendboxMessageDto>>();
+            var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultSendBoxMessageDto>>();
             return values;
         }
 
@@ -31,3 +31,4 @@ namespace GMAShop.WebUI.Services.MessageServices
         }
     }
 }
+//http://localhost:7078/api/UserMessage/GetMessageSendbox?id=a

@@ -1,5 +1,5 @@
-﻿using GMAShop.DtoLayer.CommentDtos;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CommentDtos;
 using Newtonsoft.Json;
 using System.Text;
 

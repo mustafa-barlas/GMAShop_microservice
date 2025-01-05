@@ -1,13 +1,22 @@
-﻿using GMAShop.DtoLayer.CatalogDtos.BrandDtos;
-using GMAShop.WebUI.Services.CatalogServices.Brand;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using GMAShop.DtoLayer.CatalogDtos.BrandDtos;
+using GMAShop.WebUI.Services.CatalogServices.BrandServices;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Brand")]
-    public class BrandController(IBrandService brandService) : Controller
+    public class BrandController : Controller
     {
+        private readonly IBrandService _brandService;
+        public BrandController(IBrandService brandService)
+        {
+            _brandService = brandService;
+        }
+
         void BrandViewBagList()
         {
             ViewBag.v1 = "Ana Sayfa";
@@ -20,7 +29,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             BrandViewBagList();
-            var values = await brandService.GetAllBrandAsync();
+            var values = await _brandService.GetAllBrandAsync();
             return View(values);
         }
 
@@ -36,14 +45,14 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [Route("CreateBrand")]
         public async Task<IActionResult> CreateBrand(CreateBrandDto createBrandDto)
         {
-            await brandService.CreateBrandAsync(createBrandDto);
+            await _brandService.CreateBrandAsync(createBrandDto);
             return RedirectToAction("Index", "Brand", new { area = "Admin" });
         }
 
         [Route("DeleteBrand/{id}")]
         public async Task<IActionResult> DeleteBrand(string id)
         {
-            await brandService.DeleteBrandAsync(id);
+            await _brandService.DeleteBrandAsync(id);
             return RedirectToAction("Index", "Brand", new { area = "Admin" });
         }
 
@@ -52,7 +61,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateBrand(string id)
         {
             BrandViewBagList();
-            var values = await brandService.GetByIdBrandAsync(id);
+            var values = await _brandService.GetByIdBrandAsync(id);
             return View(values);
         }
 
@@ -60,7 +69,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateBrand(UpdateBrandDto updateBrandDto)
         {
-            await brandService.UpdateBrandAsync(updateBrandDto);
+            await _brandService.UpdateBrandAsync(updateBrandDto);
             return RedirectToAction("Index", "Brand", new { area = "Admin" });
         }
     }

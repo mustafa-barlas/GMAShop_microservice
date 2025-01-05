@@ -17,7 +17,6 @@
                                 <th>#</th>
                                 <th>Ürün Adı</th>
                                 <th>Ürün Fiyatı</th>
-                                <th>Ürün indirimli Fiyatı</th>
                                 <th>Ürün Kategori</th>
                                 <th>Sil</th>
                                 <th>Güncelle</th>
@@ -33,7 +32,6 @@
                                     <th scope="row">@count</th>
                                     <td>@item.ProductName</td>
                                     <td>@item.ProductPrice</td>
-                                    <td>@item.DiscountedPrice</td>
                                     <td>@item.Category.CategoryName</td>
                                     <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
                                     <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>

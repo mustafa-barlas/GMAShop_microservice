@@ -1,58 +1,39 @@
 ﻿@model CreateProductDto
+
 @{
     ViewData["Title"] = "CreateProduct";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
-    //var categories = ViewBag.Categories as List<ResultCategoryDto>;
 }
 
 <section class="content container-fluid">
     <div class="row">
+
         <div class="col-md-12">
             <div class="chart-box">
-                <h4>Yeni Ürün Ekleme Sayfası</h4>
+                <h4>Ürün Ekleme Sayfası</h4>
+                <br />
+                <div class="bs-example" data-example-id="bordered-table">
 
-                <div class="bs-example" data-example-id="simple-table">
                     <form method="post">
-                        <div>
-                            <label> Ürün Adı</label>
-                            <input type="text" class="form-control" asp-for="ProductName" />
-                        </div>
-                        <div>
-                            <label>Görsel</label>
-                            <input type="text" class="form-control" asp-for="ProductImageUrl" />
-                        </div>
-                        <div>
-                            <label>Fiyat</label>
-                            <input type="text" class="form-control" asp-for="ProductPrice" />
-                        </div>
-                        <div>
-                            <label>Açıklama</label>
-                            <textarea class="form-control" asp-for="ProductDescription"></textarea>
-                        </div>
-                        <div>
-                            <label>Kategori</label>
-
-
-                            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.Categories, new { @class = "form-control" })
-
-                            @* <select id="categoryDropdown" name="category">
-                            <option value="">Select a category</option>
-                            @if (categories != null)
-                            {
-                            foreach (var category in categories)
-                            {
-                            <option value="@category.CategoryId">@category.CategoryName</option>
-                            }
-                            }
-                            </select> *@
-                        </div>
+                        <label>Ürün Adı</label>
+                        <input type="text" class="form-control" asp-for="ProductName" />
                         <br />
-
-
-                        <button class="btn btn-outline-danger">Ekle</button>
+                        <label>Ürün Fiyatı</label>
+                        <input type="text" class="form-control" asp-for="ProductPrice" />
+                        <br />
+                        <label>Ürün Görseli</label>
+                        <input type="text" class="form-control" asp-for="ProductImageUrl" />
+                        <br />
+                        <label>Ürün Kategorisi</label>
+                        @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.CategoryValues,new {@class="form-control"})
+                        <br />
+                        <label>Ürün Açıklaması</label>
+                        <textarea class="form-control" asp-for="ProductDescription" rows="5"></textarea>
+                        <br />
+                        <button class="btn btn-primary">Ürünü Ekle</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</section> 
+</section>
