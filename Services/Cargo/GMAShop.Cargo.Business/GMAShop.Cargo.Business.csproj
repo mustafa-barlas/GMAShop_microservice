@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -7,17 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GMAShop.Cargo.DataAccess\GMAShop.Cargo.DataAccess.csproj">
-        <ReferenceSourceTarget></ReferenceSourceTarget>
-      </ProjectReference>
-      <ProjectReference Include="..\GMAShop.Cargo.Entities\GMAShop.Cargo.Entities.csproj">
-        <ReferenceSourceTarget></ReferenceSourceTarget>
-      </ProjectReference>
+        <ProjectReference Include="..\GMAShop.Cargo.DataAccess\GMAShop.Cargo.DataAccess.csproj">
+            
+        </ProjectReference>
+        <ProjectReference Include="..\GMAShop.Cargo.Entities\GMAShop.Cargo.Entities.csproj">
+            
+        </ProjectReference>
+    
+
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="FluentValidation" Version="11.11.0" />
-      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+        <PackageReference Include="FluentValidation" Version="11.11.0"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0"/>
     </ItemGroup>
 
 </Project>

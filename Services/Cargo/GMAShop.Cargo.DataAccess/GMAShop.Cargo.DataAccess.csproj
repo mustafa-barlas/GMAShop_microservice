@@ -21,7 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GMAShop.Cargo.Entities\GMAShop.Cargo.Entities.csproj">
-        <ReferenceSourceTarget></ReferenceSourceTarget>
+        
       </ProjectReference>
     </ItemGroup>
 

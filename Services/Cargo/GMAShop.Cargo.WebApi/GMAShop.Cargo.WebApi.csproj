@@ -25,12 +25,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GMAShop.Cargo.Business\GMAShop.Cargo.Business.csproj">
-        <ReferenceSourceTarget></ReferenceSourceTarget>
-        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+       
       </ProjectReference>
       <ProjectReference Include="..\GMAShop.Cargo.DtoLayer\GMAShop.Cargo.DtoLayer.csproj">
-        <ReferenceSourceTarget></ReferenceSourceTarget>
-        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+       
       </ProjectReference>
     </ItemGroup>
 
