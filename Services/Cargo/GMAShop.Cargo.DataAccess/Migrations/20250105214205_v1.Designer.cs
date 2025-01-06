@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMAShop.Cargo.DataAccess.Migrations
 {
     [DbContext(typeof(CargoContextDb))]
-    [Migration("20250103003203_v1")]
+    [Migration("20250105214205_v1")]
     partial class v1
     {
         /// <inheritdoc />

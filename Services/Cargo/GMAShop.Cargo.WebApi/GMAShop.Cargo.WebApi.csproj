@@ -6,6 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="11.11.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
@@ -22,8 +24,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GMAShop.Cargo.Business\GMAShop.Cargo.Business.csproj" />
-      <ProjectReference Include="..\GMAShop.Cargo.DtoLayer\GMAShop.Cargo.DtoLayer.csproj" />
+      <ProjectReference Include="..\GMAShop.Cargo.Business\GMAShop.Cargo.Business.csproj">
+        <ReferenceSourceTarget></ReferenceSourceTarget>
+        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      </ProjectReference>
+      <ProjectReference Include="..\GMAShop.Cargo.DtoLayer\GMAShop.Cargo.DtoLayer.csproj">
+        <ReferenceSourceTarget></ReferenceSourceTarget>
+        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      </ProjectReference>
     </ItemGroup>
 
 </Project>

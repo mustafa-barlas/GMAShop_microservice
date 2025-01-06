@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GMAShop.Comment.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class vq : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

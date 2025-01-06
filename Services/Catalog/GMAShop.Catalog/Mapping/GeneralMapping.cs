@@ -74,11 +74,5 @@ public class GeneralMapping : Profile
         CreateMap<Contact, CreateContactDto>().ReverseMap();
         CreateMap<Contact, UpdateContactDto>().ReverseMap();
         CreateMap<Contact, GetByIdContactDto>().ReverseMap();
-
-
-        //CreateMap<Product, ResultProductsWithCategoryDto>()
-        //    .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.CategoryName));
-
-
     }
 }

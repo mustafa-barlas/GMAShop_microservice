@@ -39,7 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GMAShop.DtoLayer\GMAShop.DtoLayer.csproj" />
+    <ProjectReference Include="..\GMAShop.DtoLayer\GMAShop.DtoLayer.csproj">
+      <ReferenceSourceTarget></ReferenceSourceTarget>
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

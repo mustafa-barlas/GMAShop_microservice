@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMAShop.Discount.Migrations
 {
     [DbContext(typeof(DapperContext))]
-    [Migration("20241113193142_v1")]
+    [Migration("20250105221404_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace GMAShop.Discount.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

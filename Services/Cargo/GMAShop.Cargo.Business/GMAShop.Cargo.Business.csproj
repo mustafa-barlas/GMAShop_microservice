@@ -7,8 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GMAShop.Cargo.DataAccess\GMAShop.Cargo.DataAccess.csproj" />
-      <ProjectReference Include="..\GMAShop.Cargo.Entities\GMAShop.Cargo.Entities.csproj" />
+      <ProjectReference Include="..\GMAShop.Cargo.DataAccess\GMAShop.Cargo.DataAccess.csproj">
+        <ReferenceSourceTarget></ReferenceSourceTarget>
+      </ProjectReference>
+      <ProjectReference Include="..\GMAShop.Cargo.Entities\GMAShop.Cargo.Entities.csproj">
+        <ReferenceSourceTarget></ReferenceSourceTarget>
+      </ProjectReference>
     </ItemGroup>
 
     <ItemGroup>

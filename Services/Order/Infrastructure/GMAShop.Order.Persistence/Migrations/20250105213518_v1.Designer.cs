@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMAShop.Order.Persistence.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20241115070737_v1")]
+    [Migration("20250105213518_v1")]
     partial class v1
     {
         /// <inheritdoc />

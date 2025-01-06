@@ -6,15 +6,15 @@ using MongoDB.Driver;
 
 namespace GMAShop.Catalog.Services.FeatureSliderServices
 {
-    public class FeatureSliderService : IFeatureSliderService
+      public class FeatureSliderService : IFeatureSliderService
     {
         private readonly IMongoCollection<FeatureSlider> _featureSliderCollection;
         private readonly IMapper _mapper;
-        public FeatureSliderService(IMapper mapper, IDatabaseSettings databaseSettings)
+        public FeatureSliderService(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
-            var client = new MongoClient(databaseSettings.ConnectionString);
-            var database = client.GetDatabase(databaseSettings.DatabaseName);
-            _featureSliderCollection = database.GetCollection<FeatureSlider>(databaseSettings.FeatureSliderCollectionName);
+            var client = new MongoClient(_databaseSettings.ConnectionString);
+            var database = client.GetDatabase(_databaseSettings.DatabaseName);
+            _featureSliderCollection = database.GetCollection<FeatureSlider>(_databaseSettings.FeatureSliderCollectionName);
             _mapper = mapper;
         }
         public async Task CreateFeatureSliderAsync(CreateFeatureSliderDto createFeatureSliderDto)
@@ -28,12 +28,12 @@ namespace GMAShop.Catalog.Services.FeatureSliderServices
             await _featureSliderCollection.DeleteOneAsync(x => x.FeatureSliderId == id);
         }
 
-        public Task FeatureSliderChangeStatusToFalse(string id)
+        public Task FeatureSliderChageStatusToFalse(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task FeatureSliderChangeStatusToTrue(string id)
+        public Task FeatureSliderChageStatusToTrue(string id)
         {
             throw new NotImplementedException();
         }

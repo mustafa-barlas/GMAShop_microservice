@@ -1,6 +1,4 @@
-﻿
-
-namespace GMAShop.Catalog.Settings
+﻿namespace GMAShop.Catalog.Settings
 {
     public class DatabaseSettings : IDatabaseSettings
     {
