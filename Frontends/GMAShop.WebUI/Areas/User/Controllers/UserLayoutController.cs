@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.Areas.User.Controllers
+namespace GMAShop.WebUI.Areas.User.Controllers
 {
     [Area("User")]
     public class UserLayoutController : Controller

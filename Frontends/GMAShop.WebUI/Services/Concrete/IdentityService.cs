@@ -1,5 +1,4 @@
-﻿using IdentityModel.Client;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -7,6 +6,7 @@ using GMAShop.DtoLayer.IdentityDtos.LoginDtos;
 using GMAShop.WebUI.Services.Interfaces;
 using GMAShop.WebUI.Settings;
 using System.Security.Claims;
+using IdentityModel.Client;
 
 namespace GMAShop.WebUI.Services.Concrete
 {

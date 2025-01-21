@@ -64,10 +64,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
 
+builder.Services.AddSingleton<IClientCredentialTokenService, ClientCredentialTokenService>();
+builder.Services.AddHttpClient<ClientCredentialTokenService>();
+
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
 
-builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
+
+
 
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 

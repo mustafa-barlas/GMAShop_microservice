@@ -1,9 +1,9 @@
 ﻿
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using GMAShop.WebUI.Services.Interfaces;
 using System.Net;
 using System.Net.Http.Headers;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace GMAShop.WebUI.Handlers
 {

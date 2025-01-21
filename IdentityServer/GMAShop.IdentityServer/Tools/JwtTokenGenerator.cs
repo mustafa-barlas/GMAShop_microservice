@@ -18,7 +18,7 @@ public class JwtTokenGenerator
         claims.Add(new Claim(ClaimTypes.NameIdentifier, model.Id));
 
         if (!string.IsNullOrWhiteSpace(model.UserName))
-            claims.Add(new Claim("Username", model.UserName));
+            claims.Add(new Claim("UserName", model.UserName));
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key));
 

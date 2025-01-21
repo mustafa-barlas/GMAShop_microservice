@@ -7,12 +7,18 @@ namespace GMAShop.IdentityServer.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class StatisticsController(UserManager<ApplicationUser> userManager) : ControllerBase
+public class StatisticsController : ControllerBase
 {
+    private readonly UserManager<ApplicationUser> _userManager;
+    public StatisticsController(UserManager<ApplicationUser> userManager)
+    {
+        _userManager = userManager;
+    }
+
     [HttpGet]
     public IActionResult GetUserCount()
     {
-        int userCount = userManager.Users.Count();
-        return Ok(userCount);
+        int usercount = _userManager.Users.Count();
+        return Ok(usercount);
     }
 }
