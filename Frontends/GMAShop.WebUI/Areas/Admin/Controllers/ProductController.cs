@@ -1,26 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using GMAShop.DtoLayer.CatalogDtos.CategoryDtos;
 using GMAShop.DtoLayer.CatalogDtos.ProductDtos;
 using GMAShop.WebUI.Services.CatalogServices.CategoryServices;
 using GMAShop.WebUI.Services.CatalogServices.ProductServices;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Product")]
-    public class ProductController : Controller
+    public class ProductController(IProductService productService, ICategoryService categoryService)
+        : Controller
     {
-        private readonly IProductService _productService;
-        private readonly ICategoryService _categoryService;
-        public ProductController(IProductService productService, ICategoryService categoryService)
-        {
-            _productService = productService;
-            _categoryService = categoryService;
-        }
         void ProductViewBagList()
         {
             ViewBag.v1 = "Ana Sayfa";
@@ -33,7 +23,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             ProductViewBagList();
-            var values = await _productService.GetAllProductAsync();
+            var values = await productService.GetAllProductAsync();
             return View(values);
         }
 
@@ -58,7 +48,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateProduct()
         {
             ProductViewBagList();
-            var values = await _categoryService.GetAllCategoryAsync();
+            var values = await categoryService.GetAllCategoryAsync();
             List<SelectListItem> categoryValues = (from x in values
                                                    select new SelectListItem
                                                    {
@@ -73,14 +63,14 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [Route("CreateProduct")]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
-            await _productService.CreateProductAsync(createProductDto);
+            await productService.CreateProductAsync(createProductDto);
             return RedirectToAction("Index", "Product", new { area = "Admin" });
         }
 
         [Route("DeleteProduct/{id}")]
         public async Task<IActionResult> DeleteProduct(string id)
         {
-            await _productService.DeleteProductAsync(id);
+            await productService.DeleteProductAsync(id);
             return RedirectToAction("Index", "Product", new { area = "Admin" });
         }
 
@@ -90,7 +80,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         {
             ProductViewBagList();
 
-            var values = await _categoryService.GetAllCategoryAsync();
+            var values = await categoryService.GetAllCategoryAsync();
             List<SelectListItem> categoryValues = (from x in values
                                                    select new SelectListItem
                                                    {
@@ -99,7 +89,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
                                                    }).ToList();
             ViewBag.CategoryValues = categoryValues;
 
-            var productValues = await _productService.GetByIdProductAsync(id);
+            var productValues = await productService.GetByIdProductAsync(id);
             return View(productValues);
         }
 
@@ -107,7 +97,7 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
-            await _productService.UpdateProductAsync(updateProductDto);
+            await productService.UpdateProductAsync(updateProductDto);
             return RedirectToAction("Index", "Product", new { area = "Admin" });
         }
     }

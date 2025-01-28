@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMAShop.Comment.Migrations
 {
     [DbContext(typeof(CommentContext))]
-    [Migration("20250105215523_vq")]
-    partial class vq
+    [Migration("20250128211053_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,19 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.ContactDtos;
 using GMAShop.WebUI.Services.CatalogServices.ContactServices;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace GMAShop.WebUI.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController(IContactService contactService) : Controller
     {
-        private readonly IContactService _contactService;
-        public ContactController(IContactService contactService)
-        {
-            _contactService = contactService;
-        }
-
         [HttpGet]
         public IActionResult Index()
         {
@@ -27,8 +19,8 @@ namespace GMAShop.WebUI.Controllers
         public async Task<IActionResult> Index(CreateContactDto createContactDto)
         {
             createContactDto.IsRead = false;
-            createContactDto.SendDate = DateTime.Now;
-            await _contactService.CreateContactAsync(createContactDto);
+            createContactDto.SendDate = DateTime.UtcNow;
+            await contactService.CreateContactAsync(createContactDto);
             return RedirectToAction("Index", "Default");
         }
     }

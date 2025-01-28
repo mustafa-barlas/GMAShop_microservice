@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GMAShop.WebUI.Services.CargoServices.CargoCustomerServices;
 using GMAShop.WebUI.Services.Interfaces;
 
 namespace GMAShop.WebUI.Controllers

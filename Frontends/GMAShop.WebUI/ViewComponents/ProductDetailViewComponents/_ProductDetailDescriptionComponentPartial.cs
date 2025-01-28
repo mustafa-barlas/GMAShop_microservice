@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GMAShop.DtoLayer.CatalogDtos.ProductDetailDtos;
 using GMAShop.WebUI.Services.CatalogServices.ProductDetailServices;
-using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.ViewComponents.ProductDetailViewComponents
 {

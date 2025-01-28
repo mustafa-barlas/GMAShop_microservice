@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.Catalog.Dtos.FeatureSliderDtos;
 using GMAShop.Catalog.Services.FeatureSliderServices;
-using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.Catalog.Controllers
 {

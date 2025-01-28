@@ -1,9 +1,11 @@
 using GMAShop.Comment.Context;
 using GMAShop.Comment.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Comment.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CommentsController : ControllerBase

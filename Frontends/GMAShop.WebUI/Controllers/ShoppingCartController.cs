@@ -2,7 +2,6 @@
 using GMAShop.DtoLayer.BasketDtos;
 using GMAShop.WebUI.Services.BasketServices;
 using GMAShop.WebUI.Services.CatalogServices.ProductServices;
-using GMAShop.WebUI.Services.DiscountServices;
 
 namespace GMAShop.WebUI.Controllers
 {

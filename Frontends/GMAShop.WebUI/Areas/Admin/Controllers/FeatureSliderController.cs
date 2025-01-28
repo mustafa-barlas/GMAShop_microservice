@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
 using GMAShop.WebUI.Services.CatalogServices.FeatureSliderServices;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {

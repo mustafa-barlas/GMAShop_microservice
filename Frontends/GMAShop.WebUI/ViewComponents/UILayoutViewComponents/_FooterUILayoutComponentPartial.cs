@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GMAShop.DtoLayer.CatalogDtos.AboutDtos;
 using GMAShop.WebUI.Services.CatalogServices.AboutServices;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net.Http.Headers;
 
 namespace GMAShop.WebUI.ViewComponents.UILayoutViewComponents
 {

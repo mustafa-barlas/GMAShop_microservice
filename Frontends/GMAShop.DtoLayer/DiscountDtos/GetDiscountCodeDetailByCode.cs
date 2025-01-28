@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GMAShop.DtoLayer.DiscountDtos
+﻿namespace GMAShop.DtoLayer.DiscountDtos
 {
     public record GetDiscountCodeDetailByCode
     {

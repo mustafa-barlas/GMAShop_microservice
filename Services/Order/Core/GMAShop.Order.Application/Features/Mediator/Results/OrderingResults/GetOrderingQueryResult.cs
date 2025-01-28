@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace GMAShop.Order.Application.Feature.Mediator.Results.OrderingResults;
+﻿namespace GMAShop.Order.Application.Feature.Mediator.Results.OrderingResults;
 
 public class GetOrderingQueryResult 
 {

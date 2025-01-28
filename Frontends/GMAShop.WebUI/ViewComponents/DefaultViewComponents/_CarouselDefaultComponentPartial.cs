@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GMAShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
 using GMAShop.WebUI.Services.CatalogServices.FeatureSliderServices;
-using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.ViewComponents.DefaultViewComponents
 {

@@ -10,7 +10,7 @@ public class CommentContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(
-            "Server=localhost,1443; Initial Catalog=GMAShopCommentDb; User Id=sa; Password=201203011Aa.; Encrypt=True; TrustServerCertificate=True;");
+            "Server=localhost,1442; Initial Catalog=GMAShopCommentDb; User Id=sa; Password=201203011Aa.; Encrypt=false; TrustServerCertificate=True;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

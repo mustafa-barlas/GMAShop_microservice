@@ -6,11 +6,8 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers;
 
 [Area("Admin")]
 [Route("Admin/Category")]
-public class CategoryController(IHttpClientFactory httpClientFactory, ICategoryService categoryService)
-    : Controller
+public class CategoryController(ICategoryService categoryService) : Controller
 {
-    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
-
     [Route("Index")]
     public async Task<IActionResult> Index()
     {

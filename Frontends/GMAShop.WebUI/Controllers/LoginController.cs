@@ -1,14 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.IdentityDtos.LoginDtos;
-using GMAShop.WebUI.Models;
 using GMAShop.WebUI.Services.Interfaces;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Text;
-using System.Text.Json;
 
 namespace GMAShop.WebUI.Controllers
 {

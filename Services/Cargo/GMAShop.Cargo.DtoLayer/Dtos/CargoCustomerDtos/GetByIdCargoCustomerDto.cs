@@ -1,5 +1,4 @@
 ﻿using GMAShop.Cargo.DtoLayer.Dtos.CargoDetailDtos;
-using GMAShop.Cargo.DtoLayer.Dtos.CargoOperationDtos;
 
 namespace GMAShop.Cargo.DtoLayer.Dtos.CargoCustomerDtos;
 

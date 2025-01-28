@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.OfferDiscountDtos;
 using GMAShop.WebUI.Services.CatalogServices.OfferDiscountServices;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {

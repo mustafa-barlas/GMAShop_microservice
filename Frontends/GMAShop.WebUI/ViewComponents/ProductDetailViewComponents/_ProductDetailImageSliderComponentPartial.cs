@@ -1,21 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GMAShop.DtoLayer.CatalogDtos.ProductDtos;
-using GMAShop.DtoLayer.CatalogDtos.ProductImageDtos;
 using GMAShop.WebUI.Services.CatalogServices.ProductImageServices;
-using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.ViewComponents.ProductDetailViewComponents
 {
-    public class _ProductDetailImageSliderComponentPartial : ViewComponent
+    public class _ProductDetailImageSliderComponentPartial(IProductImageService productImageService) : ViewComponent
     {
-        private readonly IProductImageService _productImageService;
-        public _ProductDetailImageSliderComponentPartial(IProductImageService productImageService)
-        {
-            _productImageService = productImageService;
-        }
         public async Task<IViewComponentResult> InvokeAsync(string id)
         {
-            var values = await _productImageService.GetByProductIdProductImageAsync(id);
+            var values = await productImageService.GetByProductIdProductImageAsync(id);
             return View(values);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using GMAShop.Catalog.Dtos.SpecialOfferDtos;
 using GMAShop.Catalog.Services.SpecialOfferServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Catalog.Controllers

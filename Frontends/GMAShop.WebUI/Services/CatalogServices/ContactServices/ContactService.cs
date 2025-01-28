@@ -3,37 +3,32 @@ using Newtonsoft.Json;
 
 namespace GMAShop.WebUI.Services.CatalogServices.ContactServices
 {
-    public class ContactService:IContactService
+    public class ContactService(HttpClient httpClient) : IContactService
     {
-        private readonly HttpClient _httpClient;
-        public ContactService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
         public async Task CreateContactAsync(CreateContactDto createContactDto)
         {
-            await _httpClient.PostAsJsonAsync<CreateContactDto>("contacts", createContactDto);
+            await httpClient.PostAsJsonAsync<CreateContactDto>("contacts", createContactDto);
         }
         public async Task DeleteContactAsync(string id)
         {
-            await _httpClient.DeleteAsync("contacts?id=" + id);
+            await httpClient.DeleteAsync("contacts?id=" + id);
         }
         public async Task<GetByIdContactDto> GetByIdContactAsync(string id)
         {
-            var responseMessage = await _httpClient.GetAsync("contacts/" + id);
+            var responseMessage = await httpClient.GetAsync("contacts/" + id);
             var values = await responseMessage.Content.ReadFromJsonAsync<GetByIdContactDto>();
             return values;
         }
         public async Task<List<ResultContactDto>> GetAllContactAsync()
         {
-            var responseMessage = await _httpClient.GetAsync("contacts");
+            var responseMessage = await httpClient.GetAsync("contacts");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultContactDto>>(jsonData);
             return values;
         }
         public async Task UpdateContactAsync(UpdateContactDto updateContactDto)
         {
-            await _httpClient.PutAsJsonAsync<UpdateContactDto>("contacts", updateContactDto);
+            await httpClient.PutAsJsonAsync<UpdateContactDto>("contacts", updateContactDto);
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.FeatureDtos;
 using GMAShop.WebUI.Services.CatalogServices.FeatureServices;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
