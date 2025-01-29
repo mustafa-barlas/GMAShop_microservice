@@ -56,7 +56,7 @@ namespace GMAShop.IdentityServer
                 AllowedScopes =
                 {
                     "CatalogReadPermission", "CatalogFullPermission", "OcelotFullPermission", "CommentFullPermission",
-                    "ImageFullPermission", "CommentFullPermission",
+                    "ImageFullPermission", "CommentFullPermission","BasketFullPermission",
                     IdentityServerConstants.LocalApi.ScopeName
                 },
                 AllowAccessTokensViaBrowser = true

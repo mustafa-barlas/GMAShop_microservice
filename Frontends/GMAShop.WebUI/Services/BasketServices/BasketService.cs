@@ -2,29 +2,18 @@
 
 namespace GMAShop.WebUI.Services.BasketServices
 {
-    public class BasketService : IBasketService
+    public class BasketService(HttpClient httpClient) : IBasketService
     {
-        private readonly HttpClient _httpClient;
-        public BasketService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
         public async Task AddBasketItem(BasketItemDto basketItemDto)
         {
-            var values = await GetBasket();
-            if (values != null)
+            var basket = await GetBasket() ?? new BasketTotalDto();
+
+            if (!basket.BasketItems.Any(x => x.ProductId == basketItemDto.ProductId))
             {
-                if (!values.BasketItems.Any(x => x.ProductId == basketItemDto.ProductId))
-                {
-                    values.BasketItems.Add(basketItemDto);
-                }
-                else
-                {
-                    values = new BasketTotalDto();
-                    values.BasketItems.Add(basketItemDto);
-                }
+                basket.BasketItems.Add(basketItemDto);
             }
-            await SaveBasket(values);
+
+            await SaveBasket(basket);
         }
 
         public Task DeleteBasket(string userId)
@@ -34,23 +23,22 @@ namespace GMAShop.WebUI.Services.BasketServices
 
         public async Task<BasketTotalDto> GetBasket()
         {
-            var responseMessage = await _httpClient.GetAsync("baskets");
-            var values = await responseMessage.Content.ReadFromJsonAsync<BasketTotalDto>();
-            return values;
+            var responseMessage = await httpClient.GetAsync("baskets");
+            return await responseMessage.Content.ReadFromJsonAsync<BasketTotalDto>() ?? new BasketTotalDto();
         }
 
         public async Task<bool> RemoveBasketItem(string productId)
         {
             var values = await GetBasket();
             var deletedItem = values.BasketItems.FirstOrDefault(x => x.ProductId == productId);
-            var result=values.BasketItems.Remove(deletedItem);
+            var result = values.BasketItems.Remove(deletedItem);
             await SaveBasket(values);
             return true;
         }
 
         public async Task SaveBasket(BasketTotalDto basketTotalDto)
         {
-            await _httpClient.PostAsJsonAsync<BasketTotalDto>("baskets", basketTotalDto);
+            await httpClient.PostAsJsonAsync<BasketTotalDto>("baskets", basketTotalDto);
         }
     }
 }

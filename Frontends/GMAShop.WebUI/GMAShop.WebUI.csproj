@@ -50,4 +50,8 @@
     </ProjectReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Shared\UILayout\_UILayout.cshtml" />
+  </ItemGroup>
+
 </Project>

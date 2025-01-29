@@ -20,7 +20,7 @@ public class DapperContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(
-            "Server=localhost,1433; Initial Catalog=GMAShopDiscountDb; User Id=sa; Password=201203011Aa.; integrated Security=true; Encrypt=True; TrustServerCertificate=True;");
+            "Server=localhost,1433; Initial Catalog=GMAShopDiscountDb; User Id=sa; Password=201203011Aa.; Encrypt=false; TrustServerCertificate=True;");
     }
 
     public DbSet<Coupon> Coupons { get; set; }
