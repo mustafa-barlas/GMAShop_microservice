@@ -3,16 +3,11 @@ using GMAShop.WebUI.Services.BasketServices;
 
 namespace GMAShop.WebUI.ViewComponents.ShoppingCartViewComponents
 {
-    public class _ShoppingCartProductListComponentPartial : ViewComponent
+    public class _ShoppingCartProductListComponentPartial(IBasketService basketService) : ViewComponent
     {
-        private readonly IBasketService _basketService;
-        public _ShoppingCartProductListComponentPartial(IBasketService basketService)
-        {
-            _basketService = basketService;
-        }
         public async Task< IViewComponentResult> InvokeAsync()
         {
-            var basketTotal = await _basketService.GetBasket();
+            var basketTotal = await basketService.GetBasket();
             var basketItems = basketTotal.BasketItems;
             return View(basketItems);
         }

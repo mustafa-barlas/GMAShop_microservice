@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Catalog.Controllers
 {
-   // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SpecialOffersController : ControllerBase

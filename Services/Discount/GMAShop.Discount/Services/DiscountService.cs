@@ -6,18 +6,11 @@ namespace GMAShop.Discount.Services;
 
 public class DiscountService(DapperContext dapperContext) : IDiscountService
 {
-    private readonly DapperContext _dapperContext =  dapperContext;
-
-    //public DiscountService(DapperContext dapperContext)
-    //{
-    //    _dapperContext = dapperContext;
-    //}
-
     public async Task<List<ResultDiscountCouponDto>> GetAllDiscountCouponAsync()
     {
         string query = "select * from coupons";
 
-        using (var connection = _dapperContext.CreateConnection())
+        using (var connection = dapperContext.CreateConnection())
         {
             var values = await connection.QueryAsync<ResultDiscountCouponDto>(query);
             return values.ToList();
@@ -26,7 +19,6 @@ public class DiscountService(DapperContext dapperContext) : IDiscountService
 
     public async Task CreateDiscountCouponAsync(CreateDiscountCouponDto createCouponDto)
     {
-
         string query = "insert into coupons (Code,Rate,IsActive,ValidDate) values (@Code,@Rate,@IsActive,@ValidDate)";
         var parameters = new DynamicParameters();
         parameters.Add("@code", createCouponDto.Code);
@@ -34,16 +26,16 @@ public class DiscountService(DapperContext dapperContext) : IDiscountService
         parameters.Add("@IsActive", createCouponDto.IsActive);
         parameters.Add("@ValidDate", createCouponDto.ValidDate);
 
-        using (var connection = _dapperContext.CreateConnection())
+        using (var connection = dapperContext.CreateConnection())
         {
             await connection.ExecuteAsync(query, parameters);
         }
-
     }
 
     public async Task UpdateDiscountCouponAsync(UpdateDiscountCouponDto updateCouponDto)
     {
-        string query = "update  coupons set  Code=@Code,Rate=@Rate,IsActive=@IsActive,ValidDate=@ValidDate where CouponId=@CouponId";
+        string query =
+            "update  coupons set  Code=@Code,Rate=@Rate,IsActive=@IsActive,ValidDate=@ValidDate where CouponId=@CouponId";
         var parameters = new DynamicParameters();
         parameters.Add("@CouponId", updateCouponDto.CouponId);
         parameters.Add("@code", updateCouponDto.Code);
@@ -51,7 +43,7 @@ public class DiscountService(DapperContext dapperContext) : IDiscountService
         parameters.Add("@IsActive", updateCouponDto.IsActive);
         parameters.Add("@ValidDate", updateCouponDto.ValidDate);
 
-        using (var connection = _dapperContext.CreateConnection())
+        using (var connection = dapperContext.CreateConnection())
         {
             await connection.ExecuteAsync(query, parameters);
         }
@@ -64,7 +56,7 @@ public class DiscountService(DapperContext dapperContext) : IDiscountService
 
         parameters.Add("@CouponId", couponId);
 
-        using (var connection = _dapperContext.CreateConnection())
+        using (var connection = dapperContext.CreateConnection())
         {
             await connection.ExecuteAsync(query, parameters);
         }
@@ -77,10 +69,21 @@ public class DiscountService(DapperContext dapperContext) : IDiscountService
         parameters.Add("@CouponId", couponId);
 
 
-        using (var connection = _dapperContext.CreateConnection())
+        using (var connection = dapperContext.CreateConnection())
         {
             return await connection.QueryFirstOrDefaultAsync<GetByIdDiscountCouponDto>(query, parameters);
+        }
+    }
 
+    public async Task<ResultDiscountCouponDto> GetCodeDetailByCodeAsync(string code)
+    {
+        string query = "select * from coupons where Code = @code";
+        var parameters = new DynamicParameters();
+        parameters.Add("@code", code);
+
+        using (var connection = dapperContext.CreateConnection())
+        {
+            return await connection.QueryFirstOrDefaultAsync<ResultDiscountCouponDto>(query, parameters);
         }
     }
 }
