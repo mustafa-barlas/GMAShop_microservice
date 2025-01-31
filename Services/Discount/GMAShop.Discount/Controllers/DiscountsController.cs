@@ -51,5 +51,12 @@ namespace GMAShop.Discount.Controllers
             var values = await discountService.GetCodeDetailByCodeAsync(code);
             return Ok(values);
         }
+        
+        [HttpGet("GetDiscountCouponCountRate")]
+        public  IActionResult GetDiscountCouponCountRate(string code)
+        {
+            var values =  discountService.GetDiscountCouponCountRate(code);
+            return Ok(values);
+        }
     }
 }

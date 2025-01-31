@@ -86,4 +86,16 @@ public class DiscountService(DapperContext dapperContext) : IDiscountService
             return await connection.QueryFirstOrDefaultAsync<ResultDiscountCouponDto>(query, parameters);
         }
     }
+
+    public int GetDiscountCouponCountRate(string code)
+    {
+        string query = "select Rate from coupons where Code = @code";
+        var parameters = new DynamicParameters();
+        parameters.Add("@code", code);
+
+        using (var connection = dapperContext.CreateConnection())
+        {
+            return connection.QueryFirstOrDefault<int>(query, parameters);
+        }
+    }
 }
