@@ -6,7 +6,6 @@ using GMAShop.WebUI.Services.CatalogServices.OfferDiscountServices;
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
     [Route("Admin/OfferDiscount")]
     public class OfferDiscountController : Controller
     {

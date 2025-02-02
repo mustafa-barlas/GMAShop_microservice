@@ -1,5 +1,5 @@
-using GMAShop.Order.Application.Feature.CQRS.Handlers.AddressHandlers;
 using GMAShop.Order.Application.Feature.CQRS.Handlers.OrderDetailHandlers;
+using GMAShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using GMAShop.Order.Application.Interfaces;
 using GMAShop.Order.Application.Services;
 using GMAShop.Order.Persistence.Contexts;

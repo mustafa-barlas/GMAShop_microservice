@@ -3,7 +3,7 @@
 namespace GMAShop.WebUI.Areas.User.Controllers
 {
     [Area("User")]
-    public class UserLayoutController : Controller
+    public class UserController : Controller
     {
         public IActionResult Index()
         {

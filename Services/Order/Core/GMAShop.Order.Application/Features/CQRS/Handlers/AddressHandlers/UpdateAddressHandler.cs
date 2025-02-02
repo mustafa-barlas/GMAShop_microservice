@@ -2,7 +2,7 @@
 using GMAShop.Order.Application.Interfaces;
 using GMAShop.Order.Domain.Entities;
 
-namespace GMAShop.Order.Application.Feature.CQRS.Handlers.AddressHandlers;
+namespace GMAShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 
 public class UpdateAddressHandler
 {
@@ -17,7 +17,7 @@ public class UpdateAddressHandler
     {
         var value = await _addressRepository.GetByIdAsync(updateAddressCommand.AddressId);
 
-        value.Detail = updateAddressCommand.Detail;
+        value.Detail1 = updateAddressCommand.Detail;
         value.District = updateAddressCommand.District;
         value.UserId = updateAddressCommand.UserId;
         value.City = updateAddressCommand.City;

@@ -1,6 +1,7 @@
 ﻿using GMAShop.Order.Application.Feature.CQRS.Commands.AddressCommands;
-using GMAShop.Order.Application.Feature.CQRS.Handlers.AddressHandlers;
 using GMAShop.Order.Application.Feature.CQRS.Queries.AddressQueries;
+using GMAShop.Order.Application.Features.CQRS.Commands.AddressCommands;
+using GMAShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

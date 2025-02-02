@@ -39,6 +39,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Pages\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="SignalRHub\" />
@@ -51,7 +52,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="Areas\User\Views\Shared\UserLayout\Index.cshtml" />
     <AdditionalFiles Include="Views\Shared\UILayout\_UILayout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\AdminLayout\Index.cshtml" />
   </ItemGroup>
 
 </Project>

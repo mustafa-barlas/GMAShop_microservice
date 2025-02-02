@@ -4,20 +4,19 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => // ******
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
     opt.Authority = builder.Configuration["IdentityServerUrl"];
-    opt.RequireHttpsMetadata = false;
     opt.Audience = "ResourceDiscount";
+    opt.RequireHttpsMetadata = false;
 });
 
+
 // Add services to the container.
+builder.Services.AddTransient<DapperContext>();
+builder.Services.AddTransient<IDiscountService, DiscountService>();
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<DapperContext>();
-builder.Services.AddScoped<IDiscountService, DiscountService>();
-
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,7 +32,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication(); // ******
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

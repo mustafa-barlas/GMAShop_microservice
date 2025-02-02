@@ -2,7 +2,7 @@
 using GMAShop.Order.Application.Interfaces;
 using GMAShop.Order.Domain.Entities;
 
-namespace GMAShop.Order.Application.Feature.CQRS.Handlers.AddressHandlers;
+namespace GMAShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 
 public class GetAddressQueryHandler
 {
@@ -23,7 +23,7 @@ public class GetAddressQueryHandler
             AddressId = x.AddressId,
             City = x.City,
             District = x.District,
-            Detail = x.Detail
+            Detail = x.Detail1
         }).ToList();
     }
 }

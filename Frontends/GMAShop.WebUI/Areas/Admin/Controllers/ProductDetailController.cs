@@ -7,7 +7,6 @@ using System.Text;
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
     [Route("Admin/ProductDetail")]
     public class ProductDetailController : Controller
     {

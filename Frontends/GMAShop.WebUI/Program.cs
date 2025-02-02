@@ -31,25 +31,26 @@ using GMAShop.WebUI.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
-{
-    opt.LoginPath = "/Login/Index/";
-    opt.LogoutPath = "/Login/LogOut/";
-    opt.AccessDeniedPath = "/Pages/AccessDenied/";
-    opt.Cookie.HttpOnly = true;
-    opt.Cookie.SameSite = SameSiteMode.Strict;
-    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-    opt.Cookie.Name = "GMAShopJwt";
-});
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(
+    JwtBearerDefaults.AuthenticationScheme, opt =>
+    {
+        opt.LoginPath = "/Login/Index/";
+        opt.LogoutPath = "/Login/LogOut/";
+        opt.AccessDeniedPath = "/Pages/AccessDenied/";
+        opt.Cookie.HttpOnly = true;
+        opt.Cookie.SameSite = SameSiteMode.Strict;
+        opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+        opt.Cookie.Name = "GMAShopJwt";
+    });
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-    AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
-{
-    opt.LoginPath = "/Login/Index/";
-    opt.ExpireTimeSpan = TimeSpan.FromDays(5);
-    opt.Cookie.Name = "GMAShopCookie";
-    opt.SlidingExpiration = true;
-});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+    CookieAuthenticationDefaults.AuthenticationScheme, opt =>
+    {
+        opt.LoginPath = "/Login/Index/";
+        opt.ExpireTimeSpan = TimeSpan.FromDays(5);
+        opt.Cookie.Name = "GMAShopCookie";
+        opt.SlidingExpiration = true;
+    });
 
 builder.Services.AddAccessTokenManagement();
 
@@ -64,14 +65,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
 
-builder.Services.AddSingleton<IClientCredentialTokenService, ClientCredentialTokenService>();
-builder.Services.AddHttpClient<ClientCredentialTokenService>();
-
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
 
-
-
+builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
 
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
@@ -229,8 +226,8 @@ app.MapControllerRoute(
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=AdminLayout}/{action=Index}/{id?}"
+        name: "areas",
+        pattern: "{area:exists}/{controller=Admin/Category}/{action=Index}/{id?}"
     );
 });
 

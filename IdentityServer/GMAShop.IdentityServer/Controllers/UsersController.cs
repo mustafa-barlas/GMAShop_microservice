@@ -14,19 +14,13 @@ namespace GMAShop.IdentityServer.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UsersController : ControllerBase
+public class UsersController(UserManager<ApplicationUser> userManager) : ControllerBase
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    public UsersController(UserManager<ApplicationUser> userManager)
-    {
-        _userManager = userManager;
-    }
-
     [HttpGet("GetUser")]
     public async Task<IActionResult> GetUser()
     {
         var userClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
-        var user = await _userManager.FindByIdAsync(userClaim.Value);
+        var user = await userManager.FindByIdAsync(userClaim.Value);
         return Ok(new
         {
             Id = user.Id,
@@ -40,7 +34,7 @@ public class UsersController : ControllerBase
     [HttpGet("GetAllUserList")]
     public async Task<IActionResult> GetAllUserList()
     {
-        var users = await _userManager.Users.ToListAsync();
+        var users = await userManager.Users.ToListAsync();
         return Ok(users);
     }
 }

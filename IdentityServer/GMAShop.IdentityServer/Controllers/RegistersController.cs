@@ -11,14 +11,8 @@ namespace GMAShop.IdentityServer.Controllers
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
-    public class RegistersController : ControllerBase
+    public class RegistersController(UserManager<ApplicationUser> userManager) : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        public RegistersController(UserManager<ApplicationUser> userManager)
-        {
-            _userManager = userManager;
-        }
-
         [HttpPost]
         public async Task<IActionResult> UserRegister(UserRegisterDto userRegisterDto)
         {
@@ -29,7 +23,7 @@ namespace GMAShop.IdentityServer.Controllers
                 Name = userRegisterDto.Name,
                 Surname = userRegisterDto.Surname
             };
-            var result = await _userManager.CreateAsync(values, userRegisterDto.Password);
+            var result = await userManager.CreateAsync(values, userRegisterDto.Password);
             if (result.Succeeded)
             {
                 return Ok("Kullanıcı başarıyla eklendi");
