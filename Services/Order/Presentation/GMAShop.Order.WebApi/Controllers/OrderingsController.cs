@@ -1,5 +1,5 @@
 ﻿using GMAShop.Order.Application.Feature.Mediator.Commands.OrderingCommands;
-using GMAShop.Order.Application.Feature.Mediator.Queries.OrderingQueries;
+using GMAShop.Order.Application.Features.Mediator.Queries.OrderingQueries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +21,6 @@ namespace GMAShop.Order.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> OrderingListById(int id)
         {
-
             var result = await mediator.Send(new GetOrderingByIdQuery(id));
             return Ok(result);
         }
@@ -32,6 +31,7 @@ namespace GMAShop.Order.WebApi.Controllers
             await mediator.Send(command);
             return Ok("Ordering information added");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateOrdering(UpdateOrderingCommand command)
         {
@@ -44,6 +44,13 @@ namespace GMAShop.Order.WebApi.Controllers
         {
             await mediator.Send(new RemoveOrderingCommand(id));
             return Ok("Ordering information deleted");
+        }
+
+        [HttpGet("GetOrderingByUserId")]
+        public async Task<IActionResult> OrderingByUserId(string id)
+        {
+            var values = await mediator.Send(new GetOrderingByUserIdQuery(id));
+            return Ok(values);
         }
     }
 }

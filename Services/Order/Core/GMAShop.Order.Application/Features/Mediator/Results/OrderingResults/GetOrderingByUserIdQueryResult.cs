@@ -1,6 +1,6 @@
-﻿namespace GMAShop.Order.Application.Features.Mediator.Results.OrderingResults;
+namespace GMAShop.Order.Application.Features.Mediator.Results.OrderingResults;
 
-public class GetOrderingByIdQueryResult
+public class GetOrderingByUserIdQueryResult
 {
     public int OrderingId { get; set; }
     public string UserId { get; set; }

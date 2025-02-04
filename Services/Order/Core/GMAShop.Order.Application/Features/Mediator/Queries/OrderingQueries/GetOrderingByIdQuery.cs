@@ -1,7 +1,8 @@
 ﻿using GMAShop.Order.Application.Feature.Mediator.Results.OrderingResults;
+using GMAShop.Order.Application.Features.Mediator.Results.OrderingResults;
 using MediatR;
 
-namespace GMAShop.Order.Application.Feature.Mediator.Queries.OrderingQueries;
+namespace GMAShop.Order.Application.Features.Mediator.Queries.OrderingQueries;
 
 public class GetOrderingByIdQuery : IRequest<GetOrderingByIdQueryResult>
 {

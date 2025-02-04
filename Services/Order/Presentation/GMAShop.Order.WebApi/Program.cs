@@ -17,7 +17,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opt.Audience = "ResourceOrder";
 });
 
-// Add services to the container.
+builder.Services.AddScoped<OrderContext>(); 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IOrderingRepository), typeof(OrderingRepository));
+builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddScoped<GetAddressQueryHandler>();
 builder.Services.AddScoped<GetAddressByIdQueryHandler>();
@@ -30,11 +33,7 @@ builder.Services.AddScoped<GetOrderDetailByIdCommandHandler>();
 builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
 builder.Services.AddScoped<UpdateOrderDetailQueryHandler>();
 builder.Services.AddScoped<RemoveOrderDetailQueryHandler>();
-builder.Services.AddScoped<OrderContext>();
 
-
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddApplicationService(builder.Configuration);
 
 #endregion
 
@@ -54,7 +53,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();    
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
