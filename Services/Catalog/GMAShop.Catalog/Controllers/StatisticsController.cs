@@ -1,5 +1,4 @@
 ﻿using GMAShop.Catalog.Services.StatisticServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Catalog.Controllers

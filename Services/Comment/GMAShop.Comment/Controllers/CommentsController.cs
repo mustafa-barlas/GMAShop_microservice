@@ -57,5 +57,28 @@ namespace GMAShop.Comment.Controllers
             var value = _commentContext.UserComments.FirstOrDefault(x => x.ProductId.Equals(id));
             return Ok(value);
         }
+
+        [HttpGet("GetActiveCommentCount")]
+        public IActionResult GetActiveCommentCount()
+        {
+            int value = _commentContext.UserComments.Count(x => x.Status.Equals(true));
+            return Ok(value);
+        }
+        
+        
+        [HttpGet("GetPassiveCommentCount")]
+        public IActionResult GetPassiveCommentCount()
+        {
+            int value = _commentContext.UserComments.Count(x => x.Status.Equals(false));
+            return Ok(value);
+        }
+        
+        
+        [HttpGet("GetTotalCommentCount")]
+        public IActionResult GetTotalCommentCount()
+        {
+            int value = _commentContext.UserComments.Count();
+            return Ok(value);
+        }
     }
 }

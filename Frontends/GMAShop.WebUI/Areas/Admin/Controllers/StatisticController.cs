@@ -8,39 +8,31 @@ using GMAShop.WebUI.Services.StatisticServices.UserStatisticServices;
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class StatisticController : Controller
+    public class StatisticController(
+        ICatalogStatisticService catalogStatisticService,
+        IUserStatisticService userStatisticService,
+        ICommentService commentService,
+        IDiscountStatisticService discountStatisticService,
+        IMessageStatisticService messageStatisticService)
+        : Controller
     {
-        private readonly ICatalogStatisticService _catalogStatisticService;
-        private readonly IUserStatisticService _userStatisticService;
-        private readonly ICommentService _commentService;
-        private readonly IDiscountStatisticService _discountStatisticService;
-        private readonly IMessageStatisticService _messageStatisticService;
-        public StatisticController(ICatalogStatisticService catalogStatisticService, IUserStatisticService userStatisticService, ICommentService commentService, IDiscountStatisticService discountStatisticService, IMessageStatisticService messageStatisticService)
-        {
-            _catalogStatisticService = catalogStatisticService;
-            _userStatisticService = userStatisticService;
-            _commentService = commentService;
-            _discountStatisticService = discountStatisticService;
-            _messageStatisticService = messageStatisticService;
-        }
-
         public async Task<IActionResult> Index()
         {
-            var getBrandCount = await _catalogStatisticService.GetBrandCount();
-            var getProductCount = await _catalogStatisticService.GetProductCount();
-            var getCategoryCount = await _catalogStatisticService.GetCategoryCount();
-            var getMaxPriceProductName = await _catalogStatisticService.GetMaxPriceProductName();
-            var getMinPriceProductName = await _catalogStatisticService.GetMinPriceProductName();
+            var getBrandCount = await catalogStatisticService.GetBrandCount();
+            var getProductCount = await catalogStatisticService.GetProductCount();
+            var getCategoryCount = await catalogStatisticService.GetCategoryCount();
+            var getMaxPriceProductName = await catalogStatisticService.GetMaxPriceProductName();
+            var getMinPriceProductName = await catalogStatisticService.GetMinPriceProductName();
 
-            var getUserCount = await _userStatisticService.GetUsercount();
+            var getUserCount = await userStatisticService.GetUsercount();
 
-            var getTotalCommentCount = await _commentService.GetTotalCommentCount();
-            var getActiveCommentCount = await _commentService.GetActiveCommentCount();
-            var getPassiveCommentCount = await _commentService.GetPAssiveCommentCount();
+            var getTotalCommentCount = await commentService.GetTotalCommentCount();
+            var getActiveCommentCount = await commentService.GetActiveCommentCount();
+            var getPassiveCommentCount = await commentService.GetPAssiveCommentCount();
 
-            var getDiscountCouponCount = await _discountStatisticService.GetDiscountCouponCount();
+            var getDiscountCouponCount = await discountStatisticService.GetDiscountCouponCount();
 
-            var getMessageTotalCount = await _messageStatisticService.GetTotalMessageCount();
+            var getMessageTotalCount = await messageStatisticService.GetTotalMessageCount();
 
             ViewBag.getBrandCount = getBrandCount;
             ViewBag.getProductCount = getProductCount;

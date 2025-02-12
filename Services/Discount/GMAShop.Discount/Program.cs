@@ -1,5 +1,6 @@
 using GMAShop.Discount.Context;
 using GMAShop.Discount.Services;
+using GMAShop.Discount.Services.Discount;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);

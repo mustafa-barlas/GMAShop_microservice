@@ -32,4 +32,10 @@ public class CargoCustomerManager(ICargoCustomerDal cargoCustomerDal) : ICargoCu
     {
         return _cargoCustomerDal.GetAll();
     }
+
+    public CargoCustomer GetCargoCustomerByUserId(string userId)
+    {
+        var value = _cargoCustomerDal.GetCargoCustomerByUserId(userId);
+        return value;
+    }
 }

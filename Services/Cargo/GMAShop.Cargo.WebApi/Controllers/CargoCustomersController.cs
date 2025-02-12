@@ -64,9 +64,14 @@ public class CargoCustomersController(ICargoCustomerService cargoCustomerService
             District = updateCargoCustomerDto.District,
             Address = updateCargoCustomerDto.Address,
             City = updateCargoCustomerDto.City,
-            
         };
         _cargoCustomerService.TUpdate(cargoCustomer);
         return Ok("müşteri güncellendi");
+    }
+
+    [HttpGet("GetCargoCustomerByUserId")]
+    public IActionResult GetCargoCustomerByUserId(string userId)
+    {
+        return Ok(_cargoCustomerService.GetCargoCustomerByUserId(userId));
     }
 }

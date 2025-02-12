@@ -1,16 +1,11 @@
 ﻿
 namespace GMAShop.WebUI.Services.StatisticServices.MessageStatisticServices
 {
-    public class MessageStatisticService : IMessageStatisticService
+    public class MessageStatisticService(HttpClient httpClient) : IMessageStatisticService
     {
-        private readonly HttpClient _httpClient;
-        public MessageStatisticService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
         public async Task<int> GetTotalMessageCount()
         {
-            var responseMessage = await _httpClient.GetAsync("UserMessage/GetTotalMessageCount");
+            var responseMessage = await httpClient.GetAsync("UserMessages/GetTotalMessageCountAsync");
             var values = await responseMessage.Content.ReadFromJsonAsync<int>();
             return values;
         }

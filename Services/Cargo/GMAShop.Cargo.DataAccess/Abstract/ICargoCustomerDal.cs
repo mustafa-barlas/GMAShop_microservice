@@ -4,4 +4,5 @@ namespace GMAShop.Cargo.DataAccess.Abstract;
 
 public interface ICargoCustomerDal : IGenericDal<CargoCustomer>
 {
+    CargoCustomer GetCargoCustomerByUserId(string userId);
 }

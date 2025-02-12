@@ -11,6 +11,8 @@ public class CargoCustomer
     public string City { get; set; }
     public string Address { get; set; }
     
-    public ICollection<CargoDetail> CargoDetails { get; set; }
+    public string? UserCustomerId { get; set; }
+    
+    public ICollection<CargoDetail> CargoDetails { get; init; }
     
 }

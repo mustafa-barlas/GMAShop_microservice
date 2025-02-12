@@ -6,9 +6,10 @@ namespace GMAShop.Message.Dal.Context;
 public class MessageContext: DbContext
 {
 
-    public MessageContext(DbContextOptions<MessageContext> options): base(options)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        
+        optionsBuilder.UseSqlServer(
+            "Server=localhost,1433; Initial Catalog=GMAShopMessageDb; User Id=sa; Password=201203011Aa.; Encrypt=false; TrustServerCertificate=True;");
     }
 
     public DbSet<UserMessage> UserMessages { get; set; }

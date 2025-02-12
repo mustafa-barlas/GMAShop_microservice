@@ -1,5 +1,5 @@
 ﻿using GMAShop.Discount.Dtos;
-using GMAShop.Discount.Services;
+using GMAShop.Discount.Services.Discount;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -51,11 +51,18 @@ namespace GMAShop.Discount.Controllers
             var values = await discountService.GetCodeDetailByCodeAsync(code);
             return Ok(values);
         }
-        
+
         [HttpGet("GetDiscountCouponCountRate")]
-        public  IActionResult GetDiscountCouponCountRate(string code)
+        public IActionResult GetDiscountCouponCountRate(string code)
         {
-            var values =  discountService.GetDiscountCouponCountRate(code);
+            var values = discountService.GetDiscountCouponCountRate(code);
+            return Ok(values);
+        }
+
+        [HttpGet("GetDiscountCouponCount")]
+        public async Task<IActionResult> GetDiscountCouponCount()
+        {
+            var values = await discountService.GetDiscountCouponCountAsync();
             return Ok(values);
         }
     }

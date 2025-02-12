@@ -1,6 +1,6 @@
 ﻿using GMAShop.Discount.Dtos;
 
-namespace GMAShop.Discount.Services;
+namespace GMAShop.Discount.Services.Discount;
 
 public interface IDiscountService
 {
@@ -11,4 +11,5 @@ public interface IDiscountService
     Task<GetByIdDiscountCouponDto> GetByIdDiscountCouponAsync(int couponId);
     Task<ResultDiscountCouponDto> GetCodeDetailByCodeAsync(string code);
     int GetDiscountCouponCountRate(string code);
+    Task<int> GetDiscountCouponCountAsync();
 }

@@ -2,7 +2,7 @@
 using GMAShop.Discount.Context;
 using GMAShop.Discount.Dtos;
 
-namespace GMAShop.Discount.Services;
+namespace GMAShop.Discount.Services.Discount;
 
 public class DiscountService(DapperContext dapperContext) : IDiscountService
 {
@@ -96,6 +96,17 @@ public class DiscountService(DapperContext dapperContext) : IDiscountService
         using (var connection = dapperContext.CreateConnection())
         {
             return connection.QueryFirstOrDefault<int>(query, parameters);
+        }
+    }
+
+    public async Task<int> GetDiscountCouponCountAsync()
+    {
+        var query  = "select count(*) from coupons";
+
+        using (var connection = dapperContext.CreateConnection())
+        {
+            var values = await connection.QueryFirstOrDefaultAsync<int>(query);
+            return values;
         }
     }
 }
