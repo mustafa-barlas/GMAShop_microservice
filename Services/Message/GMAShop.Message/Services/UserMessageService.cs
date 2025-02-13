@@ -54,7 +54,7 @@ public class UserMessageService(MessageContext messageContext, IMapper mapper) :
 
     public async Task<int> GetTotalMessageCountByReceiverIdAsync(string id)
     {
-        var values = await messageContext.UserMessages.Where(x => x.ReceiverId == id).CountAsync();
+        var values = await messageContext.UserMessages.CountAsync(x => x.ReceiverId == id);
         return values;
     }
 
