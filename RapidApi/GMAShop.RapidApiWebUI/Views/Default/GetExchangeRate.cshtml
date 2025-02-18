@@ -1,0 +1,47 @@
+@model GMAShop.RapidApiWebUI.Models.CurrencyExchangeViewModel
+
+@{
+    ViewData["Title"] = "Döviz Kuru Bilgileri";
+}
+
+<form method="get" asp-controller="Default" asp-action="GetExchangeRate">
+    <div class="form-group">
+        <label for="currencySelector">Döviz Seçin:</label>
+        <select id="currencySelector" name="currency" class="form-control">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="TRY">TRY</option>
+            <!-- Diğer döviz seçenekleri -->
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Döviz Seç</button>
+</form>
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary">💱 @Model.FromSymbol - @Model.ToSymbol Döviz Kuru</h2>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="exchange-summary p-4 rounded">
+                    <h4 class="text-info"><i class="fas fa-exchange-alt"></i> Döviz Kuru Bilgisi</h4>
+                    <p><strong>From:</strong> @Model.FromSymbol</p>
+                    <p><strong>To:</strong> @Model.ToSymbol</p>
+                    <p><strong>Exchange Rate:</strong> @Model.ExchangeRate</p>
+                    <p><strong>Veri Tarihi:</strong> @Model.LastUpdateUtc</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .exchange-summary {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        border-radius: 15px;
+    }
+</style>

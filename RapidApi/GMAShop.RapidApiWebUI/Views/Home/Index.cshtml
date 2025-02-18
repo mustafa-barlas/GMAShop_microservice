@@ -2,3 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <!-- Weather Details Butonu -->
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("WeatherDetails", "Default")'">
+        Weather Details
+    </button>
+
+    <!-- Döviz Kuru Butonu -->
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetExchangeRate", "Default")'">
+        Get Exchange Rate
+    </button>
+</div>
