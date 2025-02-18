@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Message.Controllers;
+
 [AllowAnonymous]
 [Route("api/[controller]")]
 [ApiController]
-public class UserMessagesStatisticsController(IUserMessageService userMessageService) : ControllerBase
+public class UserMessageStatisticsController(IUserMessageService userMessageService) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> GetTotalMessageCount()
