@@ -28,6 +28,7 @@ using GMAShop.WebUI.Services.StatisticServices.MessageStatisticServices;
 using GMAShop.WebUI.Services.StatisticServices.UserStatisticServices;
 using GMAShop.WebUI.Services.UserIdentityServices;
 using GMAShop.WebUI.Settings;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +52,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         opt.Cookie.Name = "GMAShopCookie";
         opt.SlidingExpiration = true;
     });
+
 
 builder.Services.AddAccessTokenManagement();
 
@@ -202,6 +204,11 @@ builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
+builder.Services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -218,6 +225,12 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+var supportedCultures = new[] { "en", "fr", "de", "tr", "it" };
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[3])
+    .AddSupportedCultures(supportedCultures).AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 app.MapControllerRoute(
     name: "default",

@@ -42,6 +42,7 @@
     <Folder Include="Areas\Admin\Pages\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
+    <Folder Include="Resources\Views\" />
     <Folder Include="SignalRHub\" />
   </ItemGroup>
 
@@ -53,11 +54,50 @@
 
   <ItemGroup>
     <AdditionalFiles Include="Areas\User\Views\Shared\UserLayout\Index.cshtml" />
+    <AdditionalFiles Include="Resources\Views\Information\Index.de.resx" />
+    <AdditionalFiles Include="Resources\Views\Information\Index.en.resx" />
+    <AdditionalFiles Include="Resources\Views\Information\Index.fr.resx" />
+    <AdditionalFiles Include="Resources\Views\Information\Index.it.resx" />
     <AdditionalFiles Include="Views\Shared\UILayout\_UILayout.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\AdminLayout\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Information\Index.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Information\Index.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Information\Index.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Information\Index.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Information\Index.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Information\Index.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Information\Index.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Information\Index.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
