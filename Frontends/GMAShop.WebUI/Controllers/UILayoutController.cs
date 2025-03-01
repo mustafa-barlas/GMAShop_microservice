@@ -5,17 +5,9 @@ namespace GMAShop.WebUI.Controllers
 {
     public class UILayoutController : Controller
     {
-        private readonly ICategoryService _categoryService;
-
-        public UILayoutController(ICategoryService categoryService)
+        public IActionResult _UILayout()
         {
-            _categoryService = categoryService;
-        }
-
-        public async Task<IActionResult> _UILayout()
-        {
-            var values = await _categoryService.GetAllCategoryAsync();
-            return View(values);
+            return View();
         }
     }
 }

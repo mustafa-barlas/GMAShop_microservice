@@ -1,0 +1,30 @@
+@model MailRequest
+
+
+<div class="container">
+      <br/>
+      <br/>
+      <div class="alert alert-success">
+          <h3>Mail Sending page </h3>
+          <form method="POST">
+              <br/>
+              <label>Receiver Mail</label>
+              <input type="email" asp-for="Receiver" class="form-control">
+              <br/>
+
+
+              <br/>
+              <label>Subject</label>
+              <input type="text" asp-for="Subject" class="form-control">
+              <br/>
+
+
+              <br/>
+              <label>Body</label>
+              <textarea rows="5" class="form-control" asp-for="MessageContent"></textarea>
+              <br/>
+              
+              <button class="btn btn-primary" >Send</button>
+          </form>
+      </div>
+</div>
