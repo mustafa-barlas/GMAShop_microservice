@@ -39,6 +39,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateProductImage(CreateProductImageDto createProductImageDto)
         {
             await _productImageService.CreateProductImageAsync(createProductImageDto);
@@ -46,6 +47,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteProductImage(string id)
         {
             await _productImageService.DeleteProductImageAsync(id);
@@ -53,6 +55,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateProductImage(UpdateProductImageDto updateProductImageDto)
         {
             await _productImageService.UpdateProductImageAsync(updateProductImageDto);

@@ -32,6 +32,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateFeature(CreateFeatureDto createFeatureDto)
         {
             await _featureService.CreateFeatureAsync(createFeatureDto);
@@ -39,6 +40,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteFeature(string id)
         {
             await _featureService.DeleteFeatureAsync(id);
@@ -46,6 +48,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateFeature(UpdateFeatureDto updateFeatureDto)
         {
             await _featureService.UpdateFeatureAsync(updateFeatureDto);

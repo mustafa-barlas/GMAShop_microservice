@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.BrandDtos;
 using GMAShop.WebUI.Services.CatalogServices.BrandServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Brand")]
+    [Authorize]
+
     public class BrandController : Controller
     {
         private readonly IBrandService _brandService;

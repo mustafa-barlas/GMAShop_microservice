@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
 using GMAShop.WebUI.Services.CatalogServices.FeatureSliderServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/FeatureSlider")]
+    [Authorize]
+
     public class FeatureSliderController : Controller
     {
         private readonly IFeatureSliderService _featureSliderService;

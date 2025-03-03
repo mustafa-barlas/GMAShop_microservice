@@ -4,10 +4,15 @@ using GMAShop.WebUI.Services.StatisticServices.CatalogStatisticServices;
 using GMAShop.WebUI.Services.StatisticServices.DiscountStatisticServices;
 using GMAShop.WebUI.Services.StatisticServices.MessageStatisticServices;
 using GMAShop.WebUI.Services.StatisticServices.UserStatisticServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/Statistic")]
+
+    [Authorize]
+
     public class StatisticController(
         ICatalogStatisticService catalogStatisticService,
         IUserStatisticService userStatisticService,

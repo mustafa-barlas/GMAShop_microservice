@@ -1,4 +1,7 @@
-﻿<header class="main-header dark-bg">
+﻿@model UserDetailViewModel
+
+
+<header class="main-header dark-bg">
 
     <!-- Logo -->
     <a href="../index.html" class="logo dark-bg">
@@ -95,20 +98,15 @@
                 <!-- Tasks Menu -->
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="~/images/logos/manlogo.jpg" class="user-image" alt="User Image"> <span class="hidden-xs">Admin 01</span> </a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="https://picsum.photos/id/237/200/300" class="user-image" alt="User Image"> <span class="hidden-xs">@Model.Name</span> </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <div class="pull-left user-img"><img src="~/images/logos/manlogo.jpg" class="img-responsive" alt="User"></div>
-                            <p class="text-left">Albert Camus <small>gmashop@gmail.com</small> </p>
-                            <div class="view-link text-left"><a href="#">View Profile</a> </div>
+                            <div class="pull-left user-img"><img src="https://picsum.photos/id/237/200/300" class="img-responsive" alt="User"></div>
+                            <p class="text-left">@Model.Name <small>@Model.Email</small> </p>
                         </li>
-                        <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
-                        <li><a href="#"><i class="icon-wallet"></i> My Balance</a></li>
-                        <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li><a href="/User/Index"><i class="icon-profile-male"></i> My Profile</a></li>
+                       
+                        <li><a href="/User/Logout"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>

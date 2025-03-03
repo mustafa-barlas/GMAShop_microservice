@@ -1,5 +1,6 @@
 ﻿using GMAShop.Catalog.Dtos.SpecialOfferDtos;
 using GMAShop.Catalog.Services.SpecialOfferServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Catalog.Controllers
@@ -31,6 +32,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateSpecialOffer(CreateSpecialOfferDto createSpecialOfferDto)
         {
             await _specialOfferService.CreateSpecialOfferAsync(createSpecialOfferDto);
@@ -38,6 +40,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteSpecialOffer(string id)
         {
             await _specialOfferService.DeleteSpecialOfferAsync(id);
@@ -45,6 +48,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateSpecialOffer(UpdateSpecialOfferDto updateSpecialOfferDto)
         {
             await _specialOfferService.UpdateSpecialOfferAsync(updateSpecialOfferDto);

@@ -32,6 +32,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateOfferDiscount(CreateOfferDiscountDto createOfferDiscountDto)
         {
             await _offerDiscountService.CreateOfferDiscountAsync(createOfferDiscountDto);
@@ -39,6 +40,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteOfferDiscount(string id)
         {
             await _offerDiscountService.DeleteOfferDiscountAsync(id);
@@ -46,6 +48,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateOfferDiscount(UpdateOfferDiscountDto updateOfferDiscountDto)
         {
             await _offerDiscountService.UpdateOfferDiscountAsync(updateOfferDiscountDto);

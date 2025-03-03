@@ -13,14 +13,14 @@ namespace GMAShop.WebUI.Areas.Admin.ViewComponents.AdminLayoutViewComponents
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            // var user = await userService.GetUserInfo();
+             var user = await userService.GetUserInfo();
             // int messageCount = await messageService.GetTotalMessageCountByReceiverId(user.Id);
             // ViewBag.messageCount = messageCount;
             //
             // int totalCommentcount = await commentService.GetTotalCommentCount();
             // ViewBag.totalCommentCount = totalCommentcount;  
         
-            return View();
+            return View(user);
         }
     }
 }

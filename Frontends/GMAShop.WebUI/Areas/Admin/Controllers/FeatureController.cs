@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.FeatureDtos;
 using GMAShop.WebUI.Services.CatalogServices.FeatureServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Feature")]
+    [Authorize]
+
     public class FeatureController : Controller
     {
         private readonly IFeatureService _featureService;

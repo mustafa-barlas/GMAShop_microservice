@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using GMAShop.DtoLayer.CatalogDtos.ProductDtos;
 using GMAShop.WebUI.Services.CatalogServices.CategoryServices;
 using GMAShop.WebUI.Services.CatalogServices.ProductServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Product")]
+    [Authorize]
+
     public class ProductController(IProductService productService, ICategoryService categoryService)
         : Controller
     {
@@ -32,15 +35,17 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
         {
             ProductViewBagList();
 
-            //var client = _httpClientFactory.CreateClient();
-            //var responseMessage = await client.GetAsync("https://localhost:7070/api/Products/ProductListWithCategory");
-            //if (responseMessage.IsSuccessStatusCode)
-            //{
-            //    var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            //    var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
-            //    return View(values);
-            //}
-            return View();
+            var values = await productService.GetProductsWithCategoryAsync();
+            return View(values);
+            
+            // var client = _httpClientFactory.CreateClient();
+            // var responseMessage = await client.GetAsync("https://localhost:7070/api/Products/ProductListWithCategory");
+            // if (responseMessage.IsSuccessStatusCode)
+            // {
+            //     var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            //     var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
+            //     return View(values);
+            // }
         }
 
         [Route("CreateProduct")]
@@ -50,11 +55,11 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
             ProductViewBagList();
             var values = await categoryService.GetAllCategoryAsync();
             List<SelectListItem> categoryValues = (from x in values
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.CategoryName,
-                                                       Value = x.CategoryID
-                                                   }).ToList();
+                select new SelectListItem
+                {
+                    Text = x.CategoryName,
+                    Value = x.CategoryID
+                }).ToList();
             ViewBag.CategoryValues = categoryValues;
             return View();
         }
@@ -82,11 +87,11 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
 
             var values = await categoryService.GetAllCategoryAsync();
             List<SelectListItem> categoryValues = (from x in values
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.CategoryName,
-                                                       Value = x.CategoryID
-                                                   }).ToList();
+                select new SelectListItem
+                {
+                    Text = x.CategoryName,
+                    Value = x.CategoryID
+                }).ToList();
             ViewBag.CategoryValues = categoryValues;
 
             var productValues = await productService.GetByIdProductAsync(id);

@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.CategoryDtos;
 using GMAShop.WebUI.Services.CatalogServices.CategoryServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers;
 
 [Area("Admin")]
 [Route("Admin/Category")]
+[Authorize]
 public class CategoryController(ICategoryService categoryService) : Controller
 {
     [Route("Index")]

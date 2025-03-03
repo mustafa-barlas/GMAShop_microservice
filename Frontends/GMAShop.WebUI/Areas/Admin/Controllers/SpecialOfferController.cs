@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.SpecialOfferDtos;
 using GMAShop.WebUI.Services.CatalogServices.SpecialOfferServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/SpecialOffer")]
+    [Authorize]
+
     public class SpecialOfferController : Controller
     {
         private readonly ISpecialOfferService _specialOfferService;

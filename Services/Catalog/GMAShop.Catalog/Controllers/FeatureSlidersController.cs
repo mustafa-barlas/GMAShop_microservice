@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.Catalog.Dtos.FeatureSliderDtos;
 using GMAShop.Catalog.Services.FeatureSliderServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.Catalog.Controllers
 {
@@ -9,6 +10,7 @@ namespace GMAShop.Catalog.Controllers
     public class FeatureSlidersController : ControllerBase
     {
         private readonly IFeatureSliderService _featureSliderService;
+
         public FeatureSlidersController(IFeatureSliderService featureSliderService)
         {
             _featureSliderService = featureSliderService;
@@ -29,6 +31,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateFeatureSlider(CreateFeatureSliderDto createFeatureSliderDto)
         {
             await _featureSliderService.CreateFeatureSliderAsync(createFeatureSliderDto);
@@ -36,6 +39,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteFeatureSlider(string id)
         {
             await _featureSliderService.DeleteFeatureSliderAsync(id);
@@ -43,6 +47,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateFeatureSlider(UpdateFeatureSliderDto updateFeatureSliderDto)
         {
             await _featureSliderService.UpdateFeatureSliderAsync(updateFeatureSliderDto);

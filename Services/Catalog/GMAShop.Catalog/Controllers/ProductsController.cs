@@ -23,21 +23,24 @@ namespace GMAShop.Catalog.Controllers
             return Ok(values);
         }
 
-        [HttpPost]
+        [HttpPost]        [Authorize]
+
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             await productService.CreateProductAsync(createProductDto);
             return Ok("Ürün başarıyla eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete]        [Authorize]
+
         public async Task<IActionResult> DeleteProduct(string id)
         {
             await productService.DeleteProductAsync(id);
             return Ok("Ürün başarıyla silindi");
         }
 
-        [HttpPut]
+        [HttpPut]        [Authorize]
+
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
             await productService.UpdateProductAsync(updateProductDto);

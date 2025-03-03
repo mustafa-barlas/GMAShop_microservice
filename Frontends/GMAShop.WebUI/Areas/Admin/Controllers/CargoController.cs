@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CargoDtos.CargoCompanyDtos;
 using GMAShop.WebUI.Services.CargoServices.CargoCompanyServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Cargo")]
+    [Authorize]
+
     public class CargoController : Controller
     {
         private readonly ICargoCompanyService _cargoCompanyService;

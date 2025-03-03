@@ -24,6 +24,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateAbout(CreateAboutDto createAboutDto)
         {
             await aboutService.CreateAboutAsync(createAboutDto);
@@ -31,6 +32,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteAbout(string id)
         {
             await aboutService.DeleteAboutAsync(id);
@@ -38,6 +40,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateAbout(UpdateAboutDto updateAboutDto)
         {
             await aboutService.UpdateAboutAsync(updateAboutDto);

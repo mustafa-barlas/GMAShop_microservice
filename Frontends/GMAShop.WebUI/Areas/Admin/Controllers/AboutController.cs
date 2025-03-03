@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GMAShop.DtoLayer.CatalogDtos.AboutDtos;
 using GMAShop.WebUI.Services.CatalogServices.AboutServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/About")]
+    [Authorize]
+
     public class AboutController(IAboutService aboutService) : Controller
     {
         [Route("Index")]

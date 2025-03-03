@@ -30,6 +30,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateBrand(CreateBrandDto createBrandDto)
         {
             await _brandService.CreateBrandAsync(createBrandDto);
@@ -37,6 +38,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteBrand(string id)
         {
             await _brandService.DeleteBrandAsync(id);
@@ -44,6 +46,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateBrand(UpdateBrandDto updateBrandDto)
         {
             await _brandService.UpdateBrandAsync(updateBrandDto);

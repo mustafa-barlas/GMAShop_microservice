@@ -35,7 +35,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(
     JwtBearerDefaults.AuthenticationScheme, opt =>
     {
-        opt.LoginPath = "/Login/Index/";
+        opt.LoginPath = "/Login/Index";
         opt.LogoutPath = "/Login/LogOut/";
         opt.AccessDeniedPath = "/Pages/AccessDenied/";
         opt.Cookie.HttpOnly = true;
@@ -73,6 +73,8 @@ builder.Services.AddScoped<ClientCredentialTokenHandler>();
 builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
 
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+
+#region services
 
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 {
@@ -203,6 +205,8 @@ builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+#endregion
 
 builder.Services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
 builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)

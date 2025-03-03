@@ -8,6 +8,8 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/ProductImage")]
+    [Authorize]
+
     public class ProductImageController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

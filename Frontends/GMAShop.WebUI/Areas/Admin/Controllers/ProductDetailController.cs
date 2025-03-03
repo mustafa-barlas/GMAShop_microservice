@@ -8,6 +8,8 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/ProductDetail")]
+    [Authorize]
+
     public class ProductDetailController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

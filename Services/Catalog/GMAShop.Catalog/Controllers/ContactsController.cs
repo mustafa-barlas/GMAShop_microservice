@@ -24,6 +24,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateContact(CreateContactDto createContactDto)
         {
             await contactService.CreateContactAsync(createContactDto);
@@ -31,6 +32,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteContact(string id)
         {
             await contactService.DeleteContactAsync(id);
@@ -38,6 +40,7 @@ namespace GMAShop.Catalog.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateContact(UpdateContactDto updateContactDto)
         {
             await contactService.UpdateContactAsync(updateContactDto);

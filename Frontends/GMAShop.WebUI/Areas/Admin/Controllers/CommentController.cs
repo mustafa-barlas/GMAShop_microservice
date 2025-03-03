@@ -8,6 +8,8 @@ namespace GMAShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Comment")]
+    [Authorize]
+
     public class CommentController(IHttpClientFactory httpClientFactory) : Controller
     {
         [Route("Index")]
