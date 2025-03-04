@@ -21,6 +21,12 @@ namespace GMAShop.WebUI.Controllers
             return View(values);
         }
 
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var values = await _userService.GetAllUsers();
+            return View(values);
+        }
+
         public async Task<IActionResult> Logout()
         {
             // Kullanıcıyı oturumdan çıkar

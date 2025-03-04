@@ -8,7 +8,7 @@ namespace GMAShop.WebUI.Services.CatalogServices.ProductServices
         Task CreateProductAsync(CreateProductDto createProductDto);
         Task UpdateProductAsync(UpdateProductDto updateProductDto);
         Task DeleteProductAsync(string id);
-        Task<UpdateProductDto> GetByIdProductAsync(string id);
+        Task<ResultProductDto> GetByIdProductAsync(string id);
         Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryAsync();
         Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryByCatetegoryIdAsync(string CategoryId);
     }

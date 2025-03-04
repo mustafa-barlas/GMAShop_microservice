@@ -21,7 +21,7 @@ namespace GMAShop.IdentityServer.Controllers
                 UserName = userRegisterDto.UserName,
                 Email = userRegisterDto.Email,
                 Name = userRegisterDto.Name,
-                Surname = userRegisterDto.Surname
+                Surname = userRegisterDto.Surname,
             };
             var result = await userManager.CreateAsync(values, userRegisterDto.Password);
             if (result.Succeeded)

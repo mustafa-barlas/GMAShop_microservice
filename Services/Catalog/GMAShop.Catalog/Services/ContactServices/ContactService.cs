@@ -10,11 +10,11 @@ namespace GMAShop.Catalog.Services.ContactServices
     {
         private readonly IMongoCollection<Contact> _contactCollection;
         private readonly IMapper _mapper;
-        public ContactService(IMapper mapper, IDatabaseSettings databaseSettings)
+        public ContactService(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
-            var client = new MongoClient(databaseSettings.ConnectionString);
-            var database = client.GetDatabase(databaseSettings.DatabaseName);
-            _contactCollection = database.GetCollection<Contact>(databaseSettings.ContactCollectionName);
+            var client = new MongoClient(_databaseSettings.ConnectionString);
+            var database = client.GetDatabase(_databaseSettings.DatabaseName);
+            _contactCollection = database.GetCollection<Contact>(_databaseSettings.ContactCollectionName);
             _mapper = mapper;
         }
         public async Task CreateContactAsync(CreateContactDto createContactDto)

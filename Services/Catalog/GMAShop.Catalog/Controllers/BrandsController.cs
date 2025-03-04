@@ -7,25 +7,19 @@ namespace GMAShop.Catalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandsController : ControllerBase
+    public class BrandsController(IBrandService brandService) : ControllerBase
     {
-        private readonly IBrandService _brandService;
-        public BrandsController(IBrandService brandService)
-        {
-            _brandService = brandService;
-        }
-
         [HttpGet]
         public async Task<IActionResult> BrandList()
         {
-            var values = await _brandService.GetAllBrandAsync();
+            var values = await brandService.GetAllBrandAsync();
             return Ok(values);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBrandById(string id)
         {
-            var values = await _brandService.GetByIdBrandAsync(id);
+            var values = await brandService.GetByIdBrandAsync(id);
             return Ok(values);
         }
 
@@ -33,7 +27,7 @@ namespace GMAShop.Catalog.Controllers
         [Authorize]
         public async Task<IActionResult> CreateBrand(CreateBrandDto createBrandDto)
         {
-            await _brandService.CreateBrandAsync(createBrandDto);
+            await brandService.CreateBrandAsync(createBrandDto);
             return Ok("Marka başarıyla eklendi");
         }
 
@@ -41,7 +35,7 @@ namespace GMAShop.Catalog.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteBrand(string id)
         {
-            await _brandService.DeleteBrandAsync(id);
+            await brandService.DeleteBrandAsync(id);
             return Ok("Marka başarıyla silindi");
         }
 
@@ -49,7 +43,7 @@ namespace GMAShop.Catalog.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateBrand(UpdateBrandDto updateBrandDto)
         {
-            await _brandService.UpdateBrandAsync(updateBrandDto);
+            await brandService.UpdateBrandAsync(updateBrandDto);
             return Ok("Marka başarıyla güncellendi");
         }
     }

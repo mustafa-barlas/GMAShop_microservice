@@ -104,9 +104,9 @@
                             <div class="pull-left user-img"><img src="https://picsum.photos/id/237/200/300" class="img-responsive" alt="User"></div>
                             <p class="text-left">@Model.Name <small>@Model.Email</small> </p>
                         </li>
-                        <li><a href="/User/Index"><i class="icon-profile-male"></i> My Profile</a></li>
+                        <li><a asp-controller="User" asp-action="Index"><i class="icon-profile-male"></i> My Profile</a></li>
                        
-                        <li><a href="/User/Logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li><a asp-controller="User" asp-action="Logout"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>

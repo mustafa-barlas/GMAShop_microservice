@@ -13,10 +13,10 @@ namespace GMAShop.WebUI.Services.CatalogServices.ProductServices
         {
             await httpClient.DeleteAsync("products?id=" + id);
         }
-        public async Task<UpdateProductDto> GetByIdProductAsync(string id)
+        public async Task<ResultProductDto> GetByIdProductAsync(string id)
         {
             var responseMessage = await httpClient.GetAsync("products/" + id);
-            var values = await responseMessage.Content.ReadFromJsonAsync<UpdateProductDto>();
+            var values = await responseMessage.Content.ReadFromJsonAsync<ResultProductDto>();
             return values;
         }
         public async Task<List<ResultProductDto>> GetAllProductAsync()

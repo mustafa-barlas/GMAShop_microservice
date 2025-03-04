@@ -19,7 +19,7 @@ namespace GMAShop.WebUI.Controllers
         public async Task<IActionResult> Index(CreateContactDto createContactDto)
         {
             createContactDto.IsRead = false;
-            createContactDto.SendDate = DateTime.UtcNow;
+            createContactDto.SendDate = DateTime.Now;
             await contactService.CreateContactAsync(createContactDto);
             return RedirectToAction("Index", "Default");
         }

@@ -3,18 +3,19 @@ using GMAShop.WebUI.Services.Interfaces;
 
 namespace GMAShop.WebUI.Services.Concrete
 {
-    public class UserService : IUserService
+    public class UserService(HttpClient httpClient) : IUserService
     {
-        private readonly HttpClient _httpClient;
-
-        public UserService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
-
         public async Task<UserDetailViewModel> GetUserInfo()
         {
-            return await _httpClient.GetFromJsonAsync<UserDetailViewModel>("/api/users/getuser");
+            return await httpClient.GetFromJsonAsync<UserDetailViewModel>("/api/users/getuser");
+        }
+
+
+        public async Task<List<UserDetailViewModel>> GetAllUsers()
+        {
+            var values = await httpClient.GetFromJsonAsync<List<UserDetailViewModel>>("/api/users/GetAllUserList");
+
+            return values;
         }
     }
 }

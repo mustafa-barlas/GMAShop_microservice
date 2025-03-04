@@ -5,45 +5,49 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMAShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactsController(IContactService contactService) : ControllerBase
+    public class ContactsController : ControllerBase
     {
+        private readonly IContactService _contactService;
+        public ContactsController(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
+
         [HttpGet]
         public async Task<IActionResult> ContactList()
         {
-            var values = await contactService.GetAllContactAsync();
+            var values = await _contactService.GetAllContactAsync();
             return Ok(values);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetContactById(string id)
         {
-            var values = await contactService.GetByIdContactAsync(id);
+            var values = await _contactService.GetByIdContactAsync(id);
             return Ok(values);
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> CreateContact(CreateContactDto createContactDto)
         {
-            await contactService.CreateContactAsync(createContactDto);
+            await _contactService.CreateContactAsync(createContactDto);
             return Ok("Mesaj başarıyla eklendi");
         }
 
         [HttpDelete]
-        [Authorize]
         public async Task<IActionResult> DeleteContact(string id)
         {
-            await contactService.DeleteContactAsync(id);
+            await _contactService.DeleteContactAsync(id);
             return Ok("Mesaj başarıyla silindi");
         }
 
         [HttpPut]
-        [Authorize]
         public async Task<IActionResult> UpdateContact(UpdateContactDto updateContactDto)
         {
-            await contactService.UpdateContactAsync(updateContactDto);
+            await _contactService.UpdateContactAsync(updateContactDto);
             return Ok("Mesaj başarıyla güncellendi");
         }
     }
